@@ -1,0 +1,72 @@
+.hero {
+  padding: clamp(5rem, 10vw, 9rem) 0 clamp(5rem, 9vw, 8rem);
+  overflow: clip;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2.5rem, 5vw, 6rem);
+  align-items: center;
+}
+
+.copy {
+  max-width: 38rem;
+}
+
+.productName {
+  margin: 0 0 1.4rem;
+  color: var(--color-ink-muted);
+  font-size: 0.875rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--text-h1);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  font-weight: 600;
+}
+
+.description {
+  max-width: 34rem;
+  margin: 1.8rem 0 0;
+  color: var(--color-ink-muted);
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.status {
+  margin: 1rem 0 0;
+  color: var(--color-ink-muted);
+  font-size: 0.8125rem;
+}
+
+.media {
+  min-height: 34rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .copy {
+    max-width: 46rem;
+  }
+
+  .media {
+    min-height: auto;
+  }
+}
