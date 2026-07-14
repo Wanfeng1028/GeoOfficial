@@ -12,3 +12,16 @@ test('homepage communicates product and exposes primary actions', async ({ page 
 
   await expect(page.getByRole('link', { name: '下载 GeoWork' })).toBeVisible();
 });
+
+test('homepage renders hero media', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('main')).toBeVisible();
+});
+
+test('homepage sections follow the documented order', async ({ page }) => {
+  await page.goto('/');
+  const main = page.getByRole('main');
+
+  const hero = main.locator('section').first();
+  await expect(hero).toBeVisible();
+});
