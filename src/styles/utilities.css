@@ -1,0 +1,29 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.text-ink-muted {
+  color: var(--color-ink-muted);
+}
+
+.dark-section {
+  color: var(--color-dark-ink);
+  background: var(--color-dark-canvas);
+}
+
+.dark-section ::selection {
+  color: var(--color-dark-canvas);
+  background: var(--color-dark-ink);
+}
