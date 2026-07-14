@@ -1,0 +1,49 @@
+.heading2 {
+  margin-block: var(--space-12, 2rem) var(--space-4, 0.75rem);
+  font-size: var(--text-heading-sm, 1.25rem);
+  font-weight: 600;
+  color: var(--color-text-primary, #101112);
+}
+
+.heading3 {
+  margin-block: var(--space-6, 1rem) var(--space-3, 0.5rem);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #101112);
+}
+
+.paragraph {
+  margin-block: 0 var(--space-5, 0.85rem);
+  color: var(--color-text-secondary, #3d4148);
+  line-height: 1.75;
+}
+
+.link {
+  color: var(--color-text-primary, #101112);
+  text-decoration-color: var(--color-border-strong, #6b6f76);
+  text-underline-offset: 0.2em;
+}
+
+.list {
+  margin-block: 0 var(--space-5, 0.85rem);
+  padding-left: var(--space-6, 1.25rem);
+}
+
+.listOrdered {
+  margin-block: 0 var(--space-5, 0.85rem);
+  padding-left: var(--space-6, 1.25rem);
+}
+
+.listItem {
+  margin-block: var(--space-2, 0.25rem);
+  color: var(--color-text-secondary, #3d4148);
+  line-height: 1.7;
+}
+
+.inlineCode {
+  background: var(--color-surface, #f4f5f6);
+  padding: 0.1rem 0.35rem;
+  border-radius: var(--radius-sm, 0.25rem);
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.9em;
+}

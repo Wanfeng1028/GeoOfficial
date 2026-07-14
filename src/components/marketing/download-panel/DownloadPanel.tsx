@@ -5,23 +5,65 @@ import { Container } from '@/components/ui/container/Container';
 import { SectionHeading } from '@/components/ui/section-heading/SectionHeading';
 import { Button } from '@/components/ui/button/Button';
 import { homeContent } from '@/data/home';
-import { getLatestRelease } from '@/lib/github/releases';
+import { getLatestRelease, type ReleaseResult } from '@/lib/github/releases';
+import { matchAssetToPlatform } from '@/lib/github/match-release-assets';
 import { formatBytes, formatDate } from '@/lib/content/mdx';
 import { platformRules } from '@/data/platforms';
 import styles from './DownloadPanel.module.css';
 
+const REPO_RELEASES_URL = 'https://github.com/Wanfeng1028/GeoWork/releases';
+
+function ReleaseStatusBanner({ source }: { source: ReleaseResult['source'] }) {
+  if (source === 'github') return null;
+
+  const map: Record<Exclude<ReleaseResult['source'], 'github'>, { title: string; body: string }> = {
+    'no-release': {
+      title: 'GeoWork 当前尚未发布官方安装包。',
+      body: '可以查看源代码与开发进度。',
+    },
+    'api-error': {
+      title: '暂时无法读取 GitHub Release 信息。',
+      body: '可前往 GitHub Releases 直接查看仓库构建，或稍后再试。',
+    },
+    'invalid-response': {
+      title: 'GitHub 返回的数据格式异常，已暂时停止解析。',
+      body: '可前往 GitHub Releases 直接查看仓库构建。',
+    },
+  };
+
+  const { title, body } = map[source];
+
+  return (
+    <div className={styles.fallback} role="status" aria-live="polite">
+      <p className={styles.fallbackTitle}>{title}</p>
+      <p className={styles.fallbackBody}>{body}</p>
+      <Button
+        asChild
+        variant="secondary"
+        size="md"
+        trailingIcon={<ArrowRightIcon aria-hidden />}
+      >
+        <a href={REPO_RELEASES_URL} target="_blank" rel="noreferrer">
+          前往 GitHub Releases
+        </a>
+      </Button>
+    </div>
+  );
+}
+
 export async function DownloadPanel() {
-  const release = await getLatestRelease();
+  const result = await getLatestRelease();
   const { download } = homeContent;
+  const { source, release } = result;
 
   const assetsByPlatform = platformRules.map((rule) => {
-    const matched = release.assets.filter((asset) =>
-      rule.patterns.some((pattern) => pattern.test(asset.name)),
-    );
+    const matched = release
+      ? release.assets.filter((asset) => matchAssetToPlatform(asset.name, rule))
+      : [];
     return { rule, matched };
   });
 
-  const hasAssets = release.assets.length > 0;
+  const hasAssets = release ? release.assets.length > 0 : false;
 
   return (
     <Section tone="white" spacing="large" id="download">
@@ -33,83 +75,85 @@ export async function DownloadPanel() {
         />
 
         <div className={styles.panel}>
-          <div className={styles.release}>
-            <p className={styles.releaseVersion}>
-              {release.tag_name}
-              {release.prerelease ? ' · Developer Preview' : ''}
-            </p>
-            {release.published_at ? (
-              <p className={styles.releaseDate}>
-                发布时间 · {formatDate(release.published_at)}
-              </p>
-            ) : null}
-            <p className={styles.releaseBody}>
-              {release.body ??
-                'GeoWork 当前处于开发阶段。请前往 GitHub 查看最新构建与说明。'}
-            </p>
-            <a
-              className={styles.releaseLink}
-              href={release.html_url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GithubLogoIcon aria-hidden /> 查看 GitHub Releases
-            </a>
-          </div>
+          <ReleaseStatusBanner source={source} />
 
-          {hasAssets ? (
-            <ul className={styles.assets}>
-              {assetsByPlatform.map(({ rule, matched }) => (
-                <li key={rule.id} className={styles.assetRow}>
-                  <div className={styles.assetInfo}>
-                    <p className={styles.assetPlatform}>{rule.label}</p>
-                    <p className={styles.assetNotes}>{rule.notes}</p>
-                  </div>
-                  {matched.length > 0 ? (
-                    <ul className={styles.assetFiles}>
-                      {matched.map((asset) => (
-                        <li key={asset.id}>
-                          <a
-                            className={styles.assetLink}
-                            href={asset.browser_download_url}
-                            rel="noreferrer"
-                          >
-                            {asset.name}
-                            <span className={styles.assetSize}>
-                              {formatBytes(asset.size)}
-                            </span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className={styles.assetEmpty}>尚未提供官方构建</p>
-                  )}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className={styles.fallback}>
-              <p className={styles.fallbackTitle}>当前 Release 暂无下载资产。</p>
-              <p className={styles.fallbackBody}>
-                可前往 GitHub Releases 查看仓库构建，或通过源码自行运行。
-              </p>
-              <Button
-                asChild
-                variant="secondary"
-                size="md"
-                trailingIcon={<ArrowRightIcon aria-hidden />}
-              >
+          {release ? (
+            <>
+              <div className={styles.release}>
+                <p className={styles.releaseVersion}>
+                  {release.tag_name}
+                  {release.prerelease ? ' · Developer Preview' : ''}
+                </p>
+                {release.published_at ? (
+                  <p className={styles.releaseDate}>
+                    发布时间 · {formatDate(release.published_at)}
+                  </p>
+                ) : null}
+                <p className={styles.releaseBody}>
+                  {release.body ??
+                    'GeoWork 当前处于开发阶段。请前往 GitHub 查看最新构建与说明。'}
+                </p>
                 <a
-                  href="https://github.com/Wanfeng1028/GeoWork/releases"
+                  className={styles.releaseLink}
+                  href={release.html_url}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  前往 GitHub Releases
+                  <GithubLogoIcon aria-hidden /> 查看 GitHub Releases
                 </a>
-              </Button>
-            </div>
-          )}
+              </div>
+
+              {hasAssets ? (
+                <ul className={styles.assets}>
+                  {assetsByPlatform.map(({ rule, matched }) => (
+                    <li key={rule.id} className={styles.assetRow}>
+                      <div className={styles.assetInfo}>
+                        <p className={styles.assetPlatform}>{rule.label}</p>
+                        <p className={styles.assetNotes}>{rule.notes ?? ''}</p>
+                      </div>
+                      {matched.length > 0 ? (
+                        <ul className={styles.assetFiles}>
+                          {matched.map((asset) => (
+                            <li key={asset.id}>
+                              <a
+                                className={styles.assetLink}
+                                href={asset.browser_download_url}
+                                rel="noreferrer"
+                              >
+                                {asset.name}
+                                <span className={styles.assetSize}>
+                                  {formatBytes(asset.size)}
+                                </span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className={styles.assetEmpty}>尚未提供官方构建</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className={styles.fallback}>
+                  <p className={styles.fallbackTitle}>当前 Release 暂无下载资产。</p>
+                  <p className={styles.fallbackBody}>
+                    可前往 GitHub Releases 查看仓库构建，或通过源码自行运行。
+                  </p>
+                  <Button
+                    asChild
+                    variant="secondary"
+                    size="md"
+                    trailingIcon={<ArrowRightIcon aria-hidden />}
+                  >
+                    <a href={REPO_RELEASES_URL} target="_blank" rel="noreferrer">
+                      前往 GitHub Releases
+                    </a>
+                  </Button>
+                </div>
+              )}
+            </>
+          ) : null}
 
           <div className={styles.systemReq}>
             <h3 className={styles.systemReqTitle}>系统要求与说明</h3>

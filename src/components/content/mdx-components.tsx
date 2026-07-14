@@ -1,11 +1,16 @@
 import * as React from 'react';
+import styles from './mdx-components.module.css';
 
 export function h2({ children }: { children: React.ReactNode }) {
-  return <h2 style={{ marginTop: '1.5rem', fontSize: '1.25rem', fontWeight: 600 }}>{children}</h2>;
+  return <h2 className={styles.heading2}>{children}</h2>;
+}
+
+export function h3({ children }: { children: React.ReactNode }) {
+  return <h3 className={styles.heading3}>{children}</h3>;
 }
 
 export function p({ children }: { children: React.ReactNode }) {
-  return <p style={{ margin: '0.6rem 0', lineHeight: 1.7 }}>{children}</p>;
+  return <p className={styles.paragraph}>{children}</p>;
 }
 
 export function a({
@@ -15,37 +20,31 @@ export function a({
   href?: string;
   children: React.ReactNode;
 }) {
+  const isExternal = href?.startsWith('http');
   return (
-    <a href={href} target={href?.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
+    <a
+      href={href}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noreferrer' : undefined}
+      className={styles.link}
+    >
       {children}
     </a>
   );
 }
 
 export function ul({ children }: { children: React.ReactNode }) {
-  return <ul style={{ paddingLeft: '1.4rem' }}>{children}</ul>;
+  return <ul className={styles.list}>{children}</ul>;
 }
 
 export function ol({ children }: { children: React.ReactNode }) {
-  return <ol style={{ paddingLeft: '1.4rem' }}>{children}</ol>;
+  return <ol className={styles.listOrdered}>{children}</ol>;
 }
 
 export function li({ children }: { children: React.ReactNode }) {
-  return <li style={{ margin: '0.25rem 0' }}>{children}</li>;
+  return <li className={styles.listItem}>{children}</li>;
 }
 
 export function code({ children }: { children: React.ReactNode }) {
-  return (
-    <code
-      style={{
-        background: 'var(--color-surface)',
-        padding: '0.1rem 0.35rem',
-        borderRadius: 'var(--radius-sm)',
-        fontFamily: 'var(--font-mono, monospace)',
-        fontSize: '0.9em',
-      }}
-    >
-      {children}
-    </code>
-  );
+  return <code className={styles.inlineCode}>{children}</code>;
 }

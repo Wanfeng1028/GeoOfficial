@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@phosphor-icons/react/ssr';
 import { homeContent } from '@/data/home';
+import { mediaAssets } from '@/data/media';
 import { Button } from '@/components/ui/button/Button';
 import { Container } from '@/components/ui/container/Container';
 import { MediaFrame } from '@/components/ui/media-frame/MediaFrame';
@@ -11,7 +12,7 @@ export function Hero() {
   const { hero } = homeContent;
 
   return (
-    <section className={styles.hero} aria-labelledby="home-title">
+    <section id="hero" className={styles.hero} aria-labelledby="home-title">
       <Container width="wide" className={styles.grid}>
         <div className={styles.copy}>
           <p className={styles.productName}>{hero.eyebrow}</p>
@@ -37,8 +38,8 @@ export function Hero() {
 
         <MediaFrame className={styles.media} ratio="16:10" tone="dark">
           <Image
-            src="/media/hero/geowork-workspace.webp"
-            alt="GeoWork 工作台，包含项目导航、地图画布、代码与成果面板"
+            src={mediaAssets.hero.src}
+            alt={mediaAssets.hero.alt}
             fill
             priority
             sizes="(max-width: 900px) 100vw, 58vw"

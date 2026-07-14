@@ -25,7 +25,7 @@ const figures = [
 
 export function ProductDetails() {
   return (
-    <Section tone="white" spacing="default" id="details">
+    <Section tone="white" spacing="default" id="product-details">
       <Container>
         <SectionHeading
           eyebrow="协同工作"
