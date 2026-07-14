@@ -1,8 +1,13 @@
 export interface PlatformRule {
-  id: string;
+  id:
+    | 'windows-x64'
+    | 'macos-arm64'
+    | 'macos-x64'
+    | 'linux-x64';
   label: string;
-  patterns: RegExp[];
-  available: boolean;
+  includeAll?: RegExp[];
+  includeAny?: RegExp[];
+  exclude?: RegExp[];
   notes?: string;
 }
 
@@ -10,29 +15,33 @@ export const platformRules: PlatformRule[] = [
   {
     id: 'windows-x64',
     label: 'Windows x64',
-    patterns: [/win/i, /x64/i, /\.exe$/i, /\.msi$/i],
-    available: true,
+    includeAny: [/windows/i, /\bwin\b/i, /\.exe$/i, /\.msi$/i],
+    includeAll: [/x64|amd64/i],
+    exclude: [/linux/i, /mac|darwin/i, /arm64/i],
     notes: 'Windows 10 / 11 64-bit',
   },
   {
     id: 'macos-arm64',
     label: 'macOS Apple Silicon',
-    patterns: [/mac/i, /arm64/i, /\.dmg$/i],
-    available: false,
+    includeAny: [/mac|darwin/i, /\.dmg$/i],
+    includeAll: [/arm64|aarch64/i],
+    exclude: [/linux/i, /windows/i, /\bwin\b/i],
     notes: '尚未提供官方构建',
   },
   {
     id: 'macos-x64',
     label: 'macOS Intel',
-    patterns: [/mac/i, /x64/i, /\.dmg$/i],
-    available: false,
+    includeAny: [/mac|darwin/i, /\.dmg$/i],
+    includeAll: [/x64|amd64|intel/i],
+    exclude: [/linux/i, /windows/i, /\bwin\b/i, /arm64|aarch64/i],
     notes: '尚未提供官方构建',
   },
   {
     id: 'linux-x64',
     label: 'Linux x64',
-    patterns: [/linux/i, /x64/i, /\.tar\.gz$/i, /\.deb$/i, /\.AppImage$/i],
-    available: false,
+    includeAny: [/linux/i, /\.AppImage$/i, /\.deb$/i, /\.tar\.gz$/i],
+    includeAll: [/x64|amd64/i],
+    exclude: [/windows/i, /\bwin\b/i, /mac|darwin/i, /arm64|aarch64/i],
     notes: '尚未提供官方构建',
   },
 ];

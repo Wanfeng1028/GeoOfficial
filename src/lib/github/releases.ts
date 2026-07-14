@@ -1,19 +1,32 @@
 import { serverEnv } from '@/lib/env';
 import { githubReleaseListSchema, type GithubRelease } from './release-schema';
 
-const fallbackRelease: GithubRelease = {
-  tag_name: 'v0.4.x-dev',
-  name: 'Developer Preview',
-  body:
-    'GeoWork 当前处于开发阶段。请前往 GitHub 查看最新构建与说明。',
-  html_url: 'https://github.com/Wanfeng1028/GeoWork/releases',
-  published_at: null,
-  prerelease: true,
-  draft: false,
-  assets: [],
+export interface ReleaseResult {
+  source:
+    | 'github'
+    | 'no-release'
+    | 'api-error'
+    | 'invalid-response';
+  release: GithubRelease | null;
+}
+
+const noReleaseResult: ReleaseResult = {
+  source: 'no-release',
+  release: null,
 };
 
-export async function getLatestRelease(): Promise<GithubRelease> {
+/**
+ * 获取最新非 draft Release。
+ *
+ * 返回 `ReleaseResult`，明确区分：
+ * - `github`：成功获得真实 Release
+ * - `no-release`：API 成功但仓库当前没有任何 Release
+ * - `api-error`：fetch 抛异常或 HTTP 非 2xx
+ * - `invalid-response`：JSON 解析或 schema 校验失败
+ *
+ * 不再返回伪造的 v0.4.x-dev fallback。调用方据此渲染降级 UI。
+ */
+export async function getLatestRelease(): Promise<ReleaseResult> {
   const headers: HeadersInit = {
     Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
@@ -32,17 +45,23 @@ export async function getLatestRelease(): Promise<GithubRelease> {
       },
     );
 
-    if (!response.ok) return fallbackRelease;
+    if (!response.ok) {
+      return { source: 'api-error', release: null };
+    }
 
     const json: unknown = await response.json();
     const parsed = githubReleaseListSchema.safeParse(json);
-    if (!parsed.success) return fallbackRelease;
+    if (!parsed.success) {
+      return { source: 'invalid-response', release: null };
+    }
 
     const release = parsed.data.find((item) => !item.draft);
-    return release ?? fallbackRelease;
+    if (!release) {
+      return noReleaseResult;
+    }
+
+    return { source: 'github', release };
   } catch {
-    return fallbackRelease;
+    return { source: 'api-error', release: null };
   }
 }
-
-export { fallbackRelease as fallbackReleaseObject };

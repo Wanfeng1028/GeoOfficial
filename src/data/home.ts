@@ -1,3 +1,5 @@
+import { mediaAssets } from '@/data/media';
+
 export const homeContent = {
   hero: {
     eyebrow: 'GeoWork',
@@ -74,22 +76,22 @@ export const homeContent = {
         id: 'work',
         label: 'Work',
         description: '组织任务、文件、工具和成果。',
-        image: '/media/modes/work.webp',
-        alt: 'GeoWork Work 模式界面，左侧任务列表，右侧文件与工具面板',
+        image: mediaAssets.modes.work.src,
+        alt: mediaAssets.modes.work.alt,
       },
       {
         id: 'code',
         label: 'Code',
         description: '编写、运行和检查地理空间代码。',
-        image: '/media/modes/code.webp',
-        alt: 'GeoWork Code 模式界面，编辑器、终端和运行结果',
+        image: mediaAssets.modes.code.src,
+        alt: mediaAssets.modes.code.alt,
       },
       {
         id: 'map',
         label: 'Map',
         description: '查看图层、范围、结果和空间关系。',
-        image: '/media/modes/map.webp',
-        alt: 'GeoWork Map 模式界面，图层列表、地图画布和图例',
+        image: mediaAssets.modes.map.src,
+        alt: mediaAssets.modes.map.alt,
       },
     ],
   },
