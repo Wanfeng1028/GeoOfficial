@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button/Button';
 import { ArrowRightIcon } from '@phosphor-icons/react/ssr';
 import { changelogEntries } from '@/data/changelog';
 import { formatDate } from '@/lib/content/mdx';
-import styles from './changelog.module.css';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: '更新日志',

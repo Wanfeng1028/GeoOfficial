@@ -1,11 +1,14 @@
+import { notFound } from 'next/navigation';
 import { Container } from '@/components/ui/container/Container';
 import { Section } from '@/components/ui/section/Section';
 import { SectionHeading } from '@/components/ui/section-heading/SectionHeading';
 import { Button } from '@/components/ui/button/Button';
-import styles from './dev-components.module.css';
+import styles from './page.module.css';
 
 export default function DevComponentsPage() {
-  if (process.env.NODE_ENV === 'production') return null;
+  if (process.env.NODE_ENV === 'production') {
+    notFound();
+  }
 
   return (
     <Section tone="canvas" spacing="large">

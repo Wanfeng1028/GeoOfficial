@@ -3,7 +3,7 @@ import { Section } from '@/components/ui/section/Section';
 import { Container } from '@/components/ui/container/Container';
 import { SectionHeading } from '@/components/ui/section-heading/SectionHeading';
 import { siteConfig } from '@/lib/site';
-import styles from './privacy.module.css';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: '隐私',

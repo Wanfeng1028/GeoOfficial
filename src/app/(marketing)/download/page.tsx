@@ -5,7 +5,8 @@ import { Container } from '@/components/ui/container/Container';
 import { SectionHeading } from '@/components/ui/section-heading/SectionHeading';
 import { Button } from '@/components/ui/button/Button';
 import { ArrowRightIcon, GithubLogoIcon } from '@phosphor-icons/react/ssr';
-import { getLatestRelease } from '@/lib/github/releases';
+import { getLatestRelease, type ReleaseResult } from '@/lib/github/releases';
+import { matchAssetToPlatform } from '@/lib/github/match-release-assets';
 import { formatBytes, formatDate } from '@/lib/content/mdx';
 import { platformRules, systemRequirements, faqs } from '@/data/platforms';
 import {
@@ -15,15 +16,42 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/components/primitives/accordion/Accordion';
-import styles from './download.module.css';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: '下载',
   description: 'GeoWork 下载、版本、平台与系统要求。当前处于 Developer Preview。',
 };
 
+const REPO_RELEASES_URL = 'https://github.com/Wanfeng1028/GeoWork/releases';
+
+const fallbackCopy: Record<Exclude<ReleaseResult['source'], 'github'>, { title: string; body: string }> = {
+  'no-release': {
+    title: 'GeoWork 当前尚未发布官方安装包。',
+    body: '可以查看源代码与开发进度。',
+  },
+  'api-error': {
+    title: '暂时无法读取 GitHub Release 信息。',
+    body: '可前往 GitHub Releases 直接查看仓库构建，或稍后再试。',
+  },
+  'invalid-response': {
+    title: 'GitHub 返回的数据格式异常，已暂时停止解析。',
+    body: '可前往 GitHub Releases 直接查看仓库构建。',
+  },
+};
+
 export default async function DownloadPage() {
-  const release = await getLatestRelease();
+  const result = await getLatestRelease();
+  const { source, release } = result;
+
+  const assetsByPlatform = platformRules.map((rule) => {
+    const matched = release
+      ? release.assets.filter((asset) => matchAssetToPlatform(asset.name, rule))
+      : [];
+    return { rule, matched };
+  });
+
+  const hasAssets = release ? release.assets.length > 0 : false;
 
   return (
     <Section tone="canvas" spacing="large">
@@ -36,66 +64,78 @@ export default async function DownloadPage() {
         />
 
         <div className={styles.release}>
-          <div className={styles.releaseInfo}>
-            <p className={styles.releaseVersion}>
-              {release.tag_name}
-              {release.prerelease ? ' · Developer Preview' : ''}
-            </p>
-            {release.published_at ? (
-              <p className={styles.releaseDate}>
-                发布时间 · {formatDate(release.published_at)}
+          {release ? (
+            <div className={styles.releaseInfo}>
+              <p className={styles.releaseVersion}>
+                {release.tag_name}
+                {release.prerelease ? ' · Developer Preview' : ''}
               </p>
-            ) : null}
-            <p className={styles.releaseBody}>
-              {release.body ??
-                'GeoWork 当前处于开发阶段。请前往 GitHub 查看最新构建与说明。'}
-            </p>
-            <a
-              className={styles.releaseLink}
-              href={release.html_url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GithubLogoIcon aria-hidden /> GitHub Releases
-            </a>
-          </div>
+              {release.published_at ? (
+                <p className={styles.releaseDate}>
+                  发布时间 · {formatDate(release.published_at)}
+                </p>
+              ) : null}
+              <p className={styles.releaseBody}>
+                {release.body ??
+                  'GeoWork 当前处于开发阶段。请前往 GitHub 查看最新构建与说明。'}
+              </p>
+              <a
+                className={styles.releaseLink}
+                href={release.html_url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GithubLogoIcon aria-hidden /> GitHub Releases
+              </a>
+            </div>
+          ) : (
+            <div className={styles.releaseInfo} role="status" aria-live="polite">
+              <p className={styles.releaseVersion}>
+                {fallbackCopy[source as Exclude<ReleaseResult['source'], 'github'>].title}
+              </p>
+              <p className={styles.releaseBody}>{fallbackCopy[source as Exclude<ReleaseResult['source'], 'github'>].body}</p>
+              <a
+                className={styles.releaseLink}
+                href={REPO_RELEASES_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GithubLogoIcon aria-hidden /> GitHub Releases
+              </a>
+            </div>
+          )}
         </div>
 
         <h2 className={styles.h2}>平台</h2>
         <ul className={styles.platforms}>
-          {platformRules.map((rule) => {
-            const matched = release.assets.filter((asset) =>
-              rule.patterns.some((pattern) => pattern.test(asset.name)),
-            );
-            return (
-              <li key={rule.id} className={styles.platform}>
-                <div className={styles.platformInfo}>
-                  <p className={styles.platformLabel}>{rule.label}</p>
-                  <p className={styles.platformNotes}>{rule.notes}</p>
-                </div>
-                {matched.length > 0 ? (
-                  <ul className={styles.platformFiles}>
-                    {matched.map((asset) => (
-                      <li key={asset.id}>
-                        <a
-                          className={styles.platformLink}
-                          href={asset.browser_download_url}
-                          rel="noreferrer"
-                        >
-                          {asset.name}
-                          <span className={styles.platformSize}>
-                            {formatBytes(asset.size)}
-                          </span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className={styles.platformEmpty}>尚未提供官方构建</p>
-                )}
-              </li>
-            );
-          })}
+          {assetsByPlatform.map(({ rule, matched }) => (
+            <li key={rule.id} className={styles.platform}>
+              <div className={styles.platformInfo}>
+                <p className={styles.platformLabel}>{rule.label}</p>
+                <p className={styles.platformNotes}>{rule.notes ?? ''}</p>
+              </div>
+              {matched.length > 0 ? (
+                <ul className={styles.platformFiles}>
+                  {matched.map((asset) => (
+                    <li key={asset.id}>
+                      <a
+                        className={styles.platformLink}
+                        href={asset.browser_download_url}
+                        rel="noreferrer"
+                      >
+                        {asset.name}
+                        <span className={styles.platformSize}>
+                          {formatBytes(asset.size)}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className={styles.platformEmpty}>尚未提供官方构建</p>
+              )}
+            </li>
+          ))}
         </ul>
 
         <h2 className={styles.h2}>系统要求</h2>
@@ -143,11 +183,7 @@ export default async function DownloadPage() {
             size="md"
             trailingIcon={<ArrowRightIcon aria-hidden />}
           >
-            <a
-              href="https://github.com/Wanfeng1028/GeoWork/releases"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href={REPO_RELEASES_URL} target="_blank" rel="noreferrer">
               前往 GitHub Releases
             </a>
           </Button>

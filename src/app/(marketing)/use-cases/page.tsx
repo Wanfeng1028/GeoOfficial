@@ -6,7 +6,7 @@ import { SectionHeading } from '@/components/ui/section-heading/SectionHeading';
 import { Button } from '@/components/ui/button/Button';
 import { ArrowRightIcon } from '@phosphor-icons/react/ssr';
 import { useCases } from '@/data/use-cases';
-import styles from './use-cases.module.css';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: '使用案例',
@@ -64,12 +64,16 @@ export default function UseCasesPage() {
                 </Button>
               </div>
               <div className={styles.meta}>
-                <p className={styles.metaLabel}>输入</p>
-                <p className={styles.metaValue}>{item.inputs.join(' · ')}</p>
-                <p className={styles.metaLabel}>输出</p>
-                <p className={styles.metaValue}>{item.outputs.join(' · ')}</p>
-                <p className={styles.metaLabel}>工具</p>
-                <p className={styles.metaValue}>{item.tools.join(' · ')}</p>
+                <p className={styles.metaLabel}>受众</p>
+                <p className={styles.metaValue}>{item.audience}</p>
+                <p className={styles.metaLabel}>状态</p>
+                <p className={styles.metaValue}>
+                  {item.status === 'available'
+                    ? '当前可运行'
+                    : item.status === 'preview'
+                      ? 'Developer Preview'
+                      : '计划中'}
+                </p>
               </div>
             </li>
           ))}

@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button/Button';
 import { ArrowRightIcon, GithubLogoIcon } from '@phosphor-icons/react/ssr';
 import { changelogEntries } from '@/data/changelog';
 import { formatDate } from '@/lib/content/mdx';
-import styles from './[slug].module.css';
+import styles from './entry.module.css';
 
 interface PageProps {
   params: Promise<{ slug: string }>;

@@ -6,7 +6,7 @@ import { SectionHeading } from '@/components/ui/section-heading/SectionHeading';
 import { Button } from '@/components/ui/button/Button';
 import { ArrowRightIcon } from '@phosphor-icons/react/ssr';
 import { productPrinciples, ecosystemGroups } from '@/data/product';
-import styles from './product.module.css';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: '产品',

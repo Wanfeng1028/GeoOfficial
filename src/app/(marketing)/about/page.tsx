@@ -6,7 +6,7 @@ import { SectionHeading } from '@/components/ui/section-heading/SectionHeading';
 import { Button } from '@/components/ui/button/Button';
 import { ArrowRightIcon, GithubLogoIcon } from '@phosphor-icons/react/ssr';
 import { siteConfig } from '@/lib/site';
-import styles from './about.module.css';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: '关于',
