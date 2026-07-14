@@ -1,0 +1,33 @@
+.item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.header {
+  margin: 0;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 0;
+  color: var(--color-ink);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.trigger[data-state='open'] > [data-arrow] {
+  transform: rotate(180deg);
+}
+
+.content {
+  padding-bottom: 1rem;
+  color: var(--color-ink-muted);
+}
