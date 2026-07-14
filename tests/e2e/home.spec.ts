@@ -13,15 +13,44 @@ test('homepage communicates product and exposes primary actions', async ({ page 
   await expect(page.getByRole('link', { name: '下载 GeoWork' })).toBeVisible();
 });
 
-test('homepage renders hero media', async ({ page }) => {
+test('homepage hero image loads successfully', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('main')).toBeVisible();
+
+  const image = page.getByRole('img', {
+    name: /GeoWork 桌面工作台/,
+  });
+
+  await expect(image).toBeVisible();
+
+  const loaded = await image.evaluate((element) => {
+    return (
+      element instanceof HTMLImageElement &&
+      element.complete &&
+      element.naturalWidth > 0
+    );
+  });
+
+  expect(loaded).toBe(true);
 });
 
 test('homepage sections follow the documented order', async ({ page }) => {
   await page.goto('/');
-  const main = page.getByRole('main');
 
-  const hero = main.locator('section').first();
-  await expect(hero).toBeVisible();
+  const ids = await page
+    .locator('main > section, main section')
+    .evaluateAll((sections) =>
+      sections.map((section) => section.id).filter(Boolean),
+    );
+
+  expect(ids).toEqual([
+    'hero',
+    'principles',
+    'workflow',
+    'modes',
+    'use-cases',
+    'product-details',
+    'architecture',
+    'open-development',
+    'download',
+  ]);
 });

@@ -11,8 +11,27 @@ test('footer navigation groups visible', async ({ page }) => {
   await expect(page.getByRole('navigation', { name: '页脚导航' })).toBeVisible();
 });
 
-test('mobile menu trigger exists on small viewport', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/');
-  await expect(page.getByRole('banner')).toBeVisible();
+test.describe('mobile menu', () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
+  test('opens, closes via Escape and navigates to product', async ({ page }) => {
+    await page.goto('/');
+
+    const trigger = page.getByRole('button', { name: '打开菜单' });
+    await expect(trigger).toBeVisible();
+
+    await trigger.click();
+
+    const dialog = page.getByRole('dialog', { name: '导航' });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole('link', { name: '产品' })).toBeVisible();
+
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect(trigger).toBeFocused();
+
+    await trigger.click();
+    await dialog.getByRole('link', { name: '产品' }).click();
+    await expect(page).toHaveURL(/\/product$/);
+  });
 });

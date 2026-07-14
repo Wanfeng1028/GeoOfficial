@@ -1,28 +1,29 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ModeShowcaseClient } from './ModeShowcaseClient';
+import { mediaAssets } from '@/data/media';
 
 const modes = [
   {
     id: 'work',
     label: 'Work',
     description: '地图与报告',
-    image: '/media/modes/work.svg',
-    alt: 'GeoWork Work 模式截图',
+    image: mediaAssets.modes.work.src,
+    alt: mediaAssets.modes.work.alt,
   },
   {
     id: 'code',
     label: 'Code',
     description: '代码与终端',
-    image: '/media/modes/code.svg',
-    alt: 'GeoWork Code 模式截图',
+    image: mediaAssets.modes.code.src,
+    alt: mediaAssets.modes.code.alt,
   },
   {
     id: 'map',
     label: 'Map',
     description: '制图与可视化',
-    image: '/media/modes/map.svg',
-    alt: 'GeoWork Map 模式截图',
+    image: mediaAssets.modes.map.src,
+    alt: mediaAssets.modes.map.alt,
   },
 ] as const;
 
@@ -39,7 +40,7 @@ test('selecting a tab reveals its image', async () => {
   render(<ModeShowcaseClient modes={modes} />);
 
   await user.click(screen.getByRole('tab', { name: /Code/ }));
-  expect(screen.getByAltText('GeoWork Code 模式截图')).toBeInTheDocument();
+  expect(screen.getByAltText(mediaAssets.modes.code.alt)).toBeInTheDocument();
 });
 
 test('ArrowRight moves focus between tabs', async () => {
