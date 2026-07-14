@@ -1,0 +1,15 @@
+.container {
+  width: min(calc(100% - 2rem), var(--container-default));
+  margin-inline: auto;
+}
+
+.wide { max-width: var(--container-wide); }
+.default { max-width: var(--container-default); }
+.content { max-width: var(--container-content); }
+.text { max-width: var(--container-text); }
+
+@media (min-width: 768px) {
+  .container {
+    width: min(calc(100% - 4rem), var(--container-default));
+  }
+}

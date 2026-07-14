@@ -1,0 +1,19 @@
+.section {
+  width: 100%;
+}
+
+.canvas { background: var(--color-canvas); color: var(--color-ink); }
+.white { background: var(--color-surface); color: var(--color-ink); }
+.dark {
+  background: var(--color-dark-canvas);
+  color: var(--color-dark-ink);
+}
+
+.compact { padding: clamp(2rem, 4vw, 3rem) 0; }
+.default { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+.large { padding: clamp(5rem, 10vw, 9rem) 0; }
+
+.dark ::selection {
+  color: var(--color-dark-canvas);
+  background: var(--color-dark-ink);
+}
