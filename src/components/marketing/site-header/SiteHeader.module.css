@@ -2,16 +2,15 @@
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background: rgb(245 245 242 / 92%);
-  backdrop-filter: saturate(160%) blur(10px);
+  background: rgba(8, 9, 10, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid transparent;
   transition:
-    border-color var(--duration-fast) var(--ease-standard),
-    background var(--duration-fast) var(--ease-standard);
+    border-color var(--duration-fast) var(--ease-standard);
 }
 
 .scrolled {
-  background: rgb(245 245 242 / 96%);
   border-bottom-color: var(--color-border);
 }
 
@@ -20,7 +19,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
-  min-height: 4.25rem;
+  min-height: 4.5rem;
 }
 
 .brand {
