@@ -1,0 +1,111 @@
+.root {
+  position: relative;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+  background: transparent;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.trigger:hover,
+.triggerOpen {
+  background: var(--surface-hover);
+}
+
+.caret {
+  width: 0.85rem;
+  height: 0.85rem;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.caretOpen {
+  transform: rotate(180deg);
+}
+
+.content {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 32rem;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-menu);
+  animation: menu-in var(--duration-fast) var(--ease-standard);
+  z-index: var(--z-overlay);
+}
+
+@keyframes menu-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-4px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 1.25rem;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.groupLabel {
+  padding: 0 0.5rem;
+  color: var(--text-secondary);
+  font-size: var(--text-caption);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: block;
+  padding: 0.45rem 0.5rem;
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-standard);
+}
+
+.item:hover {
+  background: var(--surface-hover);
+}
+
+@media (max-width: 767px) {
+  .content {
+    position: static;
+    transform: none;
+    min-width: unset;
+    box-shadow: none;
+    border: 0;
+    padding: 0.5rem 0 0.5rem 1rem;
+    border-radius: 0;
+    animation: none;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}

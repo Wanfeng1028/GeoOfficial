@@ -16,18 +16,16 @@ export function ProductStage() {
 
   return (
     <div className={styles.stage} role="img" aria-label="GeoWork 桌面工作台产品界面">
-      {/* 窗口标题栏 */}
       <div className={styles.windowHeader}>
         <div className={styles.windowDots}>
-          <span className={styles.dot} style={{ background: '#ec7b7b' }} />
-          <span className={styles.dot} style={{ background: '#e8b86d' }} />
-          <span className={styles.dot} style={{ background: '#6fcf9f' }} />
+          <span className={styles.dot} style={{ background: '#d95858' }} />
+          <span className={styles.dot} style={{ background: '#d79a37' }} />
+          <span className={styles.dot} style={{ background: '#29b36a' }} />
         </div>
         <span className={styles.windowTitle}>GeoWork — urban-expansion-study</span>
       </div>
 
       <div className={styles.workspace}>
-        {/* 左侧项目导航 */}
         <div className={styles.sidebar}>
           <div className={styles.sidebarSection}>
             <p className={styles.sidebarLabel}>Project</p>
@@ -47,7 +45,6 @@ export function ProductStage() {
           </div>
         </div>
 
-        {/* 中央工作区 */}
         <div className={styles.main}>
           <div className={styles.toolbar}>
             {views.map((v) => (
@@ -73,11 +70,11 @@ export function ProductStage() {
                 </div>
                 <div className={styles.mapOverlay}>
                   <div className={styles.mapLegend}>
-                    <span className={styles.legendDot} style={{ background: 'var(--color-brand)' }} />
+                    <span className={styles.legendDot} style={{ background: '#55a988' }} />
                     <span className={styles.legendLabel}>NDVI High</span>
-                    <span className={styles.legendDot} style={{ background: '#e8b86d' }} />
+                    <span className={styles.legendDot} style={{ background: '#d79a37' }} />
                     <span className={styles.legendLabel}>Urban</span>
-                    <span className={styles.legendDot} style={{ background: '#7aa2ff' }} />
+                    <span className={styles.legendDot} style={{ background: '#3f7cff' }} />
                     <span className={styles.legendLabel}>Water</span>
                   </div>
                 </div>
@@ -122,7 +119,6 @@ export function ProductStage() {
           </div>
         </div>
 
-        {/* 右侧属性面板 */}
         <div className={styles.properties}>
           <div className={styles.propSection}>
             <p className={styles.propLabel}>Selection</p>
@@ -134,7 +130,7 @@ export function ProductStage() {
           </div>
           <div className={styles.propSection}>
             <p className={styles.propLabel}>Change</p>
-            <p className={styles.propValue} style={{ color: 'var(--color-brand)' }}>+0.16</p>
+            <p className={styles.propValue} style={{ color: '#55a988' }}>+0.16</p>
           </div>
           <div className={styles.propSection}>
             <p className={styles.propLabel}>Area</p>

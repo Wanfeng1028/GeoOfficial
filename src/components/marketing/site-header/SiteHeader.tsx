@@ -3,12 +3,18 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { GithubLogoIcon } from '@phosphor-icons/react/ssr';
-import { mainNavigation } from '@/data/navigation';
+import { mainNavigation, productMegaMenu, workflowsMegaMenu } from '@/data/navigation';
 import { Button } from '@/components/ui/button/Button';
 import { Container } from '@/components/ui/container/Container';
 import { Logo } from '@/components/ui/logo/Logo';
+import { MegaMenu } from '@/components/marketing/mega-menu/MegaMenu';
 import { MobileMenu } from './MobileMenu';
 import styles from './SiteHeader.module.css';
+
+const megaMenuMap = {
+  Product: productMegaMenu,
+  Workflows: workflowsMegaMenu,
+} as const;
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,17 +36,27 @@ export function SiteHeader() {
         </Link>
 
         <nav className={styles.desktopNav} aria-label="主导航">
-          {mainNavigation.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              target={'external' in item ? '_blank' : undefined}
-              rel={'external' in item ? 'noreferrer' : undefined}
-              className={styles.navLink}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {mainNavigation.map((item) => {
+            if ('hasMega' in item && item.hasMega && item.label in megaMenuMap) {
+              return (
+                <MegaMenu
+                  key={item.label}
+                  item={megaMenuMap[item.label as keyof typeof megaMenuMap]}
+                />
+              );
+            }
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                target={'external' in item ? '_blank' : undefined}
+                rel={'external' in item ? 'noreferrer' : undefined}
+                className={styles.navLink}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className={styles.actions}>
@@ -54,7 +70,7 @@ export function SiteHeader() {
             </a>
           </Button>
           <Button asChild variant="primary" size="sm">
-            <Link href="/download">下载</Link>
+            <Link href="/product">Explore GeoWork</Link>
           </Button>
           <div className={styles.mobileOnly}>
             <MobileMenu />

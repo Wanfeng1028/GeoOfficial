@@ -1,17 +1,17 @@
 .hero {
-  padding: 7rem 0 0;
+  padding: clamp(5.5rem, 8vw, 7rem) 0 0;
   overflow: clip;
 }
 
 .copy {
-  max-width: 52rem;
+  max-width: 56rem;
   margin-inline: auto;
   text-align: center;
 }
 
 .eyebrow {
-  margin: 0 0 1.4rem;
-  color: var(--color-text-secondary);
+  margin: 0 0 1.75rem;
+  color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 650;
   letter-spacing: 0.08em;
@@ -20,19 +20,21 @@
 
 .title {
   margin: 0 auto;
-  max-width: 14ch;
+  max-width: 20ch;
   text-wrap: balance;
-  font-size: clamp(3.25rem, 5.6vw, 5.25rem);
-  line-height: 0.98;
-  letter-spacing: -0.055em;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  font-size: var(--text-hero);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
   font-weight: 600;
 }
 
 .description {
   max-width: 42rem;
-  margin: 1.75rem auto 0;
-  color: var(--color-text-secondary);
-  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  margin: 1.5rem auto 0;
+  color: var(--text-secondary);
+  font-size: var(--text-body-large);
   line-height: 1.65;
 }
 
@@ -41,23 +43,37 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2.25rem;
+  margin-top: 1.5rem;
   flex-wrap: wrap;
 }
 
 .stage {
-  width: min(1180px, 100%);
-  margin: 4.5rem auto 0;
+  width: min(1180px, 85%);
+  margin: 4rem auto 0;
 }
 
-.stage > * {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
+/* 产品窗口外背景 */
+.stageBg {
+  background: #f6f7fb;
+  padding: 1.5rem 1.5rem 0;
+  border-radius: var(--radius-media);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-product);
+}
+
+@media (max-width: 900px) {
+  .stage {
+    width: min(100%, 100%);
+  }
+  .stageBg {
+    padding: 0.75rem 0.75rem 0;
+    border-radius: var(--radius-panel);
+  }
 }
 
 @media (max-width: 768px) {
   .hero {
-    padding: 4rem 0 0;
+    padding: 3.5rem 0 0;
   }
 
   .copy {
@@ -65,11 +81,6 @@
   }
 
   .title {
-    font-size: clamp(2.25rem, 8vw, 3.25rem);
-    max-width: 12ch;
-  }
-
-  .stage {
-    margin: 3rem auto 0;
+    max-width: 14ch;
   }
 }

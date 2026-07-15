@@ -2,10 +2,20 @@
   width: 100%;
 }
 
-.canvas { background: var(--color-page); color: var(--color-text-primary); }
-.surface { background: var(--color-surface); color: var(--color-text-primary); }
-.raised { background: var(--color-surface-raised); color: var(--color-text-primary); }
-.dark { background: var(--color-page); color: var(--color-text-primary); }
+.canvas {
+  background: var(--page);
+  color: var(--text-primary);
+}
+
+.surface {
+  background: var(--page-soft);
+  color: var(--text-primary);
+}
+
+.raised {
+  background: var(--page-muted);
+  color: var(--text-primary);
+}
 
 .compact { padding: clamp(2rem, 4vw, 3rem) 0; }
 .default { padding: clamp(3.5rem, 7vw, 6rem) 0; }

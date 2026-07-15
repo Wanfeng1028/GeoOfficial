@@ -7,7 +7,7 @@ import styles from './ArchitectureDiagram.module.css';
 
 export function ArchitectureDiagram() {
   return (
-    <Section tone="dark" spacing="large" id="architecture">
+    <Section tone="surface" spacing="large" id="architecture">
       <Container>
         <SectionHeading
           eyebrow="本地优先架构"

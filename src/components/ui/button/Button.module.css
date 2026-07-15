@@ -70,3 +70,4 @@
 .text:hover:not(:disabled) {
   color: var(--text-secondary);
 }
+

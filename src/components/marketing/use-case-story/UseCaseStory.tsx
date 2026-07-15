@@ -20,7 +20,6 @@ export function UseCaseStory() {
         </p>
       </div>
 
-      {/* 案例 1：城市扩张 — 左文字，右大地图 */}
       {urban && (
         <article className={styles.caseUrban}>
           <div className={styles.caseCopy}>
@@ -54,13 +53,12 @@ export function UseCaseStory() {
               <Link href={`/use-cases/${urban.slug}`}>查看详情</Link>
             </Button>
           </div>
-          <MediaFrame className={styles.caseMedia} ratio="16:9" tone="dark">
+          <MediaFrame className={styles.caseMedia} ratio="16:9" tone="light">
             <span className={styles.mediaInner}>待替换：城市扩张土地利用变化地图</span>
           </MediaFrame>
         </article>
       )}
 
-      {/* 案例 2：NDVI — 左图表，右地图 */}
       {ndvi && (
         <article className={styles.caseNdvi}>
           <MediaFrame className={styles.caseMediaSmall} ratio="4:3" tone="light">
@@ -97,13 +95,12 @@ export function UseCaseStory() {
               <Link href={`/use-cases/${ndvi.slug}`}>查看详情</Link>
             </Button>
           </div>
-          <MediaFrame className={styles.caseMediaWide} ratio="16:9" tone="dark">
+          <MediaFrame className={styles.caseMediaWide} ratio="16:9" tone="light">
             <span className={styles.mediaInner}>待替换：NDVI 空间分布地图</span>
           </MediaFrame>
         </article>
       )}
 
-      {/* 案例 3：科研报告 — 全宽组合 */}
       {report && (
         <article className={styles.caseReport}>
           <div className={styles.caseReportIntro}>
@@ -128,13 +125,13 @@ export function UseCaseStory() {
             </Button>
           </div>
           <div className={styles.caseReportGrid}>
-            <MediaFrame className={styles.reportMediaMain} ratio="16:9" tone="dark">
+            <MediaFrame className={styles.reportMediaMain} ratio="16:9" tone="light">
               <span className={styles.mediaInner}>待替换：研究报告</span>
             </MediaFrame>
             <MediaFrame className={styles.reportMediaChart} ratio="4:3" tone="light">
               <span className={styles.mediaInner}>待替换：图表</span>
             </MediaFrame>
-            <MediaFrame className={styles.reportMediaCode} ratio="16:9" tone="dark">
+            <MediaFrame className={styles.reportMediaCode} ratio="16:9" tone="light">
               <span className={styles.mediaInner}>待替换：代码与引用</span>
             </MediaFrame>
           </div>

@@ -3,7 +3,7 @@ import { cn } from '@/lib/cn';
 import styles from './MediaFrame.module.css';
 
 type Ratio = '16:10' | '16:9' | '4:3' | 'auto';
-type Tone = 'light' | 'dark' | 'none';
+type Tone = 'light' | 'none';
 
 interface MediaFrameProps {
   className?: string;

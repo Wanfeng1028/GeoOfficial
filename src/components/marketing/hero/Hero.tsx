@@ -16,7 +16,12 @@ export function Hero() {
           <p className={styles.eyebrow}>{hero.eyebrow}</p>
 
           <h1 id="home-title" className={styles.title}>
-            {hero.title}
+            {hero.title.split('\n').map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </h1>
 
           <p className={styles.description}>
