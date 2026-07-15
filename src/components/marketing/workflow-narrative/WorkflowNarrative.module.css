@@ -1,7 +1,7 @@
 .section {
   padding: clamp(5rem, 8vw, 9rem) 0;
-  background: var(--color-dark-page);
-  color: var(--color-dark-text-primary);
+  background: var(--color-page);
+  color: var(--color-text-primary);
 }
 
 .intro {
@@ -10,7 +10,7 @@
 
 .eyebrow {
   margin: 0 0 0.85rem;
-  color: var(--color-dark-text-secondary);
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
   font-weight: 650;
   letter-spacing: 0.08em;
@@ -30,7 +30,7 @@
 .description {
   margin: 0.85rem 0 0;
   max-width: 36rem;
-  color: var(--color-dark-text-secondary);
+  color: var(--color-text-secondary);
   font-size: var(--text-body-lg);
   line-height: 1.65;
 }
@@ -53,7 +53,7 @@
 }
 
 .step {
-  border-top: 1px solid var(--color-dark-border);
+  border-top: 1px solid var(--color-border);
   padding-top: 1.5rem;
 }
 
@@ -72,7 +72,7 @@
 .stepNumber {
   font-family: var(--font-mono);
   font-size: var(--text-caption);
-  color: var(--color-dark-text-secondary);
+  color: var(--color-text-secondary);
 }
 
 .stepLabel {
@@ -94,7 +94,7 @@
 .stepDesc {
   margin: 0;
   max-width: 32rem;
-  color: var(--color-dark-text-secondary);
+  color: var(--color-text-secondary);
   font-size: var(--text-body);
   line-height: 1.6;
 }
@@ -104,19 +104,14 @@
   top: 6rem;
 }
 
-.mediaPlaceholder {
-  margin: 1rem;
-  padding: 1.25rem 1.5rem;
-  border: 1px dashed var(--color-dark-border);
-  border-radius: var(--radius-md);
-  color: var(--color-dark-text-secondary);
-  font-size: var(--text-small);
-  text-align: center;
+.mediaWrap > * {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
 }
 
 .mediaCaption {
   margin: 0.75rem 0 0;
-  color: var(--color-dark-text-secondary);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
   line-height: 1.5;
 }

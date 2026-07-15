@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Container } from '@/components/ui/container/Container';
 import { productObjects } from '@/data/product-objects';
-import { MediaFrame } from '@/components/ui/media-frame/MediaFrame';
+import { ProductStage } from '@/components/marketing/product-stage/ProductStage';
 import styles from './ProductObjects.module.css';
 
 export function ProductObjects() {
@@ -15,17 +15,17 @@ export function ProductObjects() {
     <section id="product-objects" className={styles.section} aria-labelledby="objects-title">
       <Container>
         <div className={styles.intro}>
-          <p className={styles.eyebrow}>Product Objects</p>
+          <p className={styles.eyebrow}>FIG 1.1 · Product Objects</p>
           <h2 id="objects-title" className={styles.title}>
-            Project / Dataset / Layer / Task / Artifact
+            项目中的每个对象，始终保持上下文。
           </h2>
           <p className={styles.description}>
-            GeoWork 围绕五个核心对象组织工作。点击任意对象查看它在工作区中的位置。
+            Project / Dataset / Layer / Task / Artifact — 五个核心对象在同一个工作区中连续工作。
           </p>
         </div>
 
         <div className={styles.layout}>
-          {/* 左：对象列表 */}
+          {/* 左：对象索引导航 */}
           <div className={styles.objectsList}>
             {productObjects.map((obj) => (
               <button
@@ -50,26 +50,10 @@ export function ProductObjects() {
           </div>
         </div>
 
-        {/* 产品媒体 — 模拟工作区截图 */}
-        <MediaFrame className={styles.media} ratio="16:10" tone="dark">
-          <div className={styles.workspace}>
-            <p className={styles.workspacePlaceholder}>
-              待替换：GeoFrontend2.0 工作区截图（含 {active.label} 高亮位置）
-            </p>
-            {active.highlight && (
-              <div
-                className={styles.highlight}
-                style={{
-                  top: active.highlight.top,
-                  left: active.highlight.left,
-                  width: active.highlight.width,
-                  height: active.highlight.height,
-                }}
-                aria-hidden
-              />
-            )}
-          </div>
-        </MediaFrame>
+        {/* 产品工作区展示 */}
+        <div className={styles.stage}>
+          <ProductStage />
+        </div>
       </Container>
     </section>
   );

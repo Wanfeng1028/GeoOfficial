@@ -1,7 +1,7 @@
 'use client';
 
 import { Container } from '@/components/ui/container/Container';
-import { MediaFrame } from '@/components/ui/media-frame/MediaFrame';
+import { ProductStage } from '@/components/marketing/product-stage/ProductStage';
 import { workflowSteps } from '@/data/workflow-steps';
 import styles from './WorkflowNarrative.module.css';
 
@@ -35,13 +35,9 @@ export function WorkflowNarrative() {
             ))}
           </ol>
 
-          {/* 右侧产品媒体 */}
+          {/* 右侧产品舞台 */}
           <div className={styles.mediaWrap}>
-            <MediaFrame ratio="16:10" tone="dark">
-              <p className={styles.mediaPlaceholder}>
-                待替换：GeoFrontend2.0 工作流状态截图
-              </p>
-            </MediaFrame>
+            <ProductStage />
             <p className={styles.mediaCaption}>
               同一项目在 Define → Organize → Analyze → Verify → Deliver 各阶段的状态变化
             </p>
