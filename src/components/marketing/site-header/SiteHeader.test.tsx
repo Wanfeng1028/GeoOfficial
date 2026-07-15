@@ -7,9 +7,9 @@ test('renders brand link pointing home', () => {
   expect(screen.getByRole('link', { name: 'GeoWork 首页' })).toHaveAttribute('href', '/');
 });
 
-test('header exposes download CTA', () => {
+test('header exposes primary CTA', () => {
   render(<SiteHeader />);
-  expect(screen.getByRole('link', { name: '下载' })).toHaveAttribute('href', '/download');
+  expect(screen.getByRole('link', { name: 'Explore GeoWork' })).toHaveAttribute('href', '/product');
 });
 
 test('GitHub action points to repository', () => {
