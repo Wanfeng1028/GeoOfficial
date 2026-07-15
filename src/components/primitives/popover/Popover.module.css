@@ -2,9 +2,9 @@
   z-index: var(--z-overlay);
   max-width: 28rem;
   padding: 0.85rem 1rem;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
   box-shadow: var(--shadow-menu);
   animation: popover-in var(--duration-fast) var(--ease-standard);
 }

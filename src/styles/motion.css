@@ -1,3 +1,7 @@
+/* ===========================
+   Motion — Attio 式克制动效
+   =========================== */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -23,7 +27,7 @@
     animation: enter-rise var(--duration-normal) var(--ease-standard) both;
   }
 
-  /* Section Reveal — 用于页面滚动进入 */
+  /* Section Reveal */
   .reveal {
     opacity: 0;
     transform: translateY(0.75rem);
@@ -37,7 +41,7 @@
     transform: translateY(0);
   }
 
-  /* Crossfade — 用于 Tab 切换 */
+  /* Crossfade */
   .crossfade-enter {
     opacity: 0;
   }

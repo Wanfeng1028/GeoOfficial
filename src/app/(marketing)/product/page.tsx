@@ -27,7 +27,7 @@ export default function ProductPage() {
           />
           <div className={styles.actions}>
             <Button asChild variant="primary" size="md">
-              <Link href="/download">下载 GeoWork</Link>
+              <Link href="/#hero">Explore GeoWork</Link>
             </Button>
             <Button
               asChild

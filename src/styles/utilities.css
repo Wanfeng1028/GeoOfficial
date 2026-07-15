@@ -1,3 +1,7 @@
+/* ===========================
+   Utilities
+   =========================== */
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -15,15 +19,5 @@
 }
 
 .text-secondary {
-  color: var(--color-text-secondary);
-}
-
-.dark-section {
-  color: var(--color-dark-text-primary);
-  background: var(--color-dark-page);
-}
-
-.dark-section ::selection {
-  color: var(--color-dark-page);
-  background: var(--color-dark-text-primary);
+  color: var(--text-secondary);
 }

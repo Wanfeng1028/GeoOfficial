@@ -2,13 +2,13 @@ import { mediaAssets } from '@/data/media';
 
 export const homeContent = {
   hero: {
-    eyebrow: 'GeoWork',
-    title: '为完整的地理空间工作而设计。',
+    eyebrow: 'A workspace for geospatial work',
+    title: '完整的地理空间工作，\n从这里开始。',
     description:
-      '在一个连续工作区中组织项目、地图、遥感数据、代码、工具与研究成果。',
+      'GeoWork 将项目、地图、遥感数据、代码、工具与研究成果，组织在同一个连续工作区中。',
     primaryCta: { label: 'Explore GeoWork', href: '/product' },
     secondaryCta: { label: 'View on GitHub', href: 'https://github.com/Wanfeng1028/GeoWork' },
-    status: 'Developer Preview · 查看当前可用平台',
+    status: 'Developer Preview',
   },
   principles: {
     title: '为地理空间工作而生的桌面工作台。',

@@ -1,69 +1,98 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
   /* ===========================
-     Dark surfaces — Linear 式黑灰层次
-     不使用纯黑（#000），依赖多个黑灰层级
+     Page backgrounds — Attio 式白色与浅灰
      =========================== */
-  --color-page: #08090a;
-  --color-page-alt: #0d0f12;
-  --color-surface: #111318;
-  --color-surface-raised: #16191f;
-  --color-surface-hover: #1a1e25;
+  --page: #ffffff;
+  --page-soft: #f7f7f5;
+  --page-muted: #f1f2f4;
 
   /* ===========================
-     Dark text
+     Surfaces — 白色表面层次
      =========================== */
-  --color-text-primary: #f4f4f2;
-  --color-text-secondary: #a4a7ae;
-  --color-text-tertiary: #737780;
+  --surface: #ffffff;
+  --surface-subtle: #fafafa;
+  --surface-hover: #f4f4f5;
+  --surface-selected: #ededf0;
 
   /* ===========================
-     Dark borders
+     Text — 深灰文字层次
      =========================== */
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-strong: rgba(255, 255, 255, 0.14);
+  --text-primary: #17181b;
+  --text-secondary: #6d7077;
+  --text-tertiary: #9a9da3;
 
   /* ===========================
-     Dark surfaces — 旧兼容别名（指向新默认值）
+     Borders — 细边框
      =========================== */
-  --color-dark-page: #08090a;
-  --color-dark-surface: #111318;
-  --color-dark-raised: #16191f;
-  --color-dark-text-primary: #f4f4f2;
-  --color-dark-text-secondary: #a4a7ae;
-  --color-dark-border: rgba(255, 255, 255, 0.08);
+  --border: rgba(23, 24, 27, 0.10);
+  --border-strong: rgba(23, 24, 27, 0.17);
 
   /* ===========================
-     Brand — 克制绿色，全站仅占 5–8%
-     暗色背景下使用更亮的绿色
+     Buttons
      =========================== */
-  --color-brand: #6fcf9f;
-  --color-brand-hover: #84d9b1;
-  --color-brand-soft: rgba(111, 207, 159, 0.12);
+  --button-dark: #1b1c20;
+  --button-dark-hover: #2a2b30;
+  --button-light: #ffffff;
 
-  /* Focus ring */
-  --color-focus: #7aa2ff;
+  /* ===========================
+     Brand — 克制绿色
+     =========================== */
+  --brand: #55a988;
+  --brand-hover: #438d70;
+  --brand-soft: #e2f1ea;
 
-  /* Status */
-  --color-success: #6fcf9f;
-  --color-warning: #e8b86d;
-  --color-status-red: #ec7b7b;
+  /* ===========================
+     Status
+     =========================== */
+  --status-green: #29b36a;
+  --status-blue: #3f7cff;
+  --status-yellow: #d79a37;
+  --status-red: #d95858;
+
+  /* ===========================
+     Focus
+     =========================== */
+  --focus: #3978f6;
+
+  /* ===========================
+     Shadows
+     =========================== */
+  --shadow-product:
+    0 1px 2px rgba(18, 20, 24, 0.04),
+    0 24px 80px rgba(18, 20, 24, 0.10);
+  --shadow-menu:
+    0 18px 55px rgba(18, 20, 24, 0.13);
+  --shadow-card:
+    0 1px 3px rgba(18, 20, 24, 0.06);
 
   /* ===========================
      Fonts
      =========================== */
-  --font-sans: Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", "JetBrains Mono", monospace;
+  --font-sans:
+    Inter,
+    "PingFang SC",
+    "Microsoft YaHei",
+    "Noto Sans SC",
+    system-ui,
+    sans-serif;
+  --font-mono:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    "JetBrains Mono",
+    monospace;
 
   /* ===========================
-     Typography scale — 设计规范 v1.1
+     Typography scale — Attio 式
      =========================== */
-  --text-display: clamp(3.4rem, 4.8vw, 4.5rem);
-  --text-h1: clamp(2.8rem, 4.2vw, 4rem);
-  --text-h2: clamp(2.2rem, 3.2vw, 2.875rem);
-  --text-h3: clamp(1.5rem, 1.8vw, 2rem);
-  --text-body-lg: clamp(1.05rem, 1.4vw, 1.28rem);
+  --text-hero: clamp(2.5rem, 4vw, 3.625rem);
+  --text-page-title: clamp(2.25rem, 3.3vw, 3.125rem);
+  --text-section-title: clamp(1.9rem, 2.8vw, 2.5rem);
+  --text-feature-title: clamp(1.35rem, 1.8vw, 1.75rem);
+  --text-card-title: 1.125rem;
+  --text-body-large: clamp(1.03rem, 1.15vw, 1.18rem);
   --text-body: 1rem;
   --text-small: 0.875rem;
   --text-caption: 0.8125rem;
@@ -85,24 +114,18 @@
   /* ===========================
      Radius
      =========================== */
-  --radius-sm: 0.5rem;    /* 8px */
-  --radius-md: 0.75rem;   /* 12px */
-  --radius-lg: 1rem;      /* 16px */
-  --radius-xl: 1.5rem;    /* 24px */
-  --radius-2xl: 2rem;     /* 32px */
-  --radius-pill: 999px;
+  --radius-control: 8px;
+  --radius-panel: 14px;
+  --radius-media: 24px;
+  --radius-large: 30px;
 
-  /* ===========================
-     Shadow — 暗色阴影
-     =========================== */
-  --shadow-media:
-    0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 24px 90px rgba(0, 0, 0, 0.34);
-  --shadow-overlay:
-    0 24px 80px rgba(0, 0, 0, 0.48);
-  --shadow-menu:
-    0 24px 80px rgba(0, 0, 0, 0.48);
-  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.04);
+  /* Legacy radius aliases */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 999px;
 
   /* ===========================
      Container widths
@@ -128,4 +151,30 @@
   --z-overlay: 200;
   --z-dialog: 300;
   --z-tooltip: 400;
+
+  /* ===========================
+     Backward compatibility aliases
+     =========================== */
+  --color-page: var(--page);
+  --color-page-alt: var(--page-muted);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-subtle);
+  --color-surface-hover: var(--surface-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+  --color-focus: var(--focus);
+  --color-success: var(--status-green);
+  --color-warning: var(--status-yellow);
+  --color-status-red: var(--status-red);
+  --text-display: var(--text-hero);
+  --text-h1: var(--text-page-title);
+  --text-h2: var(--text-section-title);
+  --text-h3: var(--text-feature-title);
+  --text-body-lg: var(--text-body-large);
 }

@@ -51,7 +51,7 @@ export default async function DownloadPage() {
     return { rule, matched };
   });
 
-  const hasAssets = release ? release.assets.length > 0 : false;
+  const hasRelease = source === 'github' && release !== null;
 
   return (
     <Section tone="canvas" spacing="large">
@@ -106,37 +106,41 @@ export default async function DownloadPage() {
           )}
         </div>
 
-        <h2 className={styles.h2}>平台</h2>
-        <ul className={styles.platforms}>
-          {assetsByPlatform.map(({ rule, matched }) => (
-            <li key={rule.id} className={styles.platform}>
-              <div className={styles.platformInfo}>
-                <p className={styles.platformLabel}>{rule.label}</p>
-                <p className={styles.platformNotes}>{rule.notes ?? ''}</p>
-              </div>
-              {matched.length > 0 ? (
-                <ul className={styles.platformFiles}>
-                  {matched.map((asset) => (
-                    <li key={asset.id}>
-                      <a
-                        className={styles.platformLink}
-                        href={asset.browser_download_url}
-                        rel="noreferrer"
-                      >
-                        {asset.name}
-                        <span className={styles.platformSize}>
-                          {formatBytes(asset.size)}
-                        </span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className={styles.platformEmpty}>尚未提供官方构建</p>
-              )}
-            </li>
-          ))}
-        </ul>
+        {hasRelease && (
+          <>
+            <h2 className={styles.h2}>平台</h2>
+            <ul className={styles.platforms}>
+              {assetsByPlatform.map(({ rule, matched }) => (
+                <li key={rule.id} className={styles.platform}>
+                  <div className={styles.platformInfo}>
+                    <p className={styles.platformLabel}>{rule.label}</p>
+                    <p className={styles.platformNotes}>{rule.notes ?? ''}</p>
+                  </div>
+                  {matched.length > 0 ? (
+                    <ul className={styles.platformFiles}>
+                      {matched.map((asset) => (
+                        <li key={asset.id}>
+                          <a
+                            className={styles.platformLink}
+                            href={asset.browser_download_url}
+                            rel="noreferrer"
+                          >
+                            {asset.name}
+                            <span className={styles.platformSize}>
+                              {formatBytes(asset.size)}
+                            </span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className={styles.platformEmpty}>尚未提供官方构建</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
 
         <h2 className={styles.h2}>系统要求</h2>
         <div className={styles.requirements}>

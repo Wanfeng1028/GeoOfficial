@@ -11,7 +11,7 @@
 
 .eyebrow {
   margin: 0;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 650;
   letter-spacing: 0.08em;
@@ -20,16 +20,16 @@
 
 .title {
   margin: 0;
-  font-size: var(--text-h2);
-  line-height: 1;
-  letter-spacing: -0.05em;
+  font-size: var(--text-section-title);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
   font-weight: 600;
 }
 
 .description {
   margin: 0;
   max-width: 36rem;
-  color: var(--color-text-secondary);
-  font-size: var(--text-body-lg);
+  color: var(--text-secondary);
+  font-size: var(--text-body-large);
   line-height: 1.65;
 }

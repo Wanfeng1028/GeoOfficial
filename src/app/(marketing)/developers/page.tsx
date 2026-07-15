@@ -67,7 +67,7 @@ export default function DevelopersPage() {
         </Container>
       </Section>
 
-      <Section tone="dark" spacing="default">
+      <Section tone="raised" spacing="default">
         <Container>
           <SectionHeading
             eyebrow="Local-first"

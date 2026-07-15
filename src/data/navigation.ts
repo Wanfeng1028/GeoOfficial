@@ -1,10 +1,76 @@
+import type { MegaMenuData } from '@/components/marketing/mega-menu/MegaMenu';
+
 export const mainNavigation = [
-  { label: '产品', href: '/product' },
-  { label: '工作方式', href: '/#workflow' },
-  { label: '使用案例', href: '/use-cases' },
-  { label: '开发者', href: '/developers' },
-  { label: '更新日志', href: '/changelog' },
+  { label: 'Product', href: '/product', hasMega: true },
+  { label: 'Workflows', href: '/#workflow', hasMega: true },
+  { label: 'Use Cases', href: '/use-cases' },
+  { label: 'Developers', href: '/developers' },
+  { label: 'Changelog', href: '/changelog' },
 ] as const;
+
+export const productMegaMenu: MegaMenuData = {
+  label: 'Product',
+  groups: [
+    {
+      label: 'Platform',
+      items: [
+        { label: 'Workspace', href: '/product#workspace' },
+        { label: 'Project', href: '/product#project' },
+        { label: 'Dataset', href: '/product#dataset' },
+        { label: 'Layer', href: '/product#layer' },
+        { label: 'Task', href: '/product#task' },
+        { label: 'Artifact', href: '/product#artifact' },
+      ],
+    },
+    {
+      label: 'Modes',
+      items: [
+        { label: 'Work', href: '/product#work' },
+        { label: 'Code', href: '/product#code' },
+        { label: 'Map', href: '/product#map' },
+      ],
+    },
+    {
+      label: 'Tools',
+      items: [
+        { label: 'Terminal', href: '/product#terminal' },
+        { label: 'Browser', href: '/product#browser' },
+        { label: 'Events', href: '/product#events' },
+        { label: 'Logs', href: '/product#logs' },
+      ],
+    },
+  ],
+};
+
+export const workflowsMegaMenu: MegaMenuData = {
+  label: 'Workflows',
+  groups: [
+    {
+      label: 'Analyze',
+      items: [
+        { label: 'Urban expansion', href: '/use-cases/urban-expansion' },
+        { label: 'Remote sensing', href: '/use-cases/ndvi-series' },
+        { label: 'NDVI time series', href: '/use-cases/ndvi-series' },
+      ],
+    },
+    {
+      label: 'Research',
+      items: [
+        { label: 'Literature review', href: '/use-cases/research-report' },
+        { label: 'Report generation', href: '/use-cases/research-report' },
+      ],
+    },
+    {
+      label: 'Automation',
+      items: [
+        { label: 'Scheduled tasks', href: '/product#tasks' },
+        { label: 'Skills', href: '/developers#skills' },
+        { label: 'MCP', href: '/developers#mcp' },
+        { label: 'Plugins', href: '/developers#plugins' },
+      ],
+    },
+  ],
+};
 
 export const footerNavigation = [
   {

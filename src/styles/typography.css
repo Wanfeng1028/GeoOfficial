@@ -1,33 +1,37 @@
+/* ===========================
+   Typography — Attio 式排版
+   =========================== */
+
 .display {
-  font-size: var(--text-display);
+  font-size: var(--text-hero);
   font-weight: 600;
-  line-height: 0.94;
-  letter-spacing: -0.065em;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
 }
 
 .heading1 {
-  font-size: var(--text-h1);
+  font-size: var(--text-page-title);
   font-weight: 600;
-  line-height: 0.98;
-  letter-spacing: -0.055em;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
 }
 
 .heading2 {
-  font-size: var(--text-h2);
+  font-size: var(--text-section-title);
   font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.05em;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
 }
 
 .heading3 {
-  font-size: var(--text-h3);
+  font-size: var(--text-feature-title);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
 .bodyLarge {
-  font-size: var(--text-body-lg);
+  font-size: var(--text-body-large);
   line-height: 1.65;
 }
 
@@ -44,14 +48,24 @@
 .caption {
   font-size: var(--text-caption);
   line-height: 1.4;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
 }
 
 .eyebrow {
   margin: 0 0 1rem;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
   font-size: 0.875rem;
   font-weight: 650;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* Chinese title rules */
+h1,
+h2,
+h3,
+h4 {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  text-wrap: balance;
 }
