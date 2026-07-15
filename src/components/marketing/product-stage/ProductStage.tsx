@@ -87,7 +87,7 @@ export function ProductStage() {
               <div className={styles.codeCanvas}>
                 <div className={styles.codeLine}>import geowork as gw</div>
                 <div className={styles.codeLine}> </div>
-                <div className={styles.codeLine}>project = gw.open_project("urban-expansion-study")</div>
+                <div className={styles.codeLine}>{'project = gw.open_project("urban-expansion-study")'}</div>
                 <div className={styles.codeLine}>ndvi = project.compute_ndvi(</div>
                 <div className={styles.codeIndent}>sentinel_data,</div>
                 <div className={styles.codeIndent}>year_range=(2020, 2025)</div>
