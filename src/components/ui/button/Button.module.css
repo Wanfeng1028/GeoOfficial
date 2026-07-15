@@ -32,10 +32,10 @@
 .lg { min-height: 3.25rem; padding: 0 1.35rem; font-size: 1rem; }
 
 .primary {
-  color: #fff;
-  background: var(--color-text-primary);
+  color: #0b0c0e;
+  background: #f1f1ef;
 }
-.primary:hover:not(:disabled) { background: #292b2f; }
+.primary:hover:not(:disabled) { background: #e4e4e1; }
 
 .secondary {
   color: var(--color-text-primary);

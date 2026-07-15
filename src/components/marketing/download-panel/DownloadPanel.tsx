@@ -66,7 +66,7 @@ export async function DownloadPanel() {
   const hasAssets = release ? release.assets.length > 0 : false;
 
   return (
-    <Section tone="white" spacing="large" id="download">
+    <Section tone="surface" spacing="large" id="download">
       <Container>
         <SectionHeading
           eyebrow={download.eyebrow}

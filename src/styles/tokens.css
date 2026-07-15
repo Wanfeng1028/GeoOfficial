@@ -1,52 +1,54 @@
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
   /* ===========================
-     Light surfaces — Linear × Attio 暖白基调
+     Dark surfaces — Linear 式黑灰层次
+     不使用纯黑（#000），依赖多个黑灰层级
      =========================== */
-  --color-page: #f5f5f2;
-  --color-page-alt: #eeeeea;
-  --color-surface: #ffffff;
-  --color-surface-raised: #fafaf8;
+  --color-page: #08090a;
+  --color-page-alt: #0d0f12;
+  --color-surface: #111318;
+  --color-surface-raised: #16191f;
+  --color-surface-hover: #1a1e25;
 
   /* ===========================
-     Light text
+     Dark text
      =========================== */
-  --color-text-primary: #171719;
-  --color-text-secondary: #686a70;
-  --color-text-tertiary: #96989d;
+  --color-text-primary: #f4f4f2;
+  --color-text-secondary: #a4a7ae;
+  --color-text-tertiary: #737780;
 
   /* ===========================
-     Light borders
+     Dark borders
      =========================== */
-  --color-border: rgba(23, 23, 25, 0.10);
-  --color-border-strong: rgba(23, 23, 25, 0.18);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
 
   /* ===========================
-     Dark surfaces
+     Dark surfaces — 旧兼容别名（指向新默认值）
      =========================== */
-  --color-dark-page: #101113;
-  --color-dark-surface: #17181c;
-  --color-dark-raised: #1d1f24;
-
-  --color-dark-text-primary: #f4f4f1;
-  --color-dark-text-secondary: #a2a4aa;
-  --color-dark-border: rgba(255, 255, 255, 0.09);
+  --color-dark-page: #08090a;
+  --color-dark-surface: #111318;
+  --color-dark-raised: #16191f;
+  --color-dark-text-primary: #f4f4f2;
+  --color-dark-text-secondary: #a4a7ae;
+  --color-dark-border: rgba(255, 255, 255, 0.08);
 
   /* ===========================
      Brand — 克制绿色，全站仅占 5–8%
+     暗色背景下使用更亮的绿色
      =========================== */
-  --color-brand: #57a887;
-  --color-brand-hover: #438a6f;
-  --color-brand-soft: #dcebe4;
+  --color-brand: #6fcf9f;
+  --color-brand-hover: #84d9b1;
+  --color-brand-soft: rgba(111, 207, 159, 0.12);
 
   /* Focus ring */
-  --color-focus: #1769d2;
+  --color-focus: #7aa2ff;
 
   /* Status */
-  --color-success: #57a887;
-  --color-warning: #b89d63;
-  --color-danger: #c0392b;
+  --color-success: #6fcf9f;
+  --color-warning: #e8b86d;
+  --color-status-red: #ec7b7b;
 
   /* ===========================
      Fonts
@@ -56,15 +58,6 @@
 
   /* ===========================
      Typography scale — 设计规范 v1.1
-     Hero H1: 56–64px, max 68px
-     Page H1: 48–56px
-     Section H2: 38–46px
-     Feature H3: 26–32px
-     Card title: 17–20px
-     Body large: 18–20px
-     Body: 15–17px
-     Small: 13–14px
-     Caption: 12–13px
      =========================== */
   --text-display: clamp(3.4rem, 4.8vw, 4.5rem);
   --text-h1: clamp(2.8rem, 4.2vw, 4rem);
@@ -90,26 +83,26 @@
   --space-10: 8rem;
 
   /* ===========================
-     Radius — 设计规范 round 2
-     Button: 8–10px
-     Small control: 8–12px
-     Panel: 14–18px
-     Media: 20–28px
-     Large scene: 28–36px
+     Radius
      =========================== */
-  --radius-sm: 0.5rem;    /* 8px  — button, small control */
-  --radius-md: 0.75rem;   /* 12px — small control upper */
-  --radius-lg: 1rem;      /* 16px — panel */
-  --radius-xl: 1.5rem;    /* 24px — media */
-  --radius-2xl: 2rem;     /* 32px — large scene */
+  --radius-sm: 0.5rem;    /* 8px */
+  --radius-md: 0.75rem;   /* 12px */
+  --radius-lg: 1rem;      /* 16px */
+  --radius-xl: 1.5rem;    /* 24px */
+  --radius-2xl: 2rem;     /* 32px */
   --radius-pill: 999px;
 
   /* ===========================
-     Shadow — 只用于浮层和产品媒体
+     Shadow — 暗色阴影
      =========================== */
-  --shadow-media: 0 1px 2px rgba(0, 0, 0, 0.03), 0 16px 48px rgba(0, 0, 0, 0.06);
-  --shadow-menu: 0 1px 2px rgba(0, 0, 0, 0.03), 0 18px 50px rgba(0, 0, 0, 0.16);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-media:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 24px 90px rgba(0, 0, 0, 0.34);
+  --shadow-overlay:
+    0 24px 80px rgba(0, 0, 0, 0.48);
+  --shadow-menu:
+    0 24px 80px rgba(0, 0, 0, 0.48);
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.04);
 
   /* ===========================
      Container widths

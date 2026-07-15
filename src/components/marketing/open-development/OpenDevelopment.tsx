@@ -8,7 +8,7 @@ import styles from './OpenDevelopment.module.css';
 
 export function OpenDevelopment() {
   return (
-    <Section tone="white" spacing="default" id="open-development">
+    <Section tone="surface" spacing="default" id="open-development">
       <Container>
         <SectionHeading
           eyebrow="开放开发"

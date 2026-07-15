@@ -26,7 +26,7 @@ export default function RedesignPage() {
       </Section>
 
       {/* 字体层级 */}
-      <Section tone="white" spacing="default">
+      <Section tone="surface" spacing="default">
         <Container>
           <SectionHeading
             eyebrow="Typography"
@@ -71,7 +71,7 @@ export default function RedesignPage() {
       </Section>
 
       {/* 颜色 Token */}
-      <Section tone="page-alt" spacing="default">
+      <Section tone="raised" spacing="default">
         <Container>
           <SectionHeading
             eyebrow="Colors"
@@ -126,7 +126,7 @@ export default function RedesignPage() {
       </Section>
 
       {/* Button */}
-      <Section tone="white" spacing="default">
+      <Section tone="surface" spacing="default">
         <Container>
           <SectionHeading
             eyebrow="Buttons"
@@ -178,35 +178,35 @@ export default function RedesignPage() {
       </Section>
 
       {/* Section 色调 */}
-      <Section tone="white" spacing="default">
+      <Section tone="surface" spacing="default">
         <Container>
           <SectionHeading
             eyebrow="Sections"
             title="Section 色调"
-            description="首页固定节奏：暖白 → 白色 → 深色 → 暖白 → 白色 → 深色 → 暖白"
+            description="暗色层次：page → raised → surface → dark"
           />
         </Container>
       </Section>
-      <Section tone="page-alt" spacing="compact">
+      <Section tone="raised" spacing="compact">
         <Container>
-          <p className={styles.sectionDemo}>page-alt — 暖白背景</p>
+          <p className={styles.sectionDemo}>raised — 暗色层次 1</p>
         </Container>
       </Section>
-      <Section tone="white" spacing="compact">
+      <Section tone="surface" spacing="compact">
         <Container>
-          <p className={styles.sectionDemo}>white — 白色背景</p>
+          <p className={styles.sectionDemo}>surface — 暗色层次 2</p>
         </Container>
       </Section>
       <Section tone="dark" spacing="compact">
         <Container>
-          <p className={styles.sectionDemo} style={{ color: 'var(--color-dark-text-primary)' }}>
+          <p className={styles.sectionDemo} style={{ color: 'var(--color-text-primary)' }}>
             dark — 深色背景
           </p>
         </Container>
       </Section>
 
       {/* MediaFrame + Figure */}
-      <Section tone="white" spacing="default">
+      <Section tone="surface" spacing="default">
         <Container>
           <SectionHeading
             eyebrow="Media"

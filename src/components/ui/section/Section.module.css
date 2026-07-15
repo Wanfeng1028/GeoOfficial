@@ -3,18 +3,10 @@
 }
 
 .canvas { background: var(--color-page); color: var(--color-text-primary); }
-.white { background: var(--color-surface); color: var(--color-text-primary); }
-.page-alt { background: var(--color-page-alt); color: var(--color-text-primary); }
-.dark {
-  background: var(--color-dark-page);
-  color: var(--color-dark-text-primary);
-}
+.surface { background: var(--color-surface); color: var(--color-text-primary); }
+.raised { background: var(--color-surface-raised); color: var(--color-text-primary); }
+.dark { background: var(--color-page); color: var(--color-text-primary); }
 
 .compact { padding: clamp(2rem, 4vw, 3rem) 0; }
 .default { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .large { padding: clamp(5rem, 10vw, 9rem) 0; }
-
-.dark ::selection {
-  color: var(--color-dark-page);
-  background: var(--color-dark-text-primary);
-}

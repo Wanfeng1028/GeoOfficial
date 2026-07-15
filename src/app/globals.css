@@ -47,7 +47,7 @@ video {
 }
 
 ::selection {
-  color: #fff;
+  color: #0b0c0e;
   background: var(--color-brand);
 }
 

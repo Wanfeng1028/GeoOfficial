@@ -41,7 +41,7 @@ export default function ProductPage() {
         </Container>
       </Section>
 
-      <Section tone="white" spacing="default">
+      <Section tone="surface" spacing="default">
         <Container>
           <SectionHeading
             eyebrow="Objects"
@@ -83,7 +83,7 @@ export default function ProductPage() {
         </Container>
       </Section>
 
-      <Section tone="white" spacing="default">
+      <Section tone="surface" spacing="default">
         <Container>
           <SectionHeading
             eyebrow="Ecosystem"

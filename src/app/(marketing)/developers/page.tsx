@@ -51,7 +51,7 @@ export default function DevelopersPage() {
         </Container>
       </Section>
 
-      <Section tone="white" spacing="default">
+      <Section tone="surface" spacing="default">
         <Container>
           <div className={styles.layers}>
             {layers.map((layer) => (
