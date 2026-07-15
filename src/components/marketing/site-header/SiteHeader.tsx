@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { GithubLogoIcon } from '@phosphor-icons/react/ssr';
 import { mainNavigation } from '@/data/navigation';
@@ -8,8 +11,19 @@ import { MobileMenu } from './MobileMenu';
 import styles from './SiteHeader.module.css';
 
 export function SiteHeader() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header}${isScrolled ? ` ${styles.scrolled}` : ''}`}
+    >
       <Container className={styles.inner}>
         <Link href="/" aria-label="GeoWork 首页" className={styles.brand}>
           <Logo wordmark />

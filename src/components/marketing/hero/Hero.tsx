@@ -1,15 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRightIcon } from '@phosphor-icons/react/ssr';
+import { ArrowRightIcon, GithubLogoIcon } from '@phosphor-icons/react/ssr';
 import { homeContent } from '@/data/home';
 import { mediaAssets } from '@/data/media';
 import { Button } from '@/components/ui/button/Button';
 import { Container } from '@/components/ui/container/Container';
 import { MediaFrame } from '@/components/ui/media-frame/MediaFrame';
+import { ProductFilm } from '@/components/marketing/product-film/ProductFilm';
 import styles from './Hero.module.css';
 
 export function Hero() {
   const { hero } = homeContent;
+  const isExternal = hero.secondaryCta.href.startsWith('http');
 
   return (
     <section id="hero" className={styles.hero} aria-labelledby="home-title">
@@ -24,26 +26,37 @@ export function Hero() {
             <Button asChild variant="primary" size="lg">
               <Link href={hero.primaryCta.href}>{hero.primaryCta.label}</Link>
             </Button>
-            <Button
-              asChild
-              variant="text"
-              size="lg"
-              trailingIcon={<ArrowRightIcon aria-hidden />}
-            >
-              <Link href={hero.secondaryCta.href}>{hero.secondaryCta.label}</Link>
-            </Button>
+            {isExternal ? (
+              <Button
+                asChild
+                variant="text"
+                size="lg"
+                leadingIcon={<GithubLogoIcon aria-hidden />}
+              >
+                <a
+                  href={hero.secondaryCta.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {hero.secondaryCta.label}
+                </a>
+              </Button>
+            ) : (
+              <Button
+                asChild
+                variant="text"
+                size="lg"
+                trailingIcon={<ArrowRightIcon aria-hidden />}
+              >
+                <Link href={hero.secondaryCta.href}>{hero.secondaryCta.label}</Link>
+              </Button>
+            )}
           </div>
           <p className={styles.status}>{hero.status}</p>
         </div>
 
         <MediaFrame className={styles.media} ratio="16:10" tone="dark">
-          <Image
-            src={mediaAssets.hero.src}
-            alt={mediaAssets.hero.alt}
-            fill
-            priority
-            sizes="(max-width: 900px) 100vw, 58vw"
-          />
+          <ProductFilm />
         </MediaFrame>
       </Container>
     </section>

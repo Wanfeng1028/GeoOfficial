@@ -6,8 +6,8 @@ export const homeContent = {
     title: '地图、遥感、代码与研究，汇于一个工作台。',
     description:
       'GeoWork 是面向 GIS、遥感与空间研究的桌面工作台，让项目、工具、数据和成果保持在同一个上下文中。',
-    primaryCta: { label: '下载 GeoWork', href: '/download' },
-    secondaryCta: { label: '了解产品', href: '/product' },
+    primaryCta: { label: '探索产品', href: '/product' },
+    secondaryCta: { label: 'GitHub', href: 'https://github.com/Wanfeng1028/GeoWork' },
     status: 'Developer Preview · 查看当前可用平台',
   },
   principles: {

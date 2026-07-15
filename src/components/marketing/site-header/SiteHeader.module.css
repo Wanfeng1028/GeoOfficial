@@ -5,7 +5,14 @@
   background: rgb(245 245 242 / 92%);
   backdrop-filter: saturate(160%) blur(10px);
   border-bottom: 1px solid transparent;
-  transition: border-color var(--duration-fast) var(--ease-standard);
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    background var(--duration-fast) var(--ease-standard);
+}
+
+.scrolled {
+  background: rgb(245 245 242 / 96%);
+  border-bottom-color: var(--color-border);
 }
 
 .inner {
@@ -13,7 +20,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
-  min-height: 4rem;
+  min-height: 4.25rem;
 }
 
 .brand {
