@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from 'react';
 import { cn } from '@/lib/cn';
 import styles from './Section.module.css';
 
-type Tone = 'canvas' | 'surface' | 'raised';
+type Tone = 'canvas' | 'surface' | 'raised' | 'dark';
 type Spacing = 'compact' | 'default' | 'large';
 
 interface SectionProps extends ComponentPropsWithoutRef<'section'> {

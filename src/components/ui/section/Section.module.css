@@ -17,6 +17,11 @@
   color: var(--text-primary);
 }
 
+.dark {
+  background: var(--button-dark);
+  color: #ffffff;
+}
+
 .compact { padding: clamp(2rem, 4vw, 3rem) 0; }
 .default { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .large { padding: clamp(5rem, 10vw, 9rem) 0; }

@@ -13,6 +13,9 @@
 .light {
   border: 1px solid var(--border);
 }
+.dark {
+  background: var(--button-dark);
+}
 .none {
   background: transparent;
   border: 0;
