@@ -24,14 +24,14 @@ test.describe('mobile menu', () => {
 
     const dialog = page.getByRole('dialog', { name: '导航' });
     await expect(dialog).toBeVisible();
-    await expect(dialog.getByRole('link', { name: '产品' })).toBeVisible();
+    await expect(dialog.getByRole('link', { name: 'Product' })).toBeVisible();
 
     await page.keyboard.press('Escape');
     await expect(dialog).toBeHidden();
     await expect(trigger).toBeFocused();
 
     await trigger.click();
-    await dialog.getByRole('link', { name: '产品' }).click();
+    await dialog.getByRole('link', { name: 'Product' }).click();
     await expect(page).toHaveURL(/\/product$/);
   });
 });

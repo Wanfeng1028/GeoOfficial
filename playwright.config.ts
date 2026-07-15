@@ -19,6 +19,8 @@ export default defineConfig({
     video: 'retain-on-failure',
   },
 
+  updateSnapshots: 'missing',
+
   webServer: {
     command: production ? 'npm run build && npm run start' : 'npm run dev',
     url: 'http://127.0.0.1:3000',
