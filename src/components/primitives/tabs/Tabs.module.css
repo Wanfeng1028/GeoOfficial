@@ -12,7 +12,7 @@
   padding: 0 0.9rem;
   border: 0;
   border-radius: 0.55rem;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   background: transparent;
   cursor: pointer;
   transition:
@@ -21,11 +21,11 @@
 }
 
 .trigger:hover {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .trigger[data-state='active'] {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   background: var(--color-surface);
   box-shadow: 0 1px 3px rgb(16 17 18 / 8%);
 }

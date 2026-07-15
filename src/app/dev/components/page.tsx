@@ -22,20 +22,20 @@ export default function DevComponentsPage() {
         <section className={styles.group}>
           <h2 className={styles.h2}>Token</h2>
           <div className={styles.tokenRow}>
-            <div className={styles.token} style={{ background: 'var(--color-canvas)' }}>
-              <span>canvas</span>
+            <div className={styles.token} style={{ background: 'var(--color-page)' }}>
+              <span>page</span>
             </div>
             <div className={styles.token} style={{ background: 'var(--color-surface)' }}>
               <span>surface</span>
             </div>
-            <div className={styles.token} style={{ background: 'var(--color-ink)' }}>
-              <span style={{ color: '#fff' }}>ink</span>
+            <div className={styles.token} style={{ background: 'var(--color-text-primary)' }}>
+              <span style={{ color: '#fff' }}>text-primary</span>
             </div>
-            <div className={styles.token} style={{ background: 'var(--color-accent)' }}>
-              <span style={{ color: '#fff' }}>accent</span>
+            <div className={styles.token} style={{ background: 'var(--color-brand)' }}>
+              <span style={{ color: '#fff' }}>brand</span>
             </div>
-            <div className={styles.token} style={{ background: 'var(--color-dark-canvas)' }}>
-              <span style={{ color: '#fff' }}>dark-canvas</span>
+            <div className={styles.token} style={{ background: 'var(--color-dark-page)' }}>
+              <span style={{ color: '#fff' }}>dark-page</span>
             </div>
           </div>
         </section>

@@ -20,13 +20,16 @@ export default function TermsPage() {
           description="本页面为草案，上线前需人工审核。"
         />
         <p className={styles.note}>
-          草案 · 最后更新 2026-07-14 · 当前版本 {siteConfig.version}
+          草案 · 最后更新 2026-07-14
+          {siteConfig.version
+            ? ` · 当前版本 ${siteConfig.version}`
+            : ' · 当前尚未发布公开版本'}
         </p>
 
         <div className={styles.section}>
-          <h2 className={styles.h2}>Developer Preview</h2>
+          <h2 className={styles.h2}>开发状态</h2>
           <p className={styles.p}>
-            GeoWork 当前处于 {siteConfig.status}。不承诺稳定性、数据兼容性或功能完成度。后续版本可能调整能力、接口与构建。
+            GeoWork 当前处于开发阶段，尚未发布公开版本。不承诺稳定性、数据兼容性或功能完成度。后续版本可能调整能力、接口与构建。
           </p>
         </div>
 
@@ -54,7 +57,7 @@ export default function TermsPage() {
         <div className={styles.section}>
           <h2 className={styles.h2}>开源许可</h2>
           <p className={styles.p}>
-            具体许可请查看仓库 LICENSE 文件。本页面不构成法律建议。
+            GeoWork 与 GeoOfficial 的许可方案尚待项目负责人确认。在许可文件正式发布前，请勿将本网站内容理解为已经授予再分发或商业使用权。本页面不构成法律建议。
           </p>
         </div>
       </Container>

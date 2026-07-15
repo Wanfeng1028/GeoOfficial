@@ -154,9 +154,8 @@ export default async function DownloadPage() {
 
         <h2 className={styles.h2}>安装说明</h2>
         <ol className={styles.install}>
-          <li>下载对应平台的构建（当前仅 Windows x64）。</li>
-          <li>解压或运行安装包，按需配置 QGIS、Python 环境。</li>
-          <li>启动 GeoWork，创建首个项目并导入数据。</li>
+          <li>GeoWork 当前尚未发布官方安装包。</li>
+          <li>开发者可从源码运行，但具体环境要求以 GeoWork 仓库说明为准。</li>
           <li>如遇问题可前往 GitHub Issues 反馈。</li>
         </ol>
 

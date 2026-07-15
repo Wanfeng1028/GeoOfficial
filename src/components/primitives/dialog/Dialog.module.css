@@ -34,10 +34,10 @@
   margin: 0 0 0.5rem;
   font-size: var(--text-h3);
   font-weight: 600;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .description {
   margin: 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }

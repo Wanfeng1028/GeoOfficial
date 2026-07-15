@@ -1,6 +1,6 @@
 .note {
   margin: 1rem 0 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
 }
 
@@ -16,6 +16,6 @@
 
 .p {
   margin: 0 0 0.65rem;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   line-height: 1.7;
 }

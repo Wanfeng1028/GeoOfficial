@@ -3,7 +3,7 @@
   padding: 1.1rem 1.25rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: var(--color-canvas);
+  background: var(--color-page);
 }
 
 .header {
@@ -57,7 +57,7 @@
 }
 
 .assetLink {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-size: 0.9rem;
 }
 
@@ -83,6 +83,6 @@
 
 .viewLink {
   font-size: var(--text-caption);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   text-decoration: underline;
 }

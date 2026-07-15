@@ -17,7 +17,7 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 1.5rem;
-  background: var(--color-canvas);
+  background: var(--color-page);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
@@ -26,18 +26,18 @@
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .releaseDate {
   margin: 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
 }
 
 .releaseBody {
   margin: 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-small);
   line-height: 1.6;
 }
@@ -47,7 +47,7 @@
   align-items: center;
   gap: 0.55rem;
   margin-top: 0.5rem;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-size: var(--text-small);
   text-decoration: underline;
   text-underline-offset: 0.2em;
@@ -68,7 +68,7 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0.85rem 1rem;
-  background: var(--color-canvas);
+  background: var(--color-page);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
@@ -82,12 +82,12 @@
 .assetPlatform {
   margin: 0;
   font-weight: 600;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .assetNotes {
   margin: 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
 }
 
@@ -104,20 +104,20 @@
   display: inline-flex;
   align-items: baseline;
   gap: 0.5rem;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-size: var(--text-small);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
 
 .assetSize {
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
 }
 
 .assetEmpty {
   margin: 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
 }
 
@@ -126,7 +126,7 @@
   flex-direction: column;
   gap: 0.65rem;
   padding: 1.5rem;
-  background: var(--color-canvas);
+  background: var(--color-page);
   border: 1px dashed var(--color-border-strong);
   border-radius: var(--radius-md);
 }
@@ -134,12 +134,12 @@
 .fallbackTitle {
   margin: 0;
   font-weight: 600;
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .fallbackBody {
   margin: 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-small);
   line-height: 1.6;
 }
@@ -149,7 +149,7 @@
   flex-direction: column;
   gap: 0.75rem;
   padding: 1.5rem;
-  background: var(--color-canvas);
+  background: var(--color-page);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
@@ -163,13 +163,13 @@
 .systemReqList {
   margin: 0;
   padding-left: 1.25rem;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-small);
   line-height: 1.7;
 }
 
 .systemLink {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-size: var(--text-small);
   text-decoration: underline;
   text-underline-offset: 0.2em;

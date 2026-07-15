@@ -2,11 +2,12 @@
   width: 100%;
 }
 
-.canvas { background: var(--color-canvas); color: var(--color-ink); }
-.white { background: var(--color-surface); color: var(--color-ink); }
+.canvas { background: var(--color-page); color: var(--color-text-primary); }
+.white { background: var(--color-surface); color: var(--color-text-primary); }
+.page-alt { background: var(--color-page-alt); color: var(--color-text-primary); }
 .dark {
-  background: var(--color-dark-canvas);
-  color: var(--color-dark-ink);
+  background: var(--color-dark-page);
+  color: var(--color-dark-text-primary);
 }
 
 .compact { padding: clamp(2rem, 4vw, 3rem) 0; }
@@ -14,6 +15,6 @@
 .large { padding: clamp(5rem, 10vw, 9rem) 0; }
 
 .dark ::selection {
-  color: var(--color-dark-canvas);
-  background: var(--color-dark-ink);
+  color: var(--color-dark-page);
+  background: var(--color-dark-text-primary);
 }

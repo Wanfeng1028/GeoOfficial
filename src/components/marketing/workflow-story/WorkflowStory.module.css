@@ -26,7 +26,7 @@
 }
 
 .stepLabel {
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
   font-weight: 650;
   letter-spacing: 0.06em;
@@ -41,7 +41,7 @@
 
 .stepDescription {
   margin: 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-body);
   line-height: 1.6;
 }

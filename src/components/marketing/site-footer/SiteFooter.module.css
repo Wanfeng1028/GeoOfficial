@@ -1,6 +1,6 @@
 .footer {
   border-top: 1px solid var(--color-border);
-  background: var(--color-canvas);
+  background: var(--color-page);
   padding: 3rem 0 2rem;
 }
 
@@ -25,13 +25,13 @@
 
 .tagline {
   margin: 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
 }
 
 .copyright {
   margin: 0;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
 }
 
@@ -47,7 +47,7 @@
 
 .groupTitle {
   margin: 0 0 0.25rem;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: var(--text-caption);
   font-weight: 650;
   letter-spacing: 0.06em;
@@ -64,11 +64,11 @@
 }
 
 .link {
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   font-size: var(--text-small);
   transition: color var(--duration-fast) var(--ease-standard);
 }
 
 .link:hover {
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }

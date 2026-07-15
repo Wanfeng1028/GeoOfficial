@@ -44,12 +44,12 @@
 .caption {
   font-size: var(--text-caption);
   line-height: 1.4;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
 }
 
 .eyebrow {
   margin: 0 0 1rem;
-  color: var(--color-ink-muted);
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
   font-weight: 650;
   letter-spacing: 0.08em;

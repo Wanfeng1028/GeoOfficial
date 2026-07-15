@@ -14,16 +14,16 @@
   white-space: nowrap;
 }
 
-.text-ink-muted {
-  color: var(--color-ink-muted);
+.text-secondary {
+  color: var(--color-text-secondary);
 }
 
 .dark-section {
-  color: var(--color-dark-ink);
-  background: var(--color-dark-canvas);
+  color: var(--color-dark-text-primary);
+  background: var(--color-dark-page);
 }
 
 .dark-section ::selection {
-  color: var(--color-dark-canvas);
-  background: var(--color-dark-ink);
+  color: var(--color-dark-page);
+  background: var(--color-dark-text-primary);
 }

@@ -10,14 +10,14 @@
 }
 
 html {
-  background: var(--color-canvas);
+  background: var(--color-page);
   scroll-padding-top: 5rem;
 }
 
 body {
   margin: 0;
-  color: var(--color-ink);
-  background: var(--color-canvas);
+  color: var(--color-text-primary);
+  background: var(--color-page);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -48,7 +48,7 @@ video {
 
 ::selection {
   color: #fff;
-  background: var(--color-accent);
+  background: var(--color-brand);
 }
 
 h1, h2, h3, h4, h5, h6 {

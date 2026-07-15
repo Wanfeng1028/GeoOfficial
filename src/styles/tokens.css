@@ -1,48 +1,83 @@
 :root {
   color-scheme: light;
 
-  /* Light surfaces */
-  --color-canvas: #f5f5f2;
+  /* ===========================
+     Light surfaces — Linear × Attio 暖白基调
+     =========================== */
+  --color-page: #f5f5f2;
+  --color-page-alt: #eeeeea;
   --color-surface: #ffffff;
-  --color-surface-subtle: #ecece8;
-  --color-ink: #101112;
-  --color-ink-muted: #656a70;
-  --color-border: rgb(16 17 18 / 12%);
-  --color-border-strong: rgb(16 17 18 / 22%);
+  --color-surface-raised: #fafaf8;
 
-  /* Dark surfaces */
-  --color-dark-canvas: #0d0f12;
-  --color-dark-surface: #15181d;
-  --color-dark-ink: #f4f5f6;
-  --color-dark-muted: #949aa3;
-  --color-dark-border: rgb(255 255 255 / 10%);
+  /* ===========================
+     Light text
+     =========================== */
+  --color-text-primary: #171719;
+  --color-text-secondary: #686a70;
+  --color-text-tertiary: #96989d;
 
-  /* Accent — GeoWork geographic teal, restrained */
-  --color-accent: #2b8c6b;
-  --color-accent-hover: #24775b;
-  --color-accent-soft: #dcefe8;
+  /* ===========================
+     Light borders
+     =========================== */
+  --color-border: rgba(23, 23, 25, 0.10);
+  --color-border-strong: rgba(23, 23, 25, 0.18);
+
+  /* ===========================
+     Dark surfaces
+     =========================== */
+  --color-dark-page: #101113;
+  --color-dark-surface: #17181c;
+  --color-dark-raised: #1d1f24;
+
+  --color-dark-text-primary: #f4f4f1;
+  --color-dark-text-secondary: #a2a4aa;
+  --color-dark-border: rgba(255, 255, 255, 0.09);
+
+  /* ===========================
+     Brand — 克制绿色，全站仅占 5–8%
+     =========================== */
+  --color-brand: #57a887;
+  --color-brand-hover: #438a6f;
+  --color-brand-soft: #dcebe4;
+
+  /* Focus ring */
   --color-focus: #1769d2;
 
   /* Status */
-  --color-success: #2b8c6b;
+  --color-success: #57a887;
   --color-warning: #b89d63;
   --color-danger: #c0392b;
 
-  /* Fonts */
+  /* ===========================
+     Fonts
+     =========================== */
   --font-sans: Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", "JetBrains Mono", monospace;
 
-  /* Typography scale */
-  --text-display: clamp(3.4rem, 7vw, 7.4rem);
-  --text-h1: clamp(2.8rem, 5.4vw, 5.6rem);
-  --text-h2: clamp(2.2rem, 4.2vw, 4.3rem);
-  --text-h3: clamp(1.5rem, 2vw, 2.25rem);
+  /* ===========================
+     Typography scale — 设计规范 v1.1
+     Hero H1: 56–64px, max 68px
+     Page H1: 48–56px
+     Section H2: 38–46px
+     Feature H3: 26–32px
+     Card title: 17–20px
+     Body large: 18–20px
+     Body: 15–17px
+     Small: 13–14px
+     Caption: 12–13px
+     =========================== */
+  --text-display: clamp(3.4rem, 4.8vw, 4.5rem);
+  --text-h1: clamp(2.8rem, 4.2vw, 4rem);
+  --text-h2: clamp(2.2rem, 3.2vw, 2.875rem);
+  --text-h3: clamp(1.5rem, 1.8vw, 2rem);
   --text-body-lg: clamp(1.05rem, 1.4vw, 1.28rem);
   --text-body: 1rem;
   --text-small: 0.875rem;
   --text-caption: 0.8125rem;
 
-  /* Spacing — 4px base */
+  /* ===========================
+     Spacing — 4px base
+     =========================== */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -54,31 +89,47 @@
   --space-9: 6rem;
   --space-10: 8rem;
 
-  /* Radius — varied, not all pill */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1.25rem;
-  --radius-xl: 2rem;
+  /* ===========================
+     Radius — 设计规范 round 2
+     Button: 8–10px
+     Small control: 8–12px
+     Panel: 14–18px
+     Media: 20–28px
+     Large scene: 28–36px
+     =========================== */
+  --radius-sm: 0.5rem;    /* 8px  — button, small control */
+  --radius-md: 0.75rem;   /* 12px — small control upper */
+  --radius-lg: 1rem;      /* 16px — panel */
+  --radius-xl: 1.5rem;    /* 24px — media */
+  --radius-2xl: 2rem;     /* 32px — large scene */
   --radius-pill: 999px;
 
-  /* Shadow — only for floating layers and large media */
-  --shadow-media: 0 30px 80px rgb(16 17 18 / 12%);
-  --shadow-menu: 0 18px 50px rgb(16 17 18 / 16%);
-  --shadow-card: 0 2px 8px rgb(16 17 18 / 6%);
+  /* ===========================
+     Shadow — 只用于浮层和产品媒体
+     =========================== */
+  --shadow-media: 0 1px 2px rgba(0, 0, 0, 0.03), 0 16px 48px rgba(0, 0, 0, 0.06);
+  --shadow-menu: 0 1px 2px rgba(0, 0, 0, 0.03), 0 18px 50px rgba(0, 0, 0, 0.16);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.06);
 
-  /* Container widths */
+  /* ===========================
+     Container widths
+     =========================== */
   --container-wide: 90rem;
-  --container-default: 77.5rem;
+  --container-default: 80rem;
   --container-content: 55rem;
   --container-text: 45rem;
 
-  /* Motion */
+  /* ===========================
+     Motion
+     =========================== */
   --duration-fast: 140ms;
   --duration-normal: 260ms;
   --duration-slow: 520ms;
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
 
-  /* z-index */
+  /* ===========================
+     z-index
+     =========================== */
   --z-base: 0;
   --z-header: 100;
   --z-overlay: 200;

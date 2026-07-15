@@ -10,14 +10,14 @@
 .trigger {
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius-sm);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
   background: transparent;
   border: 0;
   cursor: pointer;
 }
 
 .trigger[data-state='open'] {
-  background: var(--color-surface-subtle);
+  background: var(--color-page-alt);
 }
 
 .content {
@@ -32,9 +32,9 @@
   display: block;
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius-sm);
-  color: var(--color-ink);
+  color: var(--color-text-primary);
 }
 
 .link[data-highlighted] {
-  background: var(--color-surface-subtle);
+  background: var(--color-page-alt);
 }
