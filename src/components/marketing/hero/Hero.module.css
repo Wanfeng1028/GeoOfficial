@@ -1,25 +1,15 @@
 .hero {
-  padding:
-    clamp(5.5rem, 9vw, 8.5rem)
-    0
-    clamp(5rem, 8vw, 7.5rem);
+  padding: 7rem 0 0;
   overflow: clip;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns:
-    minmax(19rem, 5fr)
-    minmax(0, 7fr);
-  align-items: center;
-  gap: clamp(3rem, 6vw, 7rem);
-}
-
 .copy {
-  max-width: 39rem;
+  max-width: 52rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
-.productName {
+.eyebrow {
   margin: 0 0 1.4rem;
   color: var(--color-text-secondary);
   font-size: 0.875rem;
@@ -29,51 +19,57 @@
 }
 
 .title {
-  margin: 0;
-  max-width: 11ch;
+  margin: 0 auto;
+  max-width: 14ch;
   text-wrap: balance;
-  font-size: var(--text-h1);
+  font-size: clamp(3.25rem, 5.6vw, 5.25rem);
   line-height: 0.98;
   letter-spacing: -0.055em;
   font-weight: 600;
 }
 
 .description {
-  max-width: 34rem;
-  margin: 1.8rem 0 0;
+  max-width: 42rem;
+  margin: 1.75rem auto 0;
   color: var(--color-text-secondary);
-  font-size: var(--text-body-lg);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
   line-height: 1.65;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: 1.15rem;
-  margin-top: 2rem;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.25rem;
   flex-wrap: wrap;
 }
 
-.status {
-  margin: 1rem 0 0;
-  color: var(--color-text-secondary);
-  font-size: 0.8125rem;
+.stage {
+  width: min(1180px, 100%);
+  margin: 4.5rem auto 0;
 }
 
-.media {
-  min-height: 34rem;
+.stage > * {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
 }
 
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 0 0;
   }
 
   .copy {
-    max-width: 46rem;
+    max-width: 100%;
   }
 
-  .media {
-    min-height: auto;
+  .title {
+    font-size: clamp(2.25rem, 8vw, 3.25rem);
+    max-width: 12ch;
+  }
+
+  .stage {
+    margin: 3rem auto 0;
   }
 }

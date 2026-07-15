@@ -3,11 +3,11 @@ import { mediaAssets } from '@/data/media';
 export const homeContent = {
   hero: {
     eyebrow: 'GeoWork',
-    title: '地图、遥感、代码与研究，汇于一个工作台。',
+    title: '为完整的地理空间工作而设计。',
     description:
-      'GeoWork 是面向 GIS、遥感与空间研究的桌面工作台，让项目、工具、数据和成果保持在同一个上下文中。',
-    primaryCta: { label: '探索产品', href: '/product' },
-    secondaryCta: { label: 'GitHub', href: 'https://github.com/Wanfeng1028/GeoWork' },
+      '在一个连续工作区中组织项目、地图、遥感数据、代码、工具与研究成果。',
+    primaryCta: { label: 'Explore GeoWork', href: '/product' },
+    secondaryCta: { label: 'View on GitHub', href: 'https://github.com/Wanfeng1028/GeoWork' },
     status: 'Developer Preview · 查看当前可用平台',
   },
   principles: {
