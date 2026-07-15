@@ -3,8 +3,7 @@ import { GithubLogoIcon } from '@phosphor-icons/react/ssr';
 import { homeContent } from '@/data/home';
 import { Button } from '@/components/ui/button/Button';
 import { Container } from '@/components/ui/container/Container';
-import { MediaFrame } from '@/components/ui/media-frame/MediaFrame';
-import { ProductFilm } from '@/components/marketing/product-film/ProductFilm';
+import { ProductStage } from '@/components/marketing/product-stage/ProductStage';
 import styles from './Hero.module.css';
 
 export function Hero() {
@@ -46,9 +45,7 @@ export function Hero() {
         </div>
 
         <div className={styles.stage}>
-          <MediaFrame ratio="16:10" tone="dark">
-            <ProductFilm />
-          </MediaFrame>
+          <ProductStage />
         </div>
       </Container>
     </section>
