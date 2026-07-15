@@ -1,30 +1,104 @@
-.list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  margin: 3rem 0 0;
-  padding: 0;
-  list-style: none;
+.section {
+  padding: clamp(5rem, 8vw, 9rem) 0;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
 }
 
-.item {
+.intro {
+  width: min(calc(100% - 4rem), var(--container-default));
+  margin: 0 auto 3rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.85rem;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--text-h2);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  text-wrap: balance;
+  max-width: 28rem;
+}
+
+.description {
+  margin: 0.85rem 0 0;
+  max-width: 36rem;
+  color: var(--color-text-secondary);
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+}
+
+/* ---- 通用 ---- */
+.audience {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-secondary);
+  font-size: var(--text-caption);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.caseTitle {
+  margin: 0 0 0.65rem;
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.caseDesc {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--color-text-secondary);
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+.caseStats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.stat {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--color-border);
+  gap: 0.2rem;
 }
 
-.item:nth-child(even) {
-  flex-direction: column;
+.statValue {
+  font-size: var(--text-h3);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
 }
 
-.item:last-child {
-  border-bottom: 0;
+.statLabel {
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
 }
 
-.media {
-  width: 100%;
+.status {
+  margin: 0.75rem 0 0;
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+}
+
+.status[data-status='preview'] {
+  color: var(--color-brand);
+}
+
+.cta {
+  align-self: flex-start;
+  margin-top: 0.35rem;
 }
 
 .mediaInner {
@@ -38,70 +112,90 @@
   font-size: var(--text-small);
 }
 
-.copy {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.audience {
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: var(--text-caption);
-  font-weight: 650;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.title {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.description {
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: var(--text-body);
-  line-height: 1.6;
-  max-width: 36rem;
-}
-
-.status {
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: var(--text-caption);
-}
-
-.status[data-status='preview'] {
-  color: var(--color-brand);
-}
-
-.cta {
-  align-self: flex-start;
-  margin-top: 0.35rem;
+/* ---- 案例 1：城市扩张 — 左文字右地图 ---- */
+.caseUrban {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: min(calc(100% - 4rem), var(--container-wide));
+  margin: 0 auto 4rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 @media (min-width: 900px) {
-  .list {
-    grid-template-columns: 1fr;
+  .caseUrban {
+    grid-template-columns: 1fr 1.4fr;
     gap: 3rem;
-  }
-
-  .item {
-    display: grid;
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: 2.5rem;
-    padding: 2rem 0;
     align-items: center;
   }
+}
 
-  .item:nth-child(even) {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+.caseCopy {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- 案例 2：NDVI — 左图表右地图 + 文字居中 ---- */
+.caseNdvi {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: min(calc(100% - 4rem), var(--container-wide));
+  margin: 0 auto 4rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+@media (min-width: 900px) {
+  .caseNdvi {
+    grid-template-columns: 1fr 1.2fr 1.4fr;
+    gap: 2rem;
+    align-items: center;
+  }
+}
+
+.caseMediaSmall {
+  min-height: 12rem;
+}
+
+.caseMediaWide {
+  min-height: 14rem;
+}
+
+/* ---- 案例 3：科研报告 — 全宽组合 ---- */
+.caseReport {
+  width: min(calc(100% - 4rem), var(--container-wide));
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.caseReportIntro {
+  max-width: var(--container-content);
+  margin-bottom: 2rem;
+}
+
+.caseReportGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .caseReportGrid {
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto auto;
   }
 
-  .item:nth-child(even) .media {
-    order: 2;
+  .reportMediaMain {
+    grid-row: 1 / 3;
+  }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .caseStats {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 }
