@@ -1,0 +1,88 @@
+.section {
+  padding: clamp(5rem, 8vw, 9rem) 0;
+  background: var(--color-dark-page);
+  color: var(--color-dark-text-primary);
+}
+
+.intro {
+  margin-bottom: 3rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.85rem;
+  color: var(--color-dark-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--text-h2);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  text-wrap: balance;
+  max-width: 28rem;
+}
+
+.description {
+  margin: 0.85rem 0 0;
+  max-width: 36rem;
+  color: var(--color-dark-text-secondary);
+  font-size: var(--text-body-lg);
+  line-height: 1.65;
+}
+
+/* 关系图 */
+.diagram {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 1rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 10rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--color-dark-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-dark-surface);
+}
+
+.core {
+  border-color: var(--color-brand);
+  border-width: 2px;
+}
+
+.skill {
+  background: var(--color-dark-raised);
+}
+
+.nodeLabel {
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+
+.nodeDesc {
+  color: var(--color-dark-text-secondary);
+  font-size: var(--text-caption);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .diagram {
+    flex-direction: column;
+  }
+
+  .node {
+    min-width: auto;
+  }
+}

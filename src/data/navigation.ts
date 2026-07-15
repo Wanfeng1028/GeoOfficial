@@ -2,11 +2,7 @@ export const mainNavigation = [
   { label: '产品', href: '/product' },
   { label: '工作方式', href: '/#workflow' },
   { label: '使用案例', href: '/use-cases' },
-  {
-    label: '开发者',
-    href: 'https://github.com/Wanfeng1028/GeoWork',
-    external: true,
-  },
+  { label: '开发者', href: '/developers' },
   { label: '更新日志', href: '/changelog' },
 ] as const;
 

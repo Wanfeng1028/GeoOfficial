@@ -1,0 +1,48 @@
+.layers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.layerCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-page);
+}
+
+.layerHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.layerTitle {
+  margin: 0;
+  font-size: var(--text-body-lg);
+  font-weight: 600;
+}
+
+.layerDetail {
+  color: var(--color-text-secondary);
+  font-size: var(--text-caption);
+  font-family: var(--font-mono);
+}
+
+.layerDesc {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+@media (min-width: 900px) {
+  .layers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
