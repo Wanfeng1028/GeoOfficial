@@ -10,12 +10,55 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  /* 基础进入 */
   .enter-fade {
     animation: enter-fade var(--duration-normal) var(--ease-standard) both;
   }
 
   .enter-rise {
     animation: enter-rise var(--duration-slow) var(--ease-standard) both;
+  }
+
+  .enter-rise-fast {
+    animation: enter-rise var(--duration-normal) var(--ease-standard) both;
+  }
+
+  /* Section Reveal — 用于页面滚动进入 */
+  .reveal {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition:
+      opacity var(--duration-slow) var(--ease-standard),
+      transform var(--duration-slow) var(--ease-standard);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Crossfade — 用于 Tab 切换 */
+  .crossfade-enter {
+    opacity: 0;
+  }
+
+  .crossfade-enter-active {
+    opacity: 1;
+    transition: opacity var(--duration-normal) var(--ease-standard);
+  }
+
+  .crossfade-exit {
+    opacity: 1;
+  }
+
+  .crossfade-exit-active {
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-standard);
+  }
+
+  /* Media 轻进入 */
+  .media-enter {
+    animation: enter-fade var(--duration-slow) var(--ease-standard) both;
   }
 }
 
