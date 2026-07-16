@@ -5,7 +5,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-control);
   background: transparent;
-  color: var(--text-secondary);
+  color: #9a9da3;
   font-size: var(--text-caption);
   font-weight: 550;
   cursor: pointer;
@@ -16,7 +16,7 @@
 }
 
 .switcher:hover {
-  color: var(--text-primary);
+  color: #f1f2f4;
   border-color: var(--border-strong);
   background: var(--surface-hover);
 }
