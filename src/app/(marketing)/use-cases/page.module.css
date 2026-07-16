@@ -77,7 +77,7 @@
   font-size: var(--text-caption);
 }
 
-.status[data-status='preview'] { color: var(--brand-hover); }
+.status[data-status='preview'] { color: #3a7a61; }
 
 .meta {
   display: grid;

@@ -93,7 +93,7 @@
 }
 
 .status[data-status='preview'] {
-  color: var(--brand-hover);
+  color: #3a7a61;
 }
 
 .cta {
