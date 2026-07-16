@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import '@/app/globals.css';
 import { siteConfig } from '@/lib/site';
-import { LocaleWrapper } from '@/i18n/LocaleWrapper';
 import { ThemeProviderWrapper } from '@/components/theme/ThemeProviderWrapper';
 
 export const metadata: Metadata = {
@@ -31,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="zh-CN" suppressHydrationWarning>
       <body suppressHydrationWarning>
         <ThemeProviderWrapper>
-          <LocaleWrapper>{children}</LocaleWrapper>
+          {children}
         </ThemeProviderWrapper>
       </body>
     </html>
