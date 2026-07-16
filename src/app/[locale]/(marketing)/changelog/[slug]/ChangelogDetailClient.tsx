@@ -13,10 +13,10 @@ import styles from './entry.module.css';
 
 interface ChangelogDetailClientProps {
   slug: string;
-  Body: React.ComponentType;
+  children: React.ReactNode;
 }
 
-export function ChangelogDetailClient({ slug, Body }: ChangelogDetailClientProps) {
+export function ChangelogDetailClient({ slug, children }: ChangelogDetailClientProps) {
   const { locale } = useLocale();
   const t = getDict(locale);
   const p = t.pages.changelog;
@@ -74,7 +74,7 @@ export function ChangelogDetailClient({ slug, Body }: ChangelogDetailClientProps
 
         <div className={styles.body}>
           <h2 className={styles.h2}>{p.fullDetails}</h2>
-          <Body />
+          {children}
         </div>
 
         <div className={styles.actions}>

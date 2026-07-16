@@ -30,5 +30,5 @@ export default async function ChangelogDetailPage({ params }: PageProps) {
 
   const { default: Body } = await entry.load();
 
-  return <ChangelogDetailClient slug={slug} Body={Body} />;
+  return <ChangelogDetailClient slug={slug}><Body /></ChangelogDetailClient>;
 }
