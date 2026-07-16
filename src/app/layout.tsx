@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import '@/app/globals.css';
 import { siteConfig } from '@/lib/site';
 import { LocaleWrapper } from '@/i18n/LocaleWrapper';
+import { ThemeProviderWrapper } from '@/components/theme/ThemeProviderWrapper';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -29,7 +30,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="zh-CN">
       <body>
-        <LocaleWrapper>{children}</LocaleWrapper>
+        <ThemeProviderWrapper>
+          <LocaleWrapper>{children}</LocaleWrapper>
+        </ThemeProviderWrapper>
       </body>
     </html>
   );

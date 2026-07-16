@@ -5,18 +5,41 @@ import { Container } from '@/components/ui/container/Container';
 import { Logo } from '@/components/ui/logo/Logo';
 import { LocaleSwitcher } from '@/i18n/LocaleSwitcher';
 import { useLocale } from '@/i18n/LocaleProvider';
+import { getDict } from '@/i18n/dict';
 import { footerNavigation } from '@/data/navigation';
 import { siteConfig } from '@/lib/site';
 import styles from './SiteFooter.module.css';
 
+// Footer 分组标题的翻译 key 映射（基于中文 label）
+const footerGroupKeys: Record<string, string> = {
+  '产品': 'product',
+  '资源': 'resources',
+  '开发': 'developers',
+  '法律': 'legal',
+};
+
+// Footer 链接标签的翻译 key 映射（基于中文 label）
+const footerLinkKeys: Record<string, string> = {
+  '产品概览': 'productOverview',
+  '工作方式': 'howItWorks',
+  '使用案例': 'useCases',
+  '下载': 'download',
+  '更新日志': 'changelog',
+  'GeoWork 仓库': 'geoWorkRepo',
+  'GeoFrontend2.0': 'geoFrontend',
+  'GitHub Issues': 'githubIssues',
+  'Releases': 'releases',
+  '关于': 'about',
+  '隐私': 'privacy',
+  '条款': 'terms',
+};
+
 export function SiteFooter() {
   const { locale } = useLocale();
+  const t = getDict(locale);
   const year = new Date().getFullYear();
 
-  const copyrightText =
-    locale === 'zh'
-      ? `© ${year} GeoWork contributors. 仓库公开于 GitHub。`
-      : `© ${year} GeoWork contributors. Repository on GitHub.`;
+  const copyrightText = t.footer.copyright.replace('{year}', String(year));
 
   return (
     <footer className={styles.footer}>
@@ -24,7 +47,7 @@ export function SiteFooter() {
         <div className={styles.brand}>
           <Logo wordmark />
           <p className={styles.tagline}>
-            Developer Preview
+            {t.footer.tagline}
           </p>
           <p className={styles.copyright}>{copyrightText}</p>
           <div className={styles.localeWrap}>
@@ -33,12 +56,19 @@ export function SiteFooter() {
         </div>
 
         <nav className={styles.groups} aria-label="页脚导航">
-          {footerNavigation.map((group) => (
+          {footerNavigation.map((group) => {
+            const groupTitle = footerGroupKeys[group.title as string]
+              ? (t.footer.nav as unknown as Record<string, string>)[footerGroupKeys[group.title as string]] ?? group.title
+              : group.title;
+            return (
             <div key={group.title} className={styles.group}>
-              <p className={styles.groupTitle}>{group.title}</p>
+              <p className={styles.groupTitle}>{groupTitle}</p>
               <ul className={styles.links}>
-                {group.links.map((link) =>
-                  'external' in link && link.external ? (
+                {group.links.map((link) => {
+                  const linkLabel = footerLinkKeys[link.label as string]
+                    ? (t.footer.nav.links as Record<string, string>)[footerLinkKeys[link.label as string]] ?? link.label
+                    : link.label;
+                  return 'external' in link && link.external ? (
                     <li key={link.label}>
                       <a
                         href={link.href}
@@ -46,30 +76,31 @@ export function SiteFooter() {
                         rel="noreferrer"
                         className={styles.link}
                       >
-                        {link.label}
+                        {linkLabel}
                       </a>
                     </li>
                   ) : (
                     <li key={link.label}>
                       <Link href={link.href} className={styles.link}>
-                        {link.label}
+                        {linkLabel}
                       </Link>
                     </li>
-                  ),
-                )}
+                  );
+                })}
               </ul>
             </div>
-          ))}
+          );
+          })}
         </nav>
       </Container>
 
       <Container className={styles.bottom}>
         <div className={styles.bottomLinks}>
           <Link href="/privacy" className={styles.bottomLink}>
-            {locale === 'zh' ? '隐私' : 'Privacy'}
+            {t.nav.privacy}
           </Link>
           <Link href="/terms" className={styles.bottomLink}>
-            {locale === 'zh' ? '条款' : 'Terms'}
+            {t.nav.terms}
           </Link>
           <a
             href="https://github.com/Wanfeng1028/GeoWork"
@@ -80,7 +111,7 @@ export function SiteFooter() {
             GitHub
           </a>
           <span className={styles.bottomStatus}>
-            {locale === 'zh' ? 'Developer Preview' : 'Developer Preview'}
+            {t.footer.tagline}
           </span>
         </div>
       </Container>

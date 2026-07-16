@@ -20,6 +20,7 @@ body {
   color: var(--text-primary);
   background: var(--page);
   font-family: var(--font-sans);
+  line-height: var(--body-line-height, 1.5);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   transition:

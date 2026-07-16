@@ -32,11 +32,11 @@
 
 .quoteText {
   margin: 0;
-  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-size: var(--quote-text-size, clamp(1.75rem, 3vw, 2.75rem));
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.03em;
-  color: var(--text-primary);
+  color: var(--text-primary, #17181b);
   text-wrap: balance;
   word-break: keep-all;
 }

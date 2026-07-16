@@ -1,36 +1,49 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useScroll, useTransform, motion, type UseScrollOptions } from 'motion/react';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
-import { ThemeObserver } from '@/components/scroll/ThemeObserver';
+import { ThemeSection } from '@/components/theme/ThemeSection';
 import { Container } from '@/components/ui/container/Container';
 import styles from './ContextShowcase.module.css';
+
+const isDebug = typeof window !== 'undefined'
+  && new URLSearchParams(window.location.search).has('debugScroll');
 
 export function ContextShowcase() {
   const { locale } = useLocale();
   const t = getDict(locale);
   const arcRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: arcRef,
     offset: ['start end', 'end start'] as UseScrollOptions['offset'],
   });
 
+  // Clamp progress to [0, 1] and track for debug
+  useEffect(() => {
+    if (!isDebug) return;
+    const unsub = scrollYProgress.on('change', (v) => {
+      setProgress(Math.max(0, Math.min(1, v)));
+    });
+    return () => unsub();
+  }, [scrollYProgress]);
+
   const arcRotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const arcOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const arcOpacity = useTransform(scrollYProgress, [0, 0.2, 0.3, 0.7, 1], [0.15, 0.5, 1, 1, 0.15]);
   const middleArcRotate = useTransform(scrollYProgress, [0, 1], [0, -120]);
   const innerArcRotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const orbitOpacity0 = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  const orbitOpacity1 = useTransform(scrollYProgress, [0.2, 0.5], [0, 1]);
-  const orbitOpacity2 = useTransform(scrollYProgress, [0.4, 0.7], [0, 1]);
-  const orbitOpacity3 = useTransform(scrollYProgress, [0.6, 0.9], [0, 1]);
-  const orbitOpacity4 = useTransform(scrollYProgress, [0.8, 1.1], [0, 1]);
+  const orbitOpacity0 = useTransform(scrollYProgress, [0, 0.3], [0.15, 1]);
+  const orbitOpacity1 = useTransform(scrollYProgress, [0.15, 0.45], [0.15, 1]);
+  const orbitOpacity2 = useTransform(scrollYProgress, [0.3, 0.6], [0.15, 1]);
+  const orbitOpacity3 = useTransform(scrollYProgress, [0.45, 0.75], [0.15, 1]);
+  const orbitOpacity4 = useTransform(scrollYProgress, [0.6, 0.9], [0.15, 1]);
   const orbitOpacities = [orbitOpacity0, orbitOpacity1, orbitOpacity2, orbitOpacity3, orbitOpacity4];
 
   return (
-    <ThemeObserver theme="dark">
+    <ThemeSection theme="dark">
       <section ref={arcRef} id="context" className={styles.section} aria-labelledby="context-title">
         <Container>
           <div className={styles.intro}>
@@ -126,7 +139,16 @@ export function ContextShowcase() {
             ))}
           </div>
         </Container>
+
+        {/* Debug panel — only in development with ?debugScroll=1 */}
+        {isDebug && (
+          <div className={styles.debugPanel}>
+            <span>progress: {(progress * 100).toFixed(1)}%</span>
+            <span>theme: dark</span>
+            <span>scene: ContextShowcase</span>
+          </div>
+        )}
       </section>
-    </ThemeObserver>
+    </ThemeSection>
   );
 }

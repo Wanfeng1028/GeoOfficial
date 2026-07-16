@@ -3,7 +3,7 @@
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
 import { Container } from '@/components/ui/container/Container';
-import { ThemeObserver } from '@/components/scroll/ThemeObserver';
+import { ThemeSection } from '@/components/theme/ThemeSection';
 import styles from './EcosystemShowcase.module.css';
 
 const integrations = [
@@ -22,7 +22,7 @@ export function EcosystemShowcase() {
   const t = getDict(locale);
 
   return (
-    <ThemeObserver theme="dark">
+    <ThemeSection theme="dark">
       <section id="ecosystem" className={styles.section}>
         <Container>
           <div className={styles.intro}>
@@ -47,29 +47,19 @@ export function EcosystemShowcase() {
 
           {/* SDK / Skills / MCP blocks */}
           <div className={styles.blocks}>
-            <div className={styles.block}>
-              <h3 className={styles.blockTitle}>Skills</h3>
-              <p className={styles.blockDesc}>Reusable command units for GIS, remote sensing, and reporting workflows.</p>
-            </div>
-            <div className={styles.block}>
-              <h3 className={styles.blockTitle}>MCP</h3>
-              <p className={styles.blockDesc}>Model Context Protocol extensions for AI-assisted geospatial work.</p>
-            </div>
-            <div className={styles.block}>
-              <h3 className={styles.blockTitle}>Tool Adapters</h3>
-              <p className={styles.blockDesc}>Connect QGIS, GDAL, GEE, and Python tools through standardized interfaces.</p>
-            </div>
-            <div className={styles.block}>
-              <h3 className={styles.blockTitle}>Runtime</h3>
-              <p className={styles.blockDesc}>Go runtime with Python Geo Worker for local-first, high-performance execution.</p>
-            </div>
+            {t.ecosystem.blocks.map((block) => (
+              <div key={block.title} className={styles.block}>
+                <h3 className={styles.blockTitle}>{block.title}</h3>
+                <p className={styles.blockDesc}>{block.desc}</p>
+              </div>
+            ))}
           </div>
 
           <p className={styles.note}>
-            Developer Preview — Connection status reflects current development stage.
+            {t.ecosystem.note}
           </p>
         </Container>
       </section>
-    </ThemeObserver>
+    </ThemeSection>
   );
 }

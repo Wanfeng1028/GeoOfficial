@@ -16,8 +16,9 @@ interface CurtainRevealProps {
 /**
  * 黑幕滑出揭示效果：
  * - 外层 180–220vh 滚动区
- * - 底部白色内容层在 0%–35% 被黑幕覆盖
- * - 35%–100% 黑幕向上滑出 (translateY -100%)，揭示下方内容
+ * - 底部白色内容层在 0%–30% 被黑幕覆盖
+ * - 30%–70% 黑幕向上滑出 (translateY -100%)，揭示下方内容
+ * - 70% 后黑幕完全移出视口
  */
 export function CurtainReveal({
   children,
@@ -32,16 +33,11 @@ export function CurtainReveal({
     offset: ['start start', 'end end'] as UseScrollOptions['offset'],
   });
 
+  // 黑幕向上滑出：0%–30% 保持原位，30%–70% 向上滑出
   const curtainY = useTransform(
     scrollYProgress,
-    [0, 0.35, 1],
-    ['0%', '0%', '-100%'],
-  );
-
-  const curtainOpacity = useTransform(
-    scrollYProgress,
-    [0.3, 0.4],
-    [1, 0],
+    [0, 0.3, 0.7, 1],
+    ['0%', '0%', '-100%', '-100%'],
   );
 
   return (
@@ -55,10 +51,10 @@ export function CurtainReveal({
         {children}
       </div>
 
-      {/* 上方黑幕层 */}
+      {/* 上方黑幕层 — 仅做 translateY，不做 opacity 渐变 */}
       <motion.div
         className={styles.curtain}
-        style={{ y: curtainY, opacity: curtainOpacity }}
+        style={{ y: curtainY }}
       >
         {curtainContent}
       </motion.div>

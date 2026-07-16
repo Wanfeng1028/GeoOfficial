@@ -1,6 +1,10 @@
 .section {
   position: relative;
-  padding: 7rem 0;
+  padding: 8rem 0;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #101113;
   overflow: hidden;
   text-align: center;
@@ -38,7 +42,7 @@
 
 .title {
   margin: 0;
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: var(--final-cta-title-size, clamp(2rem, 3.5vw, 3rem));
   font-weight: 600;
   line-height: 1.15;
   letter-spacing: -0.03em;

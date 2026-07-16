@@ -34,6 +34,7 @@
      =========================== */
   --button-dark: #1b1c20;
   --button-dark-hover: #2a2b30;
+  --button-dark-text: #ffffff;
   --button-light: #ffffff;
 
   /* ===========================
@@ -77,13 +78,17 @@
   /* ===========================
      Fonts
      =========================== */
-  --font-sans:
-    Inter,
+  --font-zh:
     "PingFang SC",
     "Microsoft YaHei",
     "Noto Sans SC",
     system-ui,
     sans-serif;
+  --font-en:
+    Inter,
+    system-ui,
+    sans-serif;
+  --font-sans: var(--font-en);
   --font-mono:
     "SFMono-Regular",
     Consolas,
@@ -210,6 +215,7 @@
 
   --button-dark: #ffffff;
   --button-dark-hover: #e4e5e7;
+  --button-dark-text: #17181b;
   --button-light: #1a1c20;
 
   --brand: #55a988;
@@ -237,5 +243,43 @@
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
   --color-brand-soft: var(--brand-soft);
+}
+
+/* ===========================
+   Locale 独立排版 Token
+   =========================== */
+
+/* 中文排版 — FlowUs 参考 */
+html[lang='zh-CN'] {
+  --font-sans: var(--font-zh);
+  --hero-title-size: clamp(2.75rem, 3.5vw, 3.375rem);
+  --section-title-size: clamp(1.875rem, 2.5vw, 2.375rem);
+  --feature-title-size: clamp(1.375rem, 1.8vw, 1.75rem);
+  --quote-text-size: clamp(2rem, 2.5vw, 2.5rem);
+  --final-cta-title-size: clamp(2.25rem, 3vw, 2.75rem);
+  --body-line-height: 1.6;
+  --heading-line-height: 1.22;
+
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+html[lang='zh-CN'] h1,
+html[lang='zh-CN'] h2,
+html[lang='zh-CN'] h3 {
+  text-wrap: balance;
+  line-height: var(--heading-line-height);
+}
+
+/* 英文排版 — Attio 参考 */
+html[lang='en'] {
+  --font-sans: var(--font-en);
+  --hero-title-size: clamp(3.25rem, 4vw, 4rem);
+  --section-title-size: clamp(2.125rem, 3vw, 2.875rem);
+  --feature-title-size: clamp(1.5rem, 1.8vw, 1.875rem);
+  --quote-text-size: clamp(2.625rem, 3.5vw, 3.5rem);
+  --final-cta-title-size: clamp(2.75rem, 3.5vw, 3.5rem);
+  --body-line-height: 1.5;
+  --heading-line-height: 1.15;
 }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 import { LocaleProvider } from './LocaleProvider';
 import type { Locale } from './locale';
 import { defaultLocale } from './locale';
@@ -17,8 +17,16 @@ function readInitialLocale(): Locale {
   return defaultLocale;
 }
 
+function getLangAttribute(locale: Locale): string {
+  return locale === 'zh' ? 'zh-CN' : 'en';
+}
+
 export function LocaleWrapper({ children }: { children: ReactNode }) {
   const [locale] = useState<Locale>(readInitialLocale);
+
+  useEffect(() => {
+    document.documentElement.lang = getLangAttribute(locale);
+  }, [locale]);
 
   return <LocaleProvider initialLocale={locale}>{children}</LocaleProvider>;
 }

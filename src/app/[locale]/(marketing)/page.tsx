@@ -11,7 +11,7 @@ import { ContextShowcase } from '@/components/marketing/context-showcase/Context
 import { EcosystemShowcase } from '@/components/marketing/ecosystem-showcase/EcosystemShowcase';
 import { ChangelogPreview } from '@/components/marketing/changelog-preview/ChangelogPreview';
 import { CurtainReveal } from '@/components/scroll/CurtainReveal';
-import { ThemeObserver } from '@/components/scroll/ThemeObserver';
+import { ThemeSection } from '@/components/theme/ThemeSection';
 import { FinalCta } from '@/components/marketing/final-cta/FinalCta';
 import styles from './page.module.css';
 
@@ -39,7 +39,7 @@ export default function HomePage() {
           </div>
         }
       >
-        <ThemeObserver theme="light">
+        <ThemeSection theme="light">
           <div className={styles.quoteSection}>
             <blockquote className={styles.quote}>
               <p className={styles.quoteText}>
@@ -53,15 +53,15 @@ export default function HomePage() {
               <footer className={styles.quoteAuthor}>{t.quote.author}</footer>
             </blockquote>
           </div>
-        </ThemeObserver>
+        </ThemeSection>
       </CurtainReveal>
 
-      <ThemeObserver theme="light">
+      <ThemeSection theme="light">
         <ChangelogPreview />
-      </ThemeObserver>
-      <ThemeObserver theme="dark">
+      </ThemeSection>
+      <ThemeSection theme="dark">
         <FinalCta />
-      </ThemeObserver>
+      </ThemeSection>
     </>
   );
 }

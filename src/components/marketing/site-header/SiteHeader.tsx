@@ -12,6 +12,7 @@ import { Container } from '@/components/ui/container/Container';
 import { Logo } from '@/components/ui/logo/Logo';
 import { MegaMenu } from '@/components/marketing/mega-menu/MegaMenu';
 import { MobileMenu } from './MobileMenu';
+import { usePageTheme } from '@/components/theme/use-page-theme';
 import styles from './SiteHeader.module.css';
 
 const navLabelKeys: Record<string, keyof ReturnType<typeof getDict>['nav']> = {
@@ -27,10 +28,77 @@ const megaMenuMap = {
   Workflows: workflowsMegaMenu,
 } as const;
 
+// MegaMenu 分组标签的翻译 key 映射
+const megaMenuGroupKeys: Record<string, string> = {
+  Platform: 'product.platform',
+  Modes: 'product.modes',
+  Tools: 'product.tools',
+  Analyze: 'workflows.analyze',
+  Research: 'workflows.research',
+  Automation: 'workflows.automation',
+};
+
+// MegaMenu 项目标签的翻译 key 映射
+const megaMenuItemKeys: Record<string, string> = {
+  Workspace: 'product.items.workspace',
+  Project: 'product.items.project',
+  Dataset: 'product.items.dataset',
+  Layer: 'product.items.layer',
+  Task: 'product.items.task',
+  Artifact: 'product.items.artifact',
+  Work: 'product.items.work',
+  Code: 'product.items.code',
+  Map: 'product.items.map',
+  Terminal: 'product.items.terminal',
+  Browser: 'product.items.browser',
+  Events: 'product.items.events',
+  Logs: 'product.items.logs',
+  'Urban expansion': 'workflows.items.urbanExpansion',
+  'Remote sensing': 'workflows.items.remoteSensing',
+  'NDVI time series': 'workflows.items.ndviTimeSeries',
+  'Literature review': 'workflows.items.literatureReview',
+  'Report generation': 'workflows.items.reportGeneration',
+  'Scheduled tasks': 'workflows.items.scheduledTasks',
+  Skills: 'workflows.items.skills',
+  MCP: 'workflows.items.mcp',
+  Plugins: 'workflows.items.plugins',
+};
+
+/** 根据 locale 翻译 MegaMenu 的 groups 和 items */
+function translateMegaMenu(
+  megaData: typeof megaMenuMap[keyof typeof megaMenuMap],
+  t: ReturnType<typeof getDict>,
+): typeof megaData {
+  return {
+    ...megaData,
+    groups: megaData.groups.map((group) => ({
+      ...group,
+      label: megaMenuGroupKeys[group.label]
+        ? (getNestedValue(t.megaMenu, megaMenuGroupKeys[group.label]) as string) ?? group.label
+        : group.label,
+      items: group.items.map((item) => ({
+        ...item,
+        label: megaMenuItemKeys[item.label]
+          ? (getNestedValue(t.megaMenu, megaMenuItemKeys[item.label]) as string) ?? item.label
+          : item.label,
+      })),
+    })),
+  };
+}
+
+/** 从嵌套对象中按点分隔路径取值 */
+function getNestedValue(obj: unknown, path: string): unknown {
+  return path.split('.').reduce((acc: unknown, key: string) => {
+    if (acc && typeof acc === 'object') return (acc as Record<string, unknown>)[key];
+    return undefined;
+  }, obj);
+}
+
 export function SiteHeader() {
   const { locale } = useLocale();
   const t = getDict(locale);
   const [isScrolled, setIsScrolled] = useState(false);
+  const theme = usePageTheme();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 16);
@@ -42,6 +110,7 @@ export function SiteHeader() {
   return (
     <header
       className={`${styles.header}${isScrolled ? ` ${styles.scrolled}` : ''}`}
+      data-theme={theme}
     >
       <Container className={styles.inner}>
         <Link href="/" aria-label="GeoWork 首页" className={styles.brand}>
@@ -54,10 +123,13 @@ export function SiteHeader() {
               ? t.nav[navLabelKeys[item.label as keyof typeof navLabelKeys]]
               : item.label;
             if ('hasMega' in item && item.hasMega && item.label in megaMenuMap) {
+              const megaData = megaMenuMap[item.label as keyof typeof megaMenuMap];
+              const translatedMegaData = translateMegaMenu(megaData, t);
+              translatedMegaData.label = label;
               return (
                 <MegaMenu
                   key={item.label}
-                  item={megaMenuMap[item.label as keyof typeof megaMenuMap]}
+                  item={translatedMegaData}
                 />
               );
             }

@@ -32,9 +32,9 @@
 .md { min-height: 2.75rem; padding: 0 1.1rem; font-size: 0.9375rem; }
 .lg { min-height: 3.25rem; padding: 0 1.35rem; font-size: 1rem; }
 
-/* Primary — dark button */
+/* Primary — dark button on light, light button on dark */
 .primary {
-  color: #ffffff;
+  color: var(--button-dark-text, #ffffff);
   background: var(--button-dark);
 }
 .primary:hover:not(:disabled) {

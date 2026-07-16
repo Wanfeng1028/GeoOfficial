@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: var(--z-header);
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--header-bg, rgba(255, 255, 255, 0.88));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid transparent;
@@ -12,18 +12,26 @@
     border-color var(--duration-fast) var(--ease-standard);
 }
 
-/* 暗色主题 Header */
-:root[data-page-theme='dark'] .header {
-  background: rgba(16, 17, 19, 0.85);
-  color: var(--text-primary);
+/* Light Header */
+.header[data-theme='light'] {
+  --header-bg: rgba(255, 255, 255, 0.88);
+  --header-text: #17181b;
+  --header-border: rgba(23, 24, 27, 0.10);
+  --header-cta-bg: #1b1c20;
+  --header-cta-text: #ffffff;
 }
 
-:root[data-page-theme='dark'] .header .navLink {
-  color: var(--text-primary);
+/* Dark Header */
+.header[data-theme='dark'] {
+  --header-bg: rgba(16, 17, 19, 0.88);
+  --header-text: #f4f4f2;
+  --header-border: rgba(255, 255, 255, 0.10);
+  --header-cta-bg: #ffffff;
+  --header-cta-text: #17181b;
 }
 
 .scrolled {
-  border-bottom-color: var(--border);
+  border-bottom-color: var(--header-border, var(--border));
 }
 
 .inner {
@@ -37,7 +45,7 @@
 .brand {
   display: inline-flex;
   align-items: center;
-  color: var(--text-primary);
+  color: var(--header-text, var(--text-primary));
 }
 
 .desktopNav {
@@ -50,7 +58,7 @@
 .navLink {
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius-control);
-  color: var(--text-primary);
+  color: var(--header-text, var(--text-primary));
   transition:
     color var(--duration-fast) var(--ease-standard),
     background var(--duration-fast) var(--ease-standard);
