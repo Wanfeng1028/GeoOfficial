@@ -8,19 +8,18 @@ import { ThemeSection } from '@/components/theme/ThemeSection';
 import { Container } from '@/components/ui/container/Container';
 import styles from './ContextShowcase.module.css';
 
+function readDebugFlag(): boolean {
+  if (typeof window === 'undefined') return false;
+  return new URLSearchParams(window.location.search).has('debugScroll');
+}
+
 export function ContextShowcase() {
   const { locale } = useLocale();
   const t = getDict(locale);
   const arcRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
-  const [isDebug, setIsDebug] = useState(false);
-
-  useEffect(() => {
-    setIsDebug(
-      typeof window !== 'undefined' &&
-        new URLSearchParams(window.location.search).has('debugScroll')
-    );
-  }, []);
+  // 惰性初始化：服务端和客户端同 URL，readDebugFlag 返回一致值，hydration 安全
+  const [isDebug] = useState<boolean>(readDebugFlag);
 
   const { scrollYProgress } = useScroll({
     target: arcRef,

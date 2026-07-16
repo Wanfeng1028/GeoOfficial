@@ -23,8 +23,11 @@ export function PageThemeProvider({ children }: { children: ReactNode }) {
   const sectionsRef = useRef<Map<string, SectionEntry>>(new Map());
   const themeRef = useRef<PageTheme>('light');
 
-  // 同步 ref 和 state
-  themeRef.current = theme;
+  // 同步 ref 和 state：在 effect 里写，避免 render 期访问 ref
+  useEffect(() => {
+    themeRef.current = theme;
+    document.documentElement.setAttribute('data-page-theme', theme);
+  }, [theme]);
 
   const applyTheme = useCallback((next: PageTheme) => {
     if (themeRef.current === next) return;
