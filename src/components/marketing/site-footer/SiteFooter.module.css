@@ -2,6 +2,13 @@
   background: #101113;
   padding: 4rem 0 0;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  /* Footer 背景硬编码深色 #101113，但未切换深色主题 token。
+     显式覆盖 token 为深色安全值，让 footer 内所有用 token 的子组件
+     (LocaleSwitcher、Logo 等) 在深底上对比度达标 WCAG 2 AA 4.5:1。 */
+  --text-primary: #f1f2f4;
+  --text-secondary: #9a9da3;
+  --text-tertiary: #aeb1b8;
 }
 
 .inner {

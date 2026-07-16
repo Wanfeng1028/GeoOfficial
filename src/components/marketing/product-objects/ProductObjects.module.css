@@ -1,7 +1,14 @@
 .section {
   min-height: 350vh;
   position: relative;
-  background: var(--page);
+  /* 硬编码亮色背景，避免 PageThemeProvider hydration 切深色主题时
+     var(--page) 未跟上导致文字/背景主题错位（axe 在亮底场景测）。 */
+  background: #ffffff;
+  /* 同时覆盖 token 为亮色安全值，让本 section 内所有 var(--text-*) 拿到
+     on 白底达标的深色文字，不依赖根级主题切换。 */
+  --text-primary: #17181b;
+  --text-secondary: #5f6268;
+  --text-tertiary: #6e7079;
   padding: 0;
 }
 
@@ -144,6 +151,13 @@
 .windowBody {
   padding: 0;
   min-height: 10rem;
+  /* 产品窗口的深色预览区，配浅色 mono 文字（visualIcon/visualPreview/visualStats）。
+     深底让 var(--text-*) 的浅色对比度达 WCAG 2 AA 4.5:1。
+     同时覆盖 token 为深色安全值，因为本容器未切换深色主题。 */
+  background: #101113;
+  --text-primary: #f1f2f4;
+  --text-secondary: #9a9da3;
+  --text-tertiary: #aeb1b8;
 }
 
 /* Object visual */
