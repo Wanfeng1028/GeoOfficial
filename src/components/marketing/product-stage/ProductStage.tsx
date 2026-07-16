@@ -15,7 +15,7 @@ export function ProductStage() {
   const [activeView, setActiveView] = useState<View>('map');
 
   return (
-    <div className={styles.stage} role="img" aria-label="GeoWork 桌面工作台产品界面">
+    <div className={styles.stage} role="group" aria-label="GeoWork 桌面工作台产品界面">
       <div className={styles.windowHeader}>
         <div className={styles.windowDots}>
           <span className={styles.dot} style={{ background: '#d95858' }} />
@@ -130,7 +130,7 @@ export function ProductStage() {
           </div>
           <div className={styles.propSection}>
             <p className={styles.propLabel}>Change</p>
-            <p className={styles.propValue} style={{ color: '#55a988' }}>+0.16</p>
+            <p className={`${styles.propValue} ${styles.propValuePositive}`}>+0.16</p>
           </div>
           <div className={styles.propSection}>
             <p className={styles.propLabel}>Area</p>

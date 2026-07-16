@@ -44,7 +44,7 @@ test('homepage hero stage renders', async ({ page }) => {
 
   await expect(hero).toBeVisible();
 
-  const stage = hero.getByRole('img', {
+  const stage = hero.getByRole('group', {
     name: 'GeoWork 桌面工作台产品界面',
     exact: true,
   });

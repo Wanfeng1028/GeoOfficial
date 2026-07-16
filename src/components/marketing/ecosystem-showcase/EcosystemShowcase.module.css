@@ -46,12 +46,12 @@
 
 .connected {
   background: var(--brand-soft);
-  color: var(--brand);
+  color: var(--brand-text);
 }
 
 .planned {
   background: var(--surface-hover);
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .integrationDesc {
@@ -64,6 +64,6 @@
 .note {
   margin: 1.5rem 0 0;
   text-align: center;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   font-size: var(--text-caption);
 }

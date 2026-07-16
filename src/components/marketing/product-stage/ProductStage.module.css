@@ -253,6 +253,10 @@
   font-family: var(--font-mono);
 }
 
+.propValuePositive {
+  color: var(--brand-text);
+}
+
 @media (max-width: 900px) {
   .workspace {
     grid-template-columns: 1fr;

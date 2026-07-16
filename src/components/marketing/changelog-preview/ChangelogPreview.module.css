@@ -41,7 +41,7 @@
 
 .entryDate {
   font-size: var(--text-caption);
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .entryBody {
@@ -65,7 +65,7 @@
 }
 
 .entryArrow {
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   flex-shrink: 0;
 }
 
