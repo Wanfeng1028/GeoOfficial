@@ -13,10 +13,10 @@ import styles from './entry.module.css';
 
 interface UseCaseDetailClientProps {
   slug: string;
-  Content: React.ComponentType;
+  children: React.ReactNode;
 }
 
-export function UseCaseDetailClient({ slug, Content }: UseCaseDetailClientProps) {
+export function UseCaseDetailClient({ slug, children }: UseCaseDetailClientProps) {
   const { locale } = useLocale();
   const t = getDict(locale);
   const p = t.pages.useCases;
@@ -63,7 +63,7 @@ export function UseCaseDetailClient({ slug, Content }: UseCaseDetailClientProps)
           </figure>
 
           <article className={styles.prose}>
-            <Content />
+            {children}
           </article>
 
           <div className={styles.actions}>

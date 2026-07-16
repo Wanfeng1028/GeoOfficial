@@ -8,14 +8,19 @@ import { ThemeSection } from '@/components/theme/ThemeSection';
 import { Container } from '@/components/ui/container/Container';
 import styles from './ContextShowcase.module.css';
 
-const isDebug = typeof window !== 'undefined'
-  && new URLSearchParams(window.location.search).has('debugScroll');
-
 export function ContextShowcase() {
   const { locale } = useLocale();
   const t = getDict(locale);
   const arcRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  const [isDebug, setIsDebug] = useState(false);
+
+  useEffect(() => {
+    setIsDebug(
+      typeof window !== 'undefined' &&
+        new URLSearchParams(window.location.search).has('debugScroll')
+    );
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: arcRef,
@@ -29,7 +34,7 @@ export function ContextShowcase() {
       setProgress(Math.max(0, Math.min(1, v)));
     });
     return () => unsub();
-  }, [scrollYProgress]);
+  }, [scrollYProgress, isDebug]);
 
   const arcRotate = useTransform(scrollYProgress, [0, 1], [0, 180]);
   const arcOpacity = useTransform(scrollYProgress, [0, 0.2, 0.3, 0.7, 1], [0.15, 0.5, 1, 1, 0.15]);

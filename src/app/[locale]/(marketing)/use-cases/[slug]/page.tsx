@@ -38,5 +38,5 @@ export default async function UseCaseDetailPage({ params }: PageProps) {
 
   const { default: Content } = await useCaseContentLoaders[slug]();
 
-  return <UseCaseDetailClient slug={slug} Content={Content} />;
+  return <UseCaseDetailClient slug={slug}><Content /></UseCaseDetailClient>;
 }
