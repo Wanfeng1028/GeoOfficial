@@ -5,22 +5,22 @@
 .display {
   font-size: var(--text-hero);
   font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }
 
 .heading1 {
   font-size: var(--text-page-title);
   font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.04em;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
 }
 
 .heading2 {
   font-size: var(--text-section-title);
   font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
 }
 
 .heading3 {

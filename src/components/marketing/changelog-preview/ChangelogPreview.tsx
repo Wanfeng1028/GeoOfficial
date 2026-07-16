@@ -1,5 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowRightIcon } from '@phosphor-icons/react/ssr';
+import { useLocale } from '@/i18n/LocaleProvider';
+import { getDict } from '@/i18n/dict';
 import { Section } from '@/components/ui/section/Section';
 import { Container } from '@/components/ui/container/Container';
 import { SectionHeading } from '@/components/ui/section-heading/SectionHeading';
@@ -8,15 +12,17 @@ import { changelogEntries } from '@/data/changelog';
 import styles from './ChangelogPreview.module.css';
 
 export function ChangelogPreview() {
+  const { locale } = useLocale();
+  const t = getDict(locale);
   const previewEntries = changelogEntries.slice(0, 3);
 
   return (
     <Section tone="canvas" spacing="default" id="changelog">
       <Container>
         <SectionHeading
-          eyebrow="Changelog"
-          title="开发进展公开透明。"
-          description="每个版本的功能、修复和已知问题都记录在更新日志中，不把 commit 当正式发布说明。"
+          eyebrow={t.changelog.eyebrow}
+          title={t.changelog.title}
+          description={t.changelog.description}
         />
         <div className={styles.list}>
           {previewEntries.map((entry) => (
@@ -40,7 +46,7 @@ export function ChangelogPreview() {
         <div className={styles.cta}>
           <Button asChild variant="secondary" size="md">
             <Link href="/changelog">
-              查看完整更新日志
+              {t.changelog.viewAll}
               <ArrowRightIcon aria-hidden />
             </Link>
           </Button>

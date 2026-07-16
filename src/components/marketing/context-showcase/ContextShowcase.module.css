@@ -1,38 +1,117 @@
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1px;
-  margin-top: 3rem;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-panel);
+.section {
+  position: relative;
+  padding: 7rem 0 8rem;
+  background: var(--page);
   overflow: hidden;
 }
 
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.intro {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 auto;
+  max-width: 22ch;
+  font-size: var(--text-section-title);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+.description {
+  max-width: 38rem;
+  margin: 1rem auto 0;
+  color: var(--text-secondary);
+  font-size: var(--text-body-large);
+  line-height: 1.65;
+}
+
+/* Arc visualization */
+.arcContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.arc {
+  width: min(100%, 600px);
+  height: auto;
+  overflow: visible;
+}
+
+/* Context items grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 64rem;
+  margin: 0 auto;
 }
 
 .item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
   padding: 1.5rem;
-  background: var(--page);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.item:hover {
+  border-color: var(--border-strong);
+}
+
+.itemIndex {
+  font-size: 0.75rem;
+  font-weight: 650;
+  font-family: var(--font-mono);
+  color: var(--brand);
+  margin-bottom: 0.75rem;
 }
 
 .itemLabel {
-  margin: 0;
+  margin: 0 0 0.5rem;
   font-size: var(--text-card-title);
   font-weight: 600;
-  color: var(--text-primary);
+  letter-spacing: -0.015em;
 }
 
 .itemDesc {
   margin: 0;
   color: var(--text-secondary);
   font-size: var(--text-small);
-  line-height: 1.6;
+  line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .section {
+    padding: 4rem 0 5rem;
+  }
+
+  .title {
+    font-size: clamp(1.6rem, 5vw, 2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc {
+    opacity: 1 !important;
+  }
 }

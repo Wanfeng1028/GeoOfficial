@@ -1,0 +1,30 @@
+.viewport {
+  overflow: auto hidden;
+  cursor: default;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.viewport[data-draggable='true'] {
+  cursor: grab;
+}
+
+.viewport[data-dragging='true'] {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.canvas {
+  display: inline-flex;
+  min-width: max-content;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport[data-draggable='true'] {
+    cursor: default;
+  }
+}

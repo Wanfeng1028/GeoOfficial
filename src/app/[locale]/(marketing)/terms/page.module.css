@@ -1,0 +1,21 @@
+.note {
+  margin: 1rem 0 0;
+  color: var(--color-text-secondary);
+  font-size: var(--text-caption);
+}
+
+.section {
+  margin-top: 2rem;
+}
+
+.h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.p {
+  margin: 0 0 0.65rem;
+  color: var(--color-text-primary);
+  line-height: 1.7;
+}

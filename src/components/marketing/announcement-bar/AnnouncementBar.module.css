@@ -1,8 +1,9 @@
 .bar {
-  height: 34px;
+  height: 36px;
   background: #0b0c0e;
   color: #f4f4f2;
-  font-size: var(--text-caption);
+  font-size: 0.8125rem;
+  font-weight: 500;
 }
 
 .inner {

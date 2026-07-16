@@ -1,0 +1,26 @@
+.scene {
+  position: relative;
+  overflow: clip;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flow {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sticky {
+    position: relative;
+  }
+}

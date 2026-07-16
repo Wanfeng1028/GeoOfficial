@@ -3,31 +3,35 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRightIcon, XIcon } from '@phosphor-icons/react';
+import { useLocale } from '@/i18n/LocaleProvider';
+import { getDict } from '@/i18n/dict';
 import { Container } from '@/components/ui/container/Container';
 import styles from './AnnouncementBar.module.css';
 
 export function AnnouncementBar() {
+  const { locale } = useLocale();
+  const t = getDict(locale);
   const [closed, setClosed] = useState(false);
 
   if (closed) return null;
 
   return (
-    <div className={styles.bar} role="banner" aria-label="公告">
+    <div className={styles.bar} role="banner" aria-label={locale === 'zh' ? '公告' : 'Announcement'}>
       <Container className={styles.inner}>
         <Link href="/changelog" className={styles.link}>
           <span className={styles.text}>
-            GeoWork is in active development
+            {t.nav.announcement}
           </span>
           <span className={styles.separator}>·</span>
           <span className={styles.action}>
-            View progress
+            {t.nav.viewProgress}
             <ArrowRightIcon aria-hidden className={styles.arrow} />
           </span>
         </Link>
         <button
           className={styles.close}
           onClick={() => setClosed(true)}
-          aria-label="关闭公告"
+          aria-label={locale === 'zh' ? '关闭公告' : 'Close announcement'}
           type="button"
         >
           <XIcon aria-hidden />

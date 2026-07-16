@@ -12,6 +12,7 @@
 html {
   background: var(--page);
   scroll-padding-top: 5rem;
+  transition: background-color 500ms var(--ease-standard);
 }
 
 body {
@@ -21,6 +22,9 @@ body {
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 500ms var(--ease-standard),
+    color 500ms var(--ease-standard);
 }
 
 a {

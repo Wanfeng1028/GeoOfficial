@@ -1,22 +1,34 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowRightIcon } from '@phosphor-icons/react/ssr';
+import { useLocale } from '@/i18n/LocaleProvider';
+import { getDict } from '@/i18n/dict';
 import { Button } from '@/components/ui/button/Button';
 import { MediaFrame } from '@/components/ui/media-frame/MediaFrame';
 import { useCases } from '@/data/use-cases';
 import styles from './UseCaseStory.module.css';
 
 export function UseCaseStory() {
+  const { locale } = useLocale();
+  const t = getDict(locale);
   const [urban, ndvi, report] = useCases;
+
+  const statusLabels: Record<string, string> = {
+    available: locale === 'zh' ? '当前可运行' : 'Available',
+    preview: 'Developer Preview',
+    planned: locale === 'zh' ? '计划中' : 'Planned',
+  };
 
   return (
     <section id="use-cases" className={styles.section} aria-labelledby="cases-title">
       <div className={styles.intro}>
-        <p className={styles.eyebrow}>真实地理空间工作</p>
+        <p className={styles.eyebrow}>{t.useCases.eyebrow}</p>
         <h2 id="cases-title" className={styles.title}>
-          从问题到成果的完整工作过程。
+          {t.useCases.title}
         </h2>
         <p className={styles.description}>
-          每个案例包含输入、过程、工具、输出和当前可用状态，不用抽象形容词替代成果。
+          {t.useCases.description}
         </p>
       </div>
 
@@ -29,19 +41,19 @@ export function UseCaseStory() {
             <div className={styles.caseStats}>
               <div className={styles.stat}>
                 <span className={styles.statValue}>2.3 km²</span>
-                <span className={styles.statLabel}>变化面积（2020–2025）</span>
+                <span className={styles.statLabel}>
+                  {locale === 'zh' ? '变化面积（2020–2025）' : 'Change area (2020–2025)'}
+                </span>
               </div>
               <div className={styles.stat}>
                 <span className={styles.statValue}>87.5%</span>
-                <span className={styles.statLabel}>分类精度</span>
+                <span className={styles.statLabel}>
+                  {locale === 'zh' ? '分类精度' : 'Classification accuracy'}
+                </span>
               </div>
             </div>
             <p className={styles.status} data-status={urban.status}>
-              {urban.status === 'available'
-                ? '当前可运行'
-                : urban.status === 'preview'
-                  ? 'Developer Preview'
-                  : '计划中'}
+              {statusLabels[urban.status] ?? urban.status}
             </p>
             <Button
               asChild
@@ -50,11 +62,15 @@ export function UseCaseStory() {
               trailingIcon={<ArrowRightIcon aria-hidden />}
               className={styles.cta}
             >
-              <Link href={`/use-cases/${urban.slug}`}>查看详情</Link>
+              <Link href={`/use-cases/${urban.slug}`}>
+                {locale === 'zh' ? '查看详情' : 'View details'}
+              </Link>
             </Button>
           </div>
           <MediaFrame className={styles.caseMedia} ratio="16:9" tone="light">
-            <span className={styles.mediaInner}>待替换：城市扩张土地利用变化地图</span>
+            <span className={styles.mediaInner}>
+              {locale === 'zh' ? '待替换：城市扩张土地利用变化地图' : 'Placeholder: Urban expansion land use change map'}
+            </span>
           </MediaFrame>
         </article>
       )}
@@ -62,7 +78,9 @@ export function UseCaseStory() {
       {ndvi && (
         <article className={styles.caseNdvi}>
           <MediaFrame className={styles.caseMediaSmall} ratio="4:3" tone="light">
-            <span className={styles.mediaInner}>待替换：NDVI 时间序列图</span>
+            <span className={styles.mediaInner}>
+              {locale === 'zh' ? '待替换：NDVI 时间序列图' : 'Placeholder: NDVI time series chart'}
+            </span>
           </MediaFrame>
           <div className={styles.caseCopy}>
             <p className={styles.audience}>{ndvi.audience}</p>
@@ -71,19 +89,19 @@ export function UseCaseStory() {
             <div className={styles.caseStats}>
               <div className={styles.stat}>
                 <span className={styles.statValue}>0.32 → 0.48</span>
-                <span className={styles.statLabel}>NDVI 均值变化</span>
+                <span className={styles.statLabel}>
+                  {locale === 'zh' ? 'NDVI 均值变化' : 'NDVI mean change'}
+                </span>
               </div>
               <div className={styles.stat}>
-                <span className={styles.statValue}>6 期</span>
-                <span className={styles.statLabel}>Landsat 影像</span>
+                <span className={styles.statValue}>{locale === 'zh' ? '6 期' : '6 scenes'}</span>
+                <span className={styles.statLabel}>
+                  {locale === 'zh' ? 'Landsat 影像' : 'Landsat images'}
+                </span>
               </div>
             </div>
             <p className={styles.status} data-status={ndvi.status}>
-              {ndvi.status === 'available'
-                ? '当前可运行'
-                : ndvi.status === 'preview'
-                  ? 'Developer Preview'
-                  : '计划中'}
+              {statusLabels[ndvi.status] ?? ndvi.status}
             </p>
             <Button
               asChild
@@ -92,11 +110,15 @@ export function UseCaseStory() {
               trailingIcon={<ArrowRightIcon aria-hidden />}
               className={styles.cta}
             >
-              <Link href={`/use-cases/${ndvi.slug}`}>查看详情</Link>
+              <Link href={`/use-cases/${ndvi.slug}`}>
+                {locale === 'zh' ? '查看详情' : 'View details'}
+              </Link>
             </Button>
           </div>
           <MediaFrame className={styles.caseMediaWide} ratio="16:9" tone="light">
-            <span className={styles.mediaInner}>待替换：NDVI 空间分布地图</span>
+            <span className={styles.mediaInner}>
+              {locale === 'zh' ? '待替换：NDVI 空间分布地图' : 'Placeholder: NDVI spatial distribution map'}
+            </span>
           </MediaFrame>
         </article>
       )}
@@ -108,11 +130,7 @@ export function UseCaseStory() {
             <h3 className={styles.caseTitle}>{report.title}</h3>
             <p className={styles.caseDesc}>{report.description}</p>
             <p className={styles.status} data-status={report.status}>
-              {report.status === 'available'
-                ? '当前可运行'
-                : report.status === 'preview'
-                  ? 'Developer Preview'
-                  : '计划中'}
+              {statusLabels[report.status] ?? report.status}
             </p>
             <Button
               asChild
@@ -121,18 +139,26 @@ export function UseCaseStory() {
               trailingIcon={<ArrowRightIcon aria-hidden />}
               className={styles.cta}
             >
-              <Link href={`/use-cases/${report.slug}`}>查看详情</Link>
+              <Link href={`/use-cases/${report.slug}`}>
+                {locale === 'zh' ? '查看详情' : 'View details'}
+              </Link>
             </Button>
           </div>
           <div className={styles.caseReportGrid}>
             <MediaFrame className={styles.reportMediaMain} ratio="16:9" tone="light">
-              <span className={styles.mediaInner}>待替换：研究报告</span>
+              <span className={styles.mediaInner}>
+                {locale === 'zh' ? '待替换：研究报告' : 'Placeholder: Research report'}
+              </span>
             </MediaFrame>
             <MediaFrame className={styles.reportMediaChart} ratio="4:3" tone="light">
-              <span className={styles.mediaInner}>待替换：图表</span>
+              <span className={styles.mediaInner}>
+                {locale === 'zh' ? '待替换：图表' : 'Placeholder: Chart'}
+              </span>
             </MediaFrame>
             <MediaFrame className={styles.reportMediaCode} ratio="16:9" tone="light">
-              <span className={styles.mediaInner}>待替换：代码与引用</span>
+              <span className={styles.mediaInner}>
+                {locale === 'zh' ? '待替换：代码与引用' : 'Placeholder: Code & references'}
+              </span>
             </MediaFrame>
           </div>
         </article>

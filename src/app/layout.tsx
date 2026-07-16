@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import '@/app/globals.css';
 import { siteConfig } from '@/lib/site';
+import { LocaleWrapper } from '@/i18n/LocaleWrapper';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -27,7 +28,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="zh-CN">
-      <body>{children}</body>
+      <body>
+        <LocaleWrapper>{children}</LocaleWrapper>
+      </body>
     </html>
   );
 }
