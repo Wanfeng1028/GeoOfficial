@@ -55,7 +55,7 @@
   font-weight: 650;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .sidebarItem {
@@ -84,7 +84,7 @@
   padding: 0.35rem 0.75rem;
   font-size: var(--text-caption);
   font-weight: 600;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   background: transparent;
   border: 0;
   border-radius: var(--radius-control);
@@ -222,7 +222,7 @@
 }
 
 .layerStatus {
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
   font-size: 0.7rem;
 }
 
@@ -242,7 +242,7 @@
   font-weight: 650;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-tertiary);
+  color: var(--text-secondary);
 }
 
 .propValue {
