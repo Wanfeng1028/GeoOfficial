@@ -1,6 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import { SiteHeader } from './SiteHeader';
 
+// LocaleSwitcher 依赖 next/navigation 的 useRouter/usePathname，jsdom 无 Next router 挂载，需 mock
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), prefetch: vi.fn() }),
+  usePathname: () => '/zh',
+}));
+
 test('renders brand link pointing home', () => {
   render(<SiteHeader />);
 
@@ -9,7 +15,7 @@ test('renders brand link pointing home', () => {
 
 test('header exposes primary CTA', () => {
   render(<SiteHeader />);
-  expect(screen.getByRole('link', { name: 'Explore GeoWork' })).toHaveAttribute('href', '/product');
+  expect(screen.getByRole('link', { name: '了解 GeoWork' })).toHaveAttribute('href', '/product');
 });
 
 test('GitHub action points to repository', () => {
