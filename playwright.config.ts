@@ -19,7 +19,8 @@ export default defineConfig({
     video: 'retain-on-failure',
   },
 
-  updateSnapshots: 'missing',
+  // TODO: 生成并提交快照后改回 'missing'
+  updateSnapshots: 'all',
 
   webServer: {
     command: production ? 'npm run build && npm run start' : 'npm run dev',

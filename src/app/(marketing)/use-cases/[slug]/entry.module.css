@@ -39,7 +39,7 @@
   font-size: var(--text-caption);
 }
 
-.status[data-status='preview'] { color: var(--color-brand); }
+.status[data-status='preview'] { color: var(--brand-hover); }
 
 .description {
   margin: 0.65rem 0 0;

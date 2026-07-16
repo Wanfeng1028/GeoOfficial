@@ -77,7 +77,7 @@
   font-size: var(--text-caption);
 }
 
-.status[data-status='preview'] { color: var(--color-brand); }
+.status[data-status='preview'] { color: var(--brand-hover); }
 
 .meta {
   display: grid;
