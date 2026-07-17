@@ -9,6 +9,7 @@ import { ModeShowcase } from '@/components/marketing/mode-showcase/ModeShowcase'
 import { UseCaseStory } from '@/components/marketing/use-case-story/UseCaseStory';
 import { ContextShowcase } from '@/components/marketing/context-showcase/ContextShowcase';
 import { EcosystemShowcase } from '@/components/marketing/ecosystem-showcase/EcosystemShowcase';
+import { OpenDevelopment } from '@/components/marketing/open-development/OpenDevelopment';
 import { ChangelogPreview } from '@/components/marketing/changelog-preview/ChangelogPreview';
 import { CurtainReveal } from '@/components/scroll/CurtainReveal';
 import { ThemeSection } from '@/components/theme/ThemeSection';
@@ -28,6 +29,7 @@ export default function HomePage() {
       <UseCaseStory />
       <ContextShowcase />
       <EcosystemShowcase />
+      <OpenDevelopment />
 
       {/* Curtain reveal + Quote */}
       <CurtainReveal

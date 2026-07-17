@@ -17,7 +17,7 @@ const dict = {
       download: '下载',
       privacy: '隐私',
       terms: '条款',
-      menu: '导航',
+      menu: '打开菜单',
       close: '关闭',
     },
     hero: {
@@ -271,7 +271,7 @@ const dict = {
       download: 'Download',
       privacy: 'Privacy',
       terms: 'Terms',
-      menu: 'Menu',
+      menu: 'Open menu',
       close: 'Close',
     },
     hero: {

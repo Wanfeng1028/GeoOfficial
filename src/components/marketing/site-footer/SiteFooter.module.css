@@ -53,6 +53,15 @@
   margin-top: 0.5rem;
 }
 
+/* LocaleSwitcher 在 footer 深底上需用浅色，覆盖其硬编码亮色深字。 */
+.localeWrap :global([class*='LocaleSwitcher-module__']) {
+  color: #9a9da3;
+}
+
+.localeWrap :global([class*='LocaleSwitcher-module__']:hover) {
+  color: #f1f2f4;
+}
+
 .groups {
   display: contents;
 }

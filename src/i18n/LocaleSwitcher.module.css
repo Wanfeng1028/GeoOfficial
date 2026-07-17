@@ -5,7 +5,10 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-control);
   background: transparent;
-  color: var(--text-secondary);
+  /* 硬编码亮色深字：SiteHeader 场景亮底，根级 dark 主题 override 会盖
+     var(--text-secondary) 让文字变浅色导致对比度崩。亮底深字 4.8:1 达标。
+     Footer 场景靠 SiteFooter.module.css 的 .localeWrap override 拿深色浅字。 */
+  color: #5f6268;
   font-size: var(--text-caption);
   font-weight: 550;
   cursor: pointer;
@@ -16,7 +19,7 @@
 }
 
 .switcher:hover {
-  color: var(--text-primary);
+  color: #17181b;
   border-color: var(--border-strong);
   background: var(--surface-hover);
 }

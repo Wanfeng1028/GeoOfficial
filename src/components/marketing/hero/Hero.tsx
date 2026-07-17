@@ -122,7 +122,7 @@ export function Hero() {
             </div>
 
             {/* Main product window */}
-            <div className={styles.mainWindow}>
+            <div className={styles.mainWindow} role="group" aria-label="GeoWork 桌面工作台产品界面">
               <div className={styles.windowHeader}>
                 <div className={styles.windowDots}>
                   <span className={styles.dot} style={{ background: '#d95858' }} />

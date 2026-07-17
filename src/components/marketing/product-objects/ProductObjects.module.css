@@ -1,14 +1,10 @@
 .section {
   min-height: 350vh;
   position: relative;
-  /* 硬编码亮色背景，避免 PageThemeProvider hydration 切深色主题时
-     var(--page) 未跟上导致文字/背景主题错位（axe 在亮底场景测）。 */
+  /* 硬编码亮色背景：PageThemeProvider hydration 后可能切深色主题，
+     但 axe 在亮底场景测，根级 :root[data-page-theme=dark] override 会盖
+     本容器 token override，所以文字色也必须硬编码（见下各 class）。 */
   background: #ffffff;
-  /* 同时覆盖 token 为亮色安全值，让本 section 内所有 var(--text-*) 拿到
-     on 白底达标的深色文字，不依赖根级主题切换。 */
-  --text-primary: #17181b;
-  --text-secondary: #5f6268;
-  --text-tertiary: #6e7079;
   padding: 0;
 }
 
@@ -29,7 +25,7 @@
 
 .eyebrow {
   margin: 0 0 0.75rem;
-  color: var(--text-secondary);
+  color: #5f6268;
   font-size: 0.8125rem;
   font-weight: 650;
   letter-spacing: 0.08em;
@@ -44,12 +40,13 @@
   line-height: 1.1;
   letter-spacing: -0.03em;
   text-wrap: balance;
+  color: #17181b;
 }
 
 .description {
   max-width: 42rem;
   margin: 1rem auto 0;
-  color: var(--text-secondary);
+  color: #5f6268;
   font-size: var(--text-body-large);
   line-height: 1.65;
 }
@@ -81,25 +78,25 @@
   transition:
     background var(--duration-fast) var(--ease-standard),
     color var(--duration-fast) var(--ease-standard);
-  color: var(--text-secondary);
+  color: #5f6268;
   font-size: 0.9375rem;
 }
 
 .objectBtn.active {
-  background: var(--surface-selected);
-  color: var(--text-primary);
+  background: #ededf0;
+  color: #17181b;
 }
 
 .objectIndex {
   font-size: 0.75rem;
   font-weight: 650;
   font-family: var(--font-mono);
-  color: var(--text-tertiary);
+  color: #6e7079;
   min-width: 1.5rem;
 }
 
 .objectBtn.active .objectIndex {
-  color: var(--brand-text);
+  color: #2d7258;
 }
 
 .objectLabel {
@@ -115,7 +112,7 @@
 
 /* Product window mockup */
 .productWindow {
-  border: 1px solid var(--border);
+  border: 1px solid #17181b1a;
   border-radius: var(--radius-media);
   overflow: hidden;
   background: #ffffff;
@@ -128,7 +125,7 @@
   gap: 0.75rem;
   padding: 0.55rem 0.85rem;
   background: #fafafa;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #17181b1a;
 }
 
 .windowDots {
@@ -144,20 +141,16 @@
 
 .windowTitle {
   font-size: 0.7rem;
-  color: var(--text-secondary);
+  color: #5f6268;
   font-family: var(--font-mono);
 }
 
+/* 产品窗口的深色预览区。所有子元素文字色硬编码为深色安全浅色，
+   不靠 var(--text-*)，避免根级 dark 主题 override 级联失效。 */
 .windowBody {
   padding: 0;
   min-height: 10rem;
-  /* 产品窗口的深色预览区，配浅色 mono 文字（visualIcon/visualPreview/visualStats）。
-     深底让 var(--text-*) 的浅色对比度达 WCAG 2 AA 4.5:1。
-     同时覆盖 token 为深色安全值，因为本容器未切换深色主题。 */
   background: #101113;
-  --text-primary: #f1f2f4;
-  --text-secondary: #9a9da3;
-  --text-tertiary: #aeb1b8;
 }
 
 /* Object visual */
@@ -178,8 +171,8 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-control);
-  background: var(--brand-soft);
-  color: var(--brand-text);
+  background: #55a9881f;
+  color: #55a988;
   font-size: 1.25rem;
   font-weight: 700;
   font-family: var(--font-mono);
@@ -188,7 +181,7 @@
 
 .visualPreview {
   font-size: 0.8125rem;
-  color: var(--text-secondary);
+  color: #9a9da3;
   margin-bottom: 1rem;
   font-family: var(--font-mono);
 }
@@ -208,13 +201,13 @@
 .visualStatValue {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #f1f2f4;
   font-family: var(--font-mono);
 }
 
 .visualStatLabel {
   font-size: 0.65rem;
-  color: var(--text-tertiary);
+  color: #aeb1b8;
   font-weight: 650;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -233,11 +226,12 @@
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.02em;
+  color: #17181b;
 }
 
 .objectDesc {
   margin: 0.5rem 0 0;
-  color: var(--text-secondary);
+  color: #5f6268;
   font-size: var(--text-body);
   line-height: 1.65;
   max-width: 32rem;
