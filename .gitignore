@@ -49,4 +49,17 @@ next-env.d.ts
 /tests
 /artifacts
 /.uploads
-/
+
+# Attio reference screenshots (local-only, see v2.5 plan §5.3)
+/docs/reference/attio/screenshots/
+/docs/reference/attio/contact-sheets/
+/docs/reference/attio/states/
+/docs/reference/attio/manifest/external-routes.json
+
+# docs (local-only)
+/docs/
+
+# stray root outputs
+/eslint-check*.json
+/test-capture-output.txt
+/vitest-output.txt

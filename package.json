@@ -18,6 +18,10 @@
     "test:lighthouse": "lhci autorun",
     "verify:assets": "node scripts/verify-assets.mjs",
     "verify:assets:release": "node scripts/verify-release-assets.mjs",
+    "reference:crawl": "node scripts/reference/crawl-attio.mjs",
+    "reference:capture": "node scripts/reference/capture-attio.mjs",
+    "reference:contact-sheets": "node scripts/reference/build-contact-sheets.mjs",
+    "reference:report": "node scripts/reference/report-route-diff.mjs",
     "check": "npm run verify:assets && npm run lint && npm run typecheck && npm run test && npm run build",
     "check:release": "npm run verify:assets:release && npm run lint && npm run typecheck && npm run test && npm run build && npm run test:e2e:prod"
   },
