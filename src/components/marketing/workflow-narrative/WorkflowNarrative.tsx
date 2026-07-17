@@ -45,8 +45,12 @@ export function WorkflowNarrative() {
                     <span className={styles.stepNumber}>{step.number}</span>
                     <span className={styles.stepLabel}>{step.label}</span>
                   </div>
-                  <h3 className={styles.stepTitle}>{step.title}</h3>
-                  <p className={styles.stepDesc}>{step.description}</p>
+                  <h3 className={styles.stepTitle}>
+                    {locale === 'en' ? step.enTitle : step.title}
+                  </h3>
+                  <p className={styles.stepDesc}>
+                    {locale === 'en' ? step.enDescription : step.description}
+                  </p>
                 </li>
               ))}
             </ol>

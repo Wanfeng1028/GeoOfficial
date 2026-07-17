@@ -24,6 +24,7 @@ export function ChangelogPageClient() {
           eyebrow={p.hero.eyebrow}
           title={p.hero.title}
           description={p.hero.description}
+          level={1}
           width="content"
         />
         <ol className={styles.list}>
@@ -33,8 +34,12 @@ export function ChangelogPageClient() {
                 <p className={styles.version}>{entry.version}</p>
                 <p className={styles.date}>{formatDate(entry.date)}</p>
               </div>
-              <h2 className={styles.title}>{entry.title}</h2>
-              <p className={styles.summary}>{entry.summary}</p>
+              <h2 className={styles.title}>
+                {locale === 'en' ? entry.enTitle : entry.title}
+              </h2>
+              <p className={styles.summary}>
+                {locale === 'en' ? entry.enSummary : entry.summary}
+              </p>
               <Button
                 asChild
                 variant="text"

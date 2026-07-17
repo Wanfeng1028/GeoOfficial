@@ -35,9 +35,15 @@ export function UseCaseStory() {
       {urban && (
         <article className={styles.caseUrban}>
           <div className={styles.caseCopy}>
-            <p className={styles.audience}>{urban.audience}</p>
-            <h3 className={styles.caseTitle}>{urban.title}</h3>
-            <p className={styles.caseDesc}>{urban.description}</p>
+            <p className={styles.audience}>
+              {locale === 'en' ? urban.enAudience : urban.audience}
+            </p>
+            <h3 className={styles.caseTitle}>
+              {locale === 'en' ? urban.enTitle : urban.title}
+            </h3>
+            <p className={styles.caseDesc}>
+              {locale === 'en' ? urban.enDescription : urban.description}
+            </p>
             <div className={styles.caseStats}>
               <div className={styles.stat}>
                 <span className={styles.statValue}>2.3 km²</span>
@@ -83,9 +89,15 @@ export function UseCaseStory() {
             </span>
           </MediaFrame>
           <div className={styles.caseCopy}>
-            <p className={styles.audience}>{ndvi.audience}</p>
-            <h3 className={styles.caseTitle}>{ndvi.title}</h3>
-            <p className={styles.caseDesc}>{ndvi.description}</p>
+            <p className={styles.audience}>
+              {locale === 'en' ? ndvi.enAudience : ndvi.audience}
+            </p>
+            <h3 className={styles.caseTitle}>
+              {locale === 'en' ? ndvi.enTitle : ndvi.title}
+            </h3>
+            <p className={styles.caseDesc}>
+              {locale === 'en' ? ndvi.enDescription : ndvi.description}
+            </p>
             <div className={styles.caseStats}>
               <div className={styles.stat}>
                 <span className={styles.statValue}>0.32 → 0.48</span>
@@ -126,9 +138,15 @@ export function UseCaseStory() {
       {report && (
         <article className={styles.caseReport}>
           <div className={styles.caseReportIntro}>
-            <p className={styles.audience}>{report.audience}</p>
-            <h3 className={styles.caseTitle}>{report.title}</h3>
-            <p className={styles.caseDesc}>{report.description}</p>
+            <p className={styles.audience}>
+              {locale === 'en' ? report.enAudience : report.audience}
+            </p>
+            <h3 className={styles.caseTitle}>
+              {locale === 'en' ? report.enTitle : report.title}
+            </h3>
+            <p className={styles.caseDesc}>
+              {locale === 'en' ? report.enDescription : report.description}
+            </p>
             <p className={styles.status} data-status={report.status}>
               {statusLabels[report.status] ?? report.status}
             </p>

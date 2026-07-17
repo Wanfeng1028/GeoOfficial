@@ -38,13 +38,17 @@ export function ChangelogDetailClient({ slug, children }: ChangelogDetailClientP
           <p className={styles.version}>{entry.version}</p>
           <p className={styles.date}>{formatDate(entry.date)}</p>
         </div>
-        <h1 className={styles.title}>{entry.title}</h1>
-        <p className={styles.summary}>{entry.summary}</p>
+        <h1 className={styles.title}>
+          {locale === 'en' ? entry.enTitle : entry.title}
+        </h1>
+        <p className={styles.summary}>
+          {locale === 'en' ? entry.enSummary : entry.summary}
+        </p>
 
         <div className={styles.highlights}>
           <h2 className={styles.h2}>{p.highlights}</h2>
           <ul className={styles.list}>
-            {entry.highlights.map((item) => (
+            {(locale === 'en' ? entry.enHighlights : entry.highlights).map((item) => (
               <li key={item} className={styles.listItem}>{item}</li>
             ))}
           </ul>
@@ -65,7 +69,7 @@ export function ChangelogDetailClient({ slug, children }: ChangelogDetailClientP
           <div className={styles.known}>
             <h2 className={styles.h2}>{p.knownIssues}</h2>
             <ul className={styles.list}>
-              {entry.knownIssues.map((item) => (
+              {(locale === 'en' ? entry.enKnownIssues : entry.knownIssues).map((item) => (
                 <li key={item} className={styles.listItem}>{item}</li>
               ))}
             </ul>

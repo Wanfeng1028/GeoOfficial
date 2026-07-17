@@ -150,8 +150,12 @@ export function ProductObjects() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.25 }}
               >
-                <h3 className={styles.objectTitle}>{active.title}</h3>
-                <p className={styles.objectDesc}>{active.description}</p>
+                <h3 className={styles.objectTitle}>
+                  {locale === 'en' ? active.enTitle : active.title}
+                </h3>
+                <p className={styles.objectDesc}>
+                  {locale === 'en' ? active.enDescription : active.description}
+                </p>
               </motion.div>
             </div>
           </div>

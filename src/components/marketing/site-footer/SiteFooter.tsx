@@ -10,11 +10,13 @@ import { footerNavigation } from '@/data/navigation';
 import { siteConfig } from '@/lib/site';
 import styles from './SiteFooter.module.css';
 
-// Footer 分组标题的翻译 key 映射（基于中文 label）
+// Footer 分组标题的翻译 key 映射（基于中文 label，作为 titleKey 缺失时的回退）
 const footerGroupKeys: Record<string, string> = {
   '产品': 'product',
+  '平台': 'platform',
   '资源': 'resources',
   '开发': 'developers',
+  '项目': 'project',
   '法律': 'legal',
 };
 
@@ -32,6 +34,8 @@ const footerLinkKeys: Record<string, string> = {
   '关于': 'about',
   '隐私': 'privacy',
   '条款': 'terms',
+  '版本与获取': 'plans',
+  '安全': 'security',
 };
 
 export function SiteFooter() {

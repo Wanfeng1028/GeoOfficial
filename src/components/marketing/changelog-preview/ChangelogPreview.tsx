@@ -36,8 +36,12 @@ export function ChangelogPreview() {
                 <span className={styles.entryDate}>{entry.date}</span>
               </div>
               <div className={styles.entryBody}>
-                <h3 className={styles.entryTitle}>{entry.title}</h3>
-                <p className={styles.entrySummary}>{entry.summary}</p>
+                <h3 className={styles.entryTitle}>
+                  {locale === 'en' ? entry.enTitle : entry.title}
+                </h3>
+                <p className={styles.entrySummary}>
+                  {locale === 'en' ? entry.enSummary : entry.summary}
+                </p>
               </div>
               <ArrowRightIcon aria-hidden className={styles.entryArrow} />
             </Link>

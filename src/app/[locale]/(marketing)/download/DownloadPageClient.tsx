@@ -56,6 +56,7 @@ export function DownloadPageClient({ result }: DownloadPageClientProps) {
           eyebrow={p.hero.eyebrow}
           title={p.hero.title}
           description={p.hero.description}
+          level={1}
           width="content"
         />
 

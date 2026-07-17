@@ -28,7 +28,7 @@ export function FinalCta() {
         <p className={styles.description}>{t.finalCta.description}</p>
         <div className={styles.actions}>
           <Button asChild variant="primary" size="md">
-            <Link href="/product">
+            <Link href="/platform">
               {t.finalCta.primaryBtn}
               <ArrowRightIcon aria-hidden />
             </Link>

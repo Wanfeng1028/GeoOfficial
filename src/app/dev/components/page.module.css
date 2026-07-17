@@ -1,34 +1,302 @@
+/* v2.5 Iteration 2 — Design system showcase styles.
+   Uses project tokens only (no Tailwind). Responsive 390/1024/1440/1920. */
+
 .group {
-  margin-top: 2rem;
+  margin-top: var(--space-8);
 }
 
 .h2 {
-  margin: 0 0 0.85rem;
-  font-size: 1.15rem;
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-feature-title);
   font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
 }
 
-.tokenRow {
+.hint {
+  margin: 0 0 var(--space-4);
+  font-size: var(--text-small);
+  color: var(--text-tertiary);
+}
+
+/* ─── Token ─── */
+.tokenGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--space-3);
+}
+
+.tokenCell {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-height: 4.5rem;
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  font-size: var(--text-caption);
+  color: var(--text-primary);
+  background: var(--surface);
+  word-break: break-all;
 }
 
-.token {
+.tokenCell span {
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+}
+
+:root[data-page-theme='dark'] .tokenCell span {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* ─── Container ─── */
+.containerDemo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.containerBox {
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-subtle);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-panel);
+  color: var(--text-secondary);
+  font-size: var(--text-small);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+}
+
+/* ─── Grid ─── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.gridCell {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 8rem;
-  height: 3rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--color-border);
+  min-height: 5rem;
+  background: var(--brand-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  color: var(--brand-text);
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+/* ─── Typography ─── */
+.typoStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.typoStack > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border);
+}
+
+.typoStack > div:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.typoLabel {
   font-size: var(--text-caption);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.typoStack p {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+/* ─── Button ─── */
+.buttonStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.65rem;
-  margin-bottom: 0.85rem;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--border);
+}
+
+.buttonStack .row:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.rowLabel {
+  display: inline-flex;
+  align-items: center;
+  min-width: 5.5rem;
+  font-size: var(--text-caption);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Section ─── */
+.sectionStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  overflow: hidden;
+  border-radius: var(--radius-panel);
+  border: 1px solid var(--border);
+}
+
+.sectionStack > section {
+  /* Override default Section margin so the stack reads as one card. */
+  margin: 0;
+}
+
+.sectionDemo {
+  padding: var(--space-5) var(--space-6);
+  color: var(--text-primary);
+  font-size: var(--text-body);
+  font-weight: 500;
+}
+
+/* ─── Border ─── */
+.borderRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.borderRow:first-of-type {
+  margin-top: 0;
+}
+
+.borderCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 5rem;
+  padding: var(--space-3);
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: var(--text-small);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  text-align: center;
+}
+
+.borderCellStrong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 5rem;
+  padding: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: var(--text-small);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+}
+
+/* ─── Motion ─── */
+.motionRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-3);
+}
+
+.motionCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 5rem;
+  padding: var(--space-4);
+  background: var(--brand-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  color: var(--brand-text);
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+.motionMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  font-size: var(--text-caption);
+  color: var(--text-tertiary);
+}
+
+.motionMeta code {
+  padding: 0.2rem 0.55rem;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+}
+
+/* ─── Spacing ─── */
+.spacingRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: var(--space-3);
+}
+
+.spacingCell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-panel);
+  font-size: var(--text-caption);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+}
+
+.spacingBar {
+  height: 0.5rem;
+  background: var(--brand);
+  border-radius: var(--radius-control);
+  min-width: 0.25rem;
+}
+
+.spacingVal {
+  color: var(--text-secondary);
 }

@@ -15,7 +15,7 @@ test('renders brand link pointing home', () => {
 
 test('header exposes primary CTA', () => {
   render(<SiteHeader />);
-  expect(screen.getByRole('link', { name: '了解 GeoWork' })).toHaveAttribute('href', '/product');
+  expect(screen.getByRole('link', { name: '了解 GeoWork' })).toHaveAttribute('href', '/platform');
 });
 
 test('GitHub action points to repository', () => {

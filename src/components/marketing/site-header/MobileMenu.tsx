@@ -9,26 +9,41 @@ import {
   DialogClose,
 } from '@/components/primitives/dialog/Dialog';
 import { Button } from '@/components/ui/button/Button';
-import { mainNavigation } from '@/data/navigation';
+import {
+  mainNavigation,
+  platformMegaMenu,
+  resourcesMegaMenu,
+  type NavMegaMenu,
+} from '@/data/navigation';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
+import { NavigationIcon, type NavigationIconName } from '@/components/icons/navigation/NavigationIcon';
 import styles from './MobileMenu.module.css';
 
-interface MenuItem {
+interface SimpleMenuItem {
   label: string;
   href: string;
   external?: boolean;
 }
 
-const navLabelKeys: Record<string, keyof ReturnType<typeof getDict>['nav']> = {
-  Product: 'product',
-  Workflows: 'workflows',
-  'Use Cases': 'useCases',
-  Developers: 'developers',
-  Changelog: 'changelog',
+const megaMenuMap: Record<string, NavMegaMenu> = {
+  Platform: platformMegaMenu,
+  Resources: resourcesMegaMenu,
 };
 
-export function MobileMenu({ items = mainNavigation }: { items?: readonly MenuItem[] }) {
+const navLabelKeys: Record<string, keyof ReturnType<typeof getDict>['nav']> = {
+  Platform: 'platform',
+  Resources: 'resources',
+  'Use Cases': 'useCases',
+  Plans: 'plans',
+};
+
+function pickLocaleText(zh: string, en: string | undefined, locale: 'zh' | 'en'): string {
+  if (locale === 'en') return en ?? zh;
+  return zh;
+}
+
+export function MobileMenu() {
   const { locale } = useLocale();
   const t = getDict(locale);
 
@@ -49,23 +64,63 @@ export function MobileMenu({ items = mainNavigation }: { items?: readonly MenuIt
       <DialogContent className={styles.content}>
         <DialogTitle className={styles.title}>{t.nav.menu}</DialogTitle>
         <nav className={styles.nav} aria-label={t.nav.menu}>
-          {items.map((item) => {
+          {mainNavigation.map((item) => {
             const label = navLabelKeys[item.label as keyof typeof navLabelKeys]
               ? t.nav[navLabelKeys[item.label as keyof typeof navLabelKeys]]
               : item.label;
-            return item.external ? (
-              <a
-                key={item.label}
-                href={item.href}
-                className={styles.link}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {label}
-              </a>
-            ) : (
+
+            // Platform / Resources：展开 mega menu 所有分组与项目
+            if ('hasMega' in item && item.hasMega && item.label in megaMenuMap) {
+              const mega = megaMenuMap[item.label];
+              return (
+                <div key={item.label} className={styles.megaSection}>
+                  <div className={styles.megaTitle}>{label}</div>
+                  {mega.groups.map((group) => (
+                    <div key={group.label} className={styles.group}>
+                      <div className={styles.groupLabel}>{group.label}</div>
+                      <ul className={styles.items}>
+                        {group.items.map((menuItem) => {
+                          const itemTitle = pickLocaleText(menuItem.label, menuItem.enLabel, locale);
+                          const itemDesc =
+                            locale === 'en'
+                              ? (menuItem.enDescription ?? menuItem.description)
+                              : menuItem.description;
+                          return (
+                            <li key={menuItem.label}>
+                              <DialogClose asChild>
+                                <Link href={menuItem.href} className={styles.item}>
+                                  {menuItem.iconKey ? (
+                                    <span className={styles.iconWrap} aria-hidden>
+                                      <NavigationIcon
+                                        name={menuItem.iconKey as NavigationIconName}
+                                        decorative
+                                        className={styles.icon}
+                                      />
+                                    </span>
+                                  ) : null}
+                                  <span className={styles.itemText}>
+                                    <span className={styles.itemTitle}>{itemTitle}</span>
+                                    {itemDesc ? (
+                                      <span className={styles.itemDesc}>{itemDesc}</span>
+                                    ) : null}
+                                  </span>
+                                </Link>
+                              </DialogClose>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              );
+            }
+
+            // Use Cases / Plans：直接链接
+            const simpleItem = item as SimpleMenuItem;
+            return (
               <DialogClose asChild key={item.label}>
-                <Link href={item.href} className={styles.link}>
+                <Link href={simpleItem.href} className={styles.topLink}>
                   {label}
                 </Link>
               </DialogClose>
@@ -81,5 +136,3 @@ export function MobileMenu({ items = mainNavigation }: { items?: readonly MenuIt
     </Dialog>
   );
 }
-
-

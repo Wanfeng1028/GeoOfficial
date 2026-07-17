@@ -23,6 +23,7 @@ export function UseCasesPageClient() {
           eyebrow={p.hero.eyebrow}
           title={p.hero.title}
           description={p.hero.description}
+          level={1}
           width="content"
         />
 
@@ -44,9 +45,15 @@ export function UseCasesPageClient() {
           {useCases.map((item) => (
             <li key={item.slug} className={styles.item}>
               <div className={styles.copy}>
-                <p className={styles.audience}>{item.audience}</p>
-                <h2 className={styles.title}>{item.title}</h2>
-                <p className={styles.description}>{item.description}</p>
+                <p className={styles.audience}>
+                  {locale === 'en' ? item.enAudience : item.audience}
+                </p>
+                <h2 className={styles.title}>
+                  {locale === 'en' ? item.enTitle : item.title}
+                </h2>
+                <p className={styles.description}>
+                  {locale === 'en' ? item.enDescription : item.description}
+                </p>
                 <p className={styles.status} data-status={item.status}>
                   {item.status === 'available'
                     ? p.status.available
@@ -65,7 +72,9 @@ export function UseCasesPageClient() {
               </div>
               <div className={styles.meta}>
                 <p className={styles.metaLabel}>{p.metaLabels.audience}</p>
-                <p className={styles.metaValue}>{item.audience}</p>
+                <p className={styles.metaValue}>
+                  {locale === 'en' ? item.enAudience : item.audience}
+                </p>
                 <p className={styles.metaLabel}>{p.metaLabels.status}</p>
                 <p className={styles.metaValue}>
                   {item.status === 'available'

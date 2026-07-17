@@ -20,6 +20,7 @@ export function TermsPageClient() {
           eyebrow={p.hero.eyebrow}
           title={p.hero.title}
           description={p.hero.description}
+          level={1}
         />
         <p className={styles.note}>
           {p.draft}

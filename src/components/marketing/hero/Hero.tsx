@@ -84,7 +84,7 @@ export function Hero() {
           <p className={styles.description}>{t.hero.description}</p>
           <div className={styles.actions}>
             <Button asChild variant="primary" size="lg">
-              <Link href="/product">{t.hero.primaryCta}</Link>
+              <Link href="/platform">{t.hero.primaryCta}</Link>
             </Button>
             <Button
               asChild

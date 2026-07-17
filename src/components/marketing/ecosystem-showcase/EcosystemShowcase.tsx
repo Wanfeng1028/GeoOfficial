@@ -7,19 +7,62 @@ import { ThemeSection } from '@/components/theme/ThemeSection';
 import styles from './EcosystemShowcase.module.css';
 
 const integrations = [
-  { label: 'QGIS', desc: 'Desktop GIS engineering & cartography', status: 'connected' as const },
-  { label: 'GDAL', desc: 'Raster & vector data conversion', status: 'connected' as const },
-  { label: 'Google Earth Engine', desc: 'Cloud-based remote sensing', status: 'connected' as const },
-  { label: 'Python', desc: 'Geo Worker scripting & analysis', status: 'connected' as const },
-  { label: 'PostGIS', desc: 'Spatial database queries', status: 'planned' as const },
-  { label: 'MCP', desc: 'Model routing & tool invocation', status: 'connected' as const },
-  { label: 'Skills', desc: 'Reusable GIS commands & workflows', status: 'connected' as const },
-  { label: 'Plugins', desc: 'Third-party extension interface', status: 'planned' as const },
+  {
+    label: 'QGIS',
+    desc: 'Desktop GIS engineering & cartography',
+    zhDesc: '桌面 GIS 工程与制图',
+    status: 'connected' as const,
+  },
+  {
+    label: 'GDAL',
+    desc: 'Raster & vector data conversion',
+    zhDesc: '栅格与矢量数据转换',
+    status: 'connected' as const,
+  },
+  {
+    label: 'Google Earth Engine',
+    desc: 'Cloud-based remote sensing',
+    zhDesc: '云端遥感分析',
+    status: 'connected' as const,
+  },
+  {
+    label: 'Python',
+    desc: 'Geo Worker scripting & analysis',
+    zhDesc: 'Geo Worker 脚本与分析',
+    status: 'connected' as const,
+  },
+  {
+    label: 'PostGIS',
+    desc: 'Spatial database queries',
+    zhDesc: '空间数据库查询',
+    status: 'planned' as const,
+  },
+  {
+    label: 'MCP',
+    desc: 'Model routing & tool invocation',
+    zhDesc: '模型路由与工具调用',
+    status: 'connected' as const,
+  },
+  {
+    label: 'Skills',
+    desc: 'Reusable GIS commands & workflows',
+    zhDesc: '可复用 GIS 命令与工作流',
+    status: 'connected' as const,
+  },
+  {
+    label: 'Plugins',
+    desc: 'Third-party extension interface',
+    zhDesc: '第三方扩展接口',
+    status: 'planned' as const,
+  },
 ];
 
 export function EcosystemShowcase() {
   const { locale } = useLocale();
   const t = getDict(locale);
+  const isEn = locale === 'en';
+  const connectedLabel = isEn ? 'Connected' : '已连接';
+  const plannedLabel = isEn ? 'Planned' : '计划中';
 
   return (
     <ThemeSection theme="dark">
@@ -38,7 +81,7 @@ export function EcosystemShowcase() {
                 <div key={`${item.label}-${i}`} className={styles.trackItem}>
                   <span className={styles.trackLabel}>{item.label}</span>
                   <span className={`${styles.trackStatus} ${styles[item.status]}`}>
-                    {item.status === 'connected' ? 'Connected' : 'Planned'}
+                    {item.status === 'connected' ? connectedLabel : plannedLabel}
                   </span>
                 </div>
               ))}
