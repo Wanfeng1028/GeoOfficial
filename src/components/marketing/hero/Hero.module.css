@@ -65,7 +65,7 @@
 
 .title {
   margin: 0 auto;
-  max-width: 28ch;
+  max-width: 18ch;
   text-wrap: balance;
   word-break: keep-all;
   overflow-wrap: normal;
@@ -76,7 +76,7 @@
 }
 
 .description {
-  max-width: 28rem;
+  max-width: 38rem;
   margin: 1rem auto 0;
   color: var(--text-secondary);
   font-size: 1rem;
@@ -105,6 +105,7 @@
   color: var(--brand-text);
   font-size: 0.75rem;
   font-weight: 600;
+  text-transform: uppercase;
 }
 
 .statusDot {
@@ -119,7 +120,7 @@
   position: relative;
   z-index: 1;
   min-height: 260vh;
-  margin-top: 1.5rem;
+  margin-top: 4rem;
 }
 
 /* Stage wrapper — sticky */
@@ -136,7 +137,7 @@
 /* Stage container — Attio 式大舞台 */
 .stageContainer {
   position: relative;
-  width: min(86vw, 1400px);
+  width: min(80vw, 1080px);
   height: clamp(580px, 68vh, 800px);
   display: flex;
   align-items: center;
@@ -553,7 +554,7 @@
 
 @media (max-width: 1024px) {
   .stageContainer {
-    width: 95vw;
+    width: 92vw;
     height: clamp(440px, 55vh, 600px);
   }
 
@@ -606,12 +607,16 @@
 
   .title {
     font-size: clamp(2rem, 7vw, 2.5rem);
-    max-width: 16ch;
+    max-width: 14ch;
+  }
+
+  .description {
+    max-width: 28rem;
   }
 
   .heroSequence {
     min-height: 160vh;
-    margin-top: 1rem;
+    margin-top: 2.5rem;
   }
 
   .stageContainer {
