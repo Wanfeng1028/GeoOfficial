@@ -1,0 +1,135 @@
+## Go Runtime 的职责
+
+Go Runtime 是 GeoWork 的核心进程,负责:
+
+- **对象管理**:Project / Dataset / Layer / Task / Artifact 的生命周期
+- **任务调度**:Skill 调用、Python Worker 调用、外部工具调度的统一编排
+- **事件总线**:对象变化、任务状态、用户操作的发布订阅
+- **MCP 暴露**:将 Runtime 状态通过 Model Context Protocol 暴露给 AI Agent
+
+本文深入 Runtime 的内部实现。
+
+## 对象树
+
+所有对象组织成一棵树,根节点是当前打开的 Project:
+
+```text
+Project
+├── Datasets
+│   ├── Dataset (Layer 1)
+│   ├── Dataset (Layer 2)
+│   └── ...
+├── Tasks
+│   ├── Task (running)
+│   ├── Task (done)
+│   └── ...
+└── Artifacts
+    ├── Artifact (chart)
+    ├── Artifact (report)
+    └── ...
+```
+
+每个节点有:
+
+- `ID`:UUID,本地唯一
+- `Type`:`project` / `dataset` / `layer` / `task` / `artifact`
+- `Parent`:父节点 ID
+- `Children`:子节点 ID 列表
+- `State`:对象当前状态(pending / ready / error)
+
+## 任务调度
+
+任务调度基于 **优先级队列 + Worker 池**:
+
+```go
+type Scheduler struct {
+    queue   *PriorityQueue
+    workers []*Worker
+    events  chan Event
+}
+
+type Task struct {
+    ID       string
+    SkillID  string
+    Params   map[string]any
+    Priority int
+    Status   TaskStatus
+}
+```
+
+- 每个 Worker 是一个 goroutine,从队列拉取任务执行
+- 任务可以是 Go Runtime 内部函数、Python Worker 调用或外部 CLI(GDAL/QGIS)
+- 优先级支持 3 级:`high`(用户主动触发)、`normal`(默认)、`low`(后台预计算)
+- 同一 Project 内的任务默认串行,避免文件锁冲突
+
+## 事件总线
+
+事件总线用 Go channel 实现,所有对象变更与任务状态都通过事件广播:
+
+```go
+type Event struct {
+    Type      EventType
+    ObjectID  string
+    ObjectType string
+    Payload   map[string]any
+    Timestamp time.Time
+}
+```
+
+订阅者包括:
+
+- **UI**:React 前端通过 WebSocket 接收事件,实时刷新
+- **Logger**:所有事件写入 Project Context 的日志,可追溯
+- **MCP**:订阅事件以更新 AI Agent 的上下文
+
+## 并发模型
+
+Go 的并发模型天然适合 Runtime:
+
+- **goroutine 轻量**:一个 Project 可能有数百个并发任务,goroutine 成本可忽略
+- **channel 解耦**:对象间通信通过 channel,避免共享内存竞争
+- **context 取消**:每个任务带 `context.Context`,用户取消时级联终止子任务
+
+但有一个例外:**Python Geo Worker** 受 GIL 限制,需要在独立进程中运行,通过 gRPC 通信。
+
+## MCP 暴露
+
+Runtime 通过 MCP 向 AI Agent 暴露:
+
+- **Resources**:当前 Project 的对象树、Task 历史、Artifact 清单
+- **Tools**:Skill 调用、对象查询、参数模板
+- **Prompts**:常见任务的自然语言模板(如"计算 NDVI"、"生成报告")
+
+权限模型:
+
+- **Read**:默认开放,AI 可以读取任何对象状态
+- **Write**:需要用户确认,AI 不能直接修改对象
+- **Execute**:需要用户确认,AI 调用 Skill 时弹出确认对话框
+
+## 设计决策
+
+### 为什么是 Go 而不是 Rust 或 Python
+
+- **Go 的并发模型**适合任务调度与事件总线
+- **Go 的部署**简单:单二进制,无运行时依赖
+- **Python 的性能**不足以承担 Runtime 职责(GIL 限制)
+- **Rust 的开发速度**对当前阶段过慢
+
+Python 作为 Geo Worker 嵌入,负责具体地理空间算法;Rust 在性能关键路径(影像处理)可作为 Skill 调用的外部工具。
+
+### 为什么不用现成的 SaaS 框架
+
+- **数据主权**:SaaS 框架默认假设云端存储,不符合 GeoWork 的 local-first 原则
+- **离线能力**:SaaS 框架依赖网络,野外场景不可用
+- **可追溯**:Runtime 必须能完整记录每一步操作,SaaS 框架的日志通常不暴露给用户
+
+## 总结
+
+Go Runtime 是 GeoWork 的"操作系统":
+
+- 管理对象生命周期
+- 调度任务执行
+- 广播事件
+- 暴露给 AI Agent
+
+它选择 Go 是为了并发与部署 simplicity,选择 local-first 是为了地理空间工作的真实场景。

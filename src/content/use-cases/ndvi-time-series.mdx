@@ -1,0 +1,59 @@
+## 问题
+
+研究某区域植被指数随时间的变化趋势、季节性规律与异常点，回答两个问题：
+
+- 植被覆盖是否在长期上升或下降？
+- 哪些时间段或区域出现明显异常（如干旱、火灾、人类活动）？
+
+## 数据
+
+所有数据来自公开档案：
+
+- **Landsat 8 / 9 Collection 2 Level-2**：USGS Earth Explorer，30 m 分辨率，16 天重访。来源：`https://earthexplorer.usgs.gov/`
+- **Sentinel-2 L2A**：Copernicus Open Access Hub，10 m / 20 m 分辨率，5 天重访。来源：`https://scihub.copernicus.eu/`
+- **MOD13Q1 / MYD13Q1（MODIS NDVI）**：NASA LP DAAC，250 m 分辨率，16 天合成。来源：`https://lpdaac.usgs.gov/products/mod13q1v061/`
+- **气象辅助数据**：CHIRPS 降水（UCSB Climate Hazards Center）。来源：`https://www.chc.ucsb.edu/data/chirps`
+- **研究区矢量边界**：GADM v4.1。来源：`https://gadm.org/`
+
+## 工具
+
+- **GEE**：影像集合合成、云掩膜、NDVI 计算、像元级时序分析
+- **Python（Geo Worker）**：rasterio + xarray 读取本地时序栈，做趋势分析（Mann-Kendall 检验）和异常检测
+- **GDAL**：影像裁剪、投影变换
+- **Skills**：将"年度 NDVI 合成"封装为可复用 Skill
+- **Reporting**：生成时序图、空间分布图与方法报告
+
+## 流程
+
+1. **项目初始化**：在 GeoWork 中创建 `ndvi-time-series` 项目，导入研究区矢量与时间窗口（例如 2015–2024）
+2. **影像合成**：通过 GEE Skill 拉取 Landsat / Sentinel 影像集合，按季度或年度合成无云影像
+3. **NDVI 计算**：使用 `(NIR - Red) / (NIR + Red)` 公式生成 NDVI 时序栈
+4. **趋势分析**：对每个像元做 Mann-Kendall 趋势检验，输出斜率图与显著性图
+5. **异常检测**：基于 z-score 或 BFAST 算法识别时序异常点
+6. **可视化**：生成时序折线图、空间趋势图、异常点分布图
+7. **报告**：导出方法、参数、图表的 Markdown 报告
+
+## 验证
+
+- **合成质量**：每个时相的有效像元占比需 > 80%（云掩膜后）
+- **趋势显著性**：Mann-Kendall 检验 p 值 < 0.05 的像元才标记为显著趋势
+- **气象交叉**：将 NDVI 异常与 CHIRPS 降水异常做时序相关性分析，预期 r > 0.5（半湿润区）
+- **可追溯性**：所有 Skill 调用参数与中间结果保存在 Project Context 的 Task 历史中
+
+## 成果
+
+实际输出（示例，具体数值取决于研究区与时间窗口）：
+
+- **NDVI 时序栈**：按季度或年度合成的 NDVI 栅格（GeoTIFF）
+- **趋势图**：Mann-Kendall 斜率图 + 显著性图（p < 0.05）
+- **异常图**：时序异常点的空间分布
+- **时序折线图**：研究区平均 NDVI 随时间变化
+- **方法报告**：包含数据源、参数、统计检验的 Markdown 文档
+
+> 所有数字必须来自上述公开数据源或用户实际运行结果，禁止编造。
+
+## 限制
+
+- 云覆盖严重的区域合成质量会下降，需结合多源数据
+- MODIS 分辨率较粗，仅适用于大尺度趋势
+- BFAST 等异常检测算法对历史长度敏感，建议至少 5 年时序

@@ -1,0 +1,118 @@
+## 系统要求
+
+在安装 GeoWork 之前,请确认你的系统满足以下要求:
+
+| 项目 | 最低要求 | 推荐 |
+|------|---------|------|
+| 操作系统 | Windows 10 64位 | Windows 11 64位 |
+| 内存 | 8 GB | 16 GB |
+| 磁盘空间 | 2 GB(安装) + 数据空间 | SSD,10 GB+ |
+| CPU | 4 核 | 8 核+ |
+| GPU | 无要求 | 任意(用于影像渲染加速) |
+
+> macOS 与 Linux 暂未提供官方构建,有需要的用户可以从源码编译。
+
+## 下载
+
+GeoWork 的所有发布版本在 GitHub Releases:
+
+`https://github.com/Wanfeng1028/GeoWork/releases`
+
+下载对应平台的安装包:
+
+- **Windows x64**:`GeoWork-Setup-x.y.z.exe`(约 120 MB)
+- **Windows x64 绿色版**:`GeoWork-x.y.z-win64.zip`(约 130 MB,免安装)
+
+## 安装方式
+
+### 方式 1:安装程序(推荐新手)
+
+1. 双击下载的 `GeoWork-Setup-x.y.z.exe`
+2. 按向导选择安装目录(默认 `C:\Program Files\GeoWork`)
+3. 等待安装完成(约 1 分钟)
+4. 从开始菜单启动 GeoWork
+
+### 方式 2:绿色版(推荐有经验用户)
+
+1. 解压 `GeoWork-x.y.z-win64.zip` 到任意目录(如 `D:\Tools\GeoWork`)
+2. 进入解压目录,双击 `GeoWork.exe` 启动
+3. 可选:将目录加入 PATH,从命令行启动
+
+## 首次启动
+
+首次启动 GeoWork 时,会进行以下初始化(约 30 秒):
+
+1. **创建用户目录**:`%USERPROFILE%\GeoWork\`
+   - `projects/`:默认项目存放目录
+   - `skills/`:用户自定义 Skill
+   - `logs/`:运行日志
+   - `config.json`:用户配置
+2. **初始化 Python Geo Worker**:解压内置 Python 运行时,预装地理空间库(rasterio、geopandas、xarray 等)
+3. **初始化 Go Runtime**:启动任务调度器、事件总线
+
+初始化完成后,会看到欢迎界面,提示创建第一个项目。
+
+## 验证安装
+
+启动 GeoWork 后,可以通过以下方式验证安装是否成功:
+
+### 1. 查看 Work 模式
+
+在欢迎界面点击"New Project",任意命名,确认能进入 Work 模式。
+
+### 2. 查看 Python Geo Worker
+
+切换到 Code 模式,在终端输入:
+
+```python
+import rasterio
+import geopandas
+print(rasterio.__version__)
+print(geopandas.__version__)
+```
+
+应该能正常打印版本号。
+
+### 3. 查看 GDAL
+
+在 Code 模式终端输入:
+
+```bash
+gdalinfo --version
+```
+
+应该能打印 GDAL 版本号(通常 3.6+)。
+
+## 卸载
+
+### 安装程序版
+
+通过 Windows "设置 → 应用 → GeoWork → 卸载" 卸载。用户目录(`%USERPROFILE%\GeoWork\`)需要手动删除。
+
+### 绿色版
+
+直接删除解压目录。用户目录(`%USERPROFILE%\GeoWork\`)需要手动删除。
+
+## 常见问题
+
+### 启动时报"缺少 VCRUNTIME140.dll"
+
+安装 Microsoft Visual C++ Redistributable:`https://aka.ms/vs/17/release/vc_redist.x64.exe`
+
+### Python Geo Worker 初始化失败
+
+检查磁盘空间是否充足(需要约 500 MB),以及用户目录是否有写入权限。
+
+### 安装程序被杀毒软件拦截
+
+GeoWork 是开源项目,安装包源码可查。可以将安装目录加入杀毒软件白名单,或使用绿色版。
+
+## 下一步
+
+安装完成后,继续阅读:
+
+- [创建第一个项目](/help/first-project)
+- [导入数据](/help/import-data)
+- [运行第一个任务](/help/getting-started-first-task)
+
+如遇问题,可在 [GitHub Issues](https://github.com/Wanfeng1028/GeoWork/issues) 提问。

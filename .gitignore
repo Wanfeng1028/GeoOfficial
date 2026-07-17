@@ -63,3 +63,12 @@ next-env.d.ts
 /eslint-check*.json
 /test-capture-output.txt
 /vitest-output.txt
+
+# reference scripts local logs/output
+/scripts/reference/*.log
+/scripts/reference/*-summary.log
+/scripts/reference/*-detail.log
+/scripts/reference/vitest-result*.json
+/scripts/reference/sitemap-sample.xml
+/scripts/reference/audit-report.txt
+/scripts/reference/lint.log

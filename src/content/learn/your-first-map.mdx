@@ -1,0 +1,124 @@
+## 你将学到什么
+
+本教程带你完成第一张地图：导入一份 GeoTIFF 影像、设置样式、导出为 PNG/PDF。全程约 20 分钟,无需 GIS 经验。
+
+完成后你将理解 GeoWork 中 **Dataset → Layer → Artifact** 的基本流转。
+
+## 准备工作
+
+- 已安装 GeoWork(若未安装,参见 [安装指南](/help/install))
+- 已创建第一个项目(参见 [创建第一个项目](/help/first-project))
+- 准备一份 GeoTIFF 影像。若无,可下载样本:
+  - Copernicus Sentinel-2 L2A 样片(10m 分辨率,~50MB)
+  - 或任意带空间参考的 `.tif` 文件
+
+## 步骤 1:导入 GeoTIFF
+
+在 Work 模式下:
+
+1. 右侧 **Project 面板** 点击 `+ Add Dataset`
+2. 选择 `Import File`,定位到你的 `.tif` 文件
+3. 点击 `Import`
+
+GeoWork 会:
+
+- 调用 GDAL 读取影像元数据(投影、波段、范围)
+- 在项目下创建一个 **Dataset** 对象
+- 自动生成一个 **Layer** 并加入 Map 视图
+
+成功后,Project 面板会出现 `Datasets > your-file.tif`,Map 视图中央显示影像。
+
+> 如果导入失败,常见原因是投影缺失或 GDAL 不支持的驱动。可在 Code 模式运行 `gdalinfo your-file.tif` 查看详情。
+
+## 步骤 2:设置样式
+
+默认渲染通常是单波段灰度。要改成更直观的彩色:
+
+### 单波段彩色拉伸
+
+1. 在 Map 视图左下角点击图层名,打开 **Layer Style** 面板
+2. 选择 `Single band`
+3. 设置:
+   - **Colormap**:`Viridis`(或 `Magma`、`Turbo`)
+   - **Stretch**:`Percent clip`(2% - 98%)
+4. 点击 `Apply`
+
+### 多波段真彩色
+
+若你的影像是多波段(如 Sentinel-2):
+
+1. 切换到 `RGB` 模式
+2. 设置:
+   - **Red**:Band 4(Sentinel-2 红)
+   - **Green**:Band 3
+   - **Blue**:Band 2
+3. **Stretch**:`Percent clip`
+4. 点击 `Apply`
+
+Map 视图实时刷新。
+
+## 步骤 3:添加注记
+
+切到 **Annotations** 工具条(位于 Map 视图上方):
+
+- **Text**:点击地图任意位置,输入文字
+- **Scale bar**:右下角自动生成,可拖动调整位置
+- **North arrow**:右下角自动生成,可旋转
+- **Legend**:从 `Layer → Generate Legend` 自动生成
+
+注记会作为 Layer 的一部分保存,不污染原始 Dataset。
+
+## 步骤 4:导出地图
+
+1. 顶部菜单 `Map → Export Map...`
+2. 选择格式:
+   - **PNG**:位图,适合屏幕展示
+   - **PDF**:矢量,适合打印
+   - **GeoTIFF**:带空间参考,适合在 QGIS/ArcGIS 中继续工作
+3. 设置分辨率(默认 300 DPI)
+4. 选择导出路径
+5. 点击 `Export`
+
+导出成功后,GeoWork 会在项目下创建一个 **Artifact** 对象,记录:
+
+- 生成该地图的 Layer ID
+- 使用的样式参数
+- 导出时间与格式
+
+## 步骤 5:回溯与重用
+
+GeoWork 的关键特性:**任何成果都可回溯**。
+
+- 双击 Project 面板中的 Artifact,可重新打开该地图
+- 右键 Artifact → `Show Lineage`,显示从 Dataset → Layer → Artifact 的完整链路
+- 修改原始 Dataset 的样式后,可一键重新生成 Artifact
+
+这是 GeoWork 与传统 GIS 工具最大的区别:成果不是"导出即结束",而是"工作过程的快照"。
+
+## 常见问题
+
+### 影像显示为全黑
+
+通常是拉伸范围不对。打开 Layer Style 面板,将 Stretch 改为 `Percent clip` 或 `Min/Max`(手动设置范围)。
+
+### 多波段影像显示为灰度
+
+说明当前在 Single band 模式。切换到 RGB 模式并分配红绿蓝波段。
+
+### 导出 PDF 体积过大
+
+PDF 矢量模式会保留每个像素,大影像会生成超大文件。改用 PNG 或降低分辨率。
+
+### 注记位置在导出后偏移
+
+通常是地图范围在不同 DPI 下重投影导致。导出前在 `Map → Page Setup` 中固定页面尺寸。
+
+## 下一步
+
+完成第一张地图后,推荐继续:
+
+- [调用第一个 Skill](/learn/first-skill) — 用自然语言让 AI 调用 NDVI 算法
+- [Code 模式 Python 分析](/learn/python-analysis) — 用 rasterio 写自定义分析
+- [编写自定义 Skill](/learn/custom-skill) — 封装你的常用工作流为可复用命令
+
+如遇问题,可在 [GitHub Issues](https://github.com/Wanfeng1028/GeoWork/issues) 提问。
