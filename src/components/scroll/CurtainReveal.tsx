@@ -46,18 +46,18 @@ export function CurtainReveal({
       className={`${styles.root}${className ? ` ${className}` : ''}`}
       style={{ minHeight: height }}
     >
-      {/* 下方白色内容层 */}
-      <div className={styles.revealLayer}>
-        {children}
-      </div>
+      <div className={styles.viewport}>
+        <div className={styles.revealLayer}>
+          {children}
+        </div>
 
-      {/* 上方黑幕层 — 仅做 translateY，不做 opacity 渐变 */}
-      <motion.div
-        className={styles.curtain}
-        style={{ y: curtainY }}
-      >
-        {curtainContent}
-      </motion.div>
+        <motion.div
+          className={styles.curtain}
+          style={{ y: curtainY }}
+        >
+          {curtainContent}
+        </motion.div>
+      </div>
     </section>
   );
 }
