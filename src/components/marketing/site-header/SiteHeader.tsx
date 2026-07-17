@@ -76,8 +76,13 @@ export function SiteHeader() {
         </nav>
 
         <div className={styles.actions}>
-          <LocaleSwitcher />
-          <Button asChild variant="quiet" size="sm" className={styles.githubBtn}>
+          <LocaleSwitcher className={`${styles.actionBtn} ${styles.lightBtn}`} />
+          <Button
+            asChild
+            variant="quiet"
+            size="sm"
+            className={`${styles.actionBtn} ${styles.darkBtn} ${styles.githubBtn}`}
+          >
             <a
               href="https://github.com/Wanfeng1028/GeoWork"
               target="_blank"
@@ -86,7 +91,12 @@ export function SiteHeader() {
               <GithubLogoIcon aria-hidden /> {t.nav.github}
             </a>
           </Button>
-          <Button asChild variant="primary" size="sm">
+          <Button
+            asChild
+            variant="primary"
+            size="sm"
+            className={`${styles.actionBtn} ${styles.lightBtn}`}
+          >
             <Link href="/platform">{t.nav.exploreGeoWork}</Link>
           </Button>
           <div className={styles.mobileOnly}>

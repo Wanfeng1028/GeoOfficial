@@ -24,7 +24,7 @@ const dict = {
       close: '关闭',
     },
     hero: {
-      eyebrow: '地理空间工作台',
+      eyebrow: 'A workspace for geospatial work',
       title: '把地图、数据、代码与研究，\n放进同一个连续工作空间。',
       description:
         'GeoWork 统一组织项目、数据集、图层、任务与成果，让分析、验证和交付在同一个项目上下文中连续完成。',

@@ -167,7 +167,9 @@ export function MegaMenu({ item }: MegaMenuProps) {
           <div className={styles.grid}>
             {groupsWithIndex.map((group) => (
               <div key={group.label} className={styles.group}>
-                <div className={styles.groupLabel}>{group.label}</div>
+                <div className={styles.groupLabel}>
+                  {pickLocaleText(group.label, group.enLabel, locale)}
+                </div>
                 <ul className={styles.items}>
                   {group.items.map(({ item: menuItem, index }) => {
                     const title = pickLocaleText(menuItem.label, menuItem.enLabel, locale);

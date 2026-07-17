@@ -3,6 +3,7 @@
 import { useRouter, usePathname } from 'next/navigation';
 import { useLocale } from './LocaleProvider';
 import type { Locale } from './locale';
+import { cn } from '@/lib/cn';
 import styles from './LocaleSwitcher.module.css';
 
 const localeLabels: Record<Locale, string> = {
@@ -10,7 +11,7 @@ const localeLabels: Record<Locale, string> = {
   en: 'English',
 };
 
-export function LocaleSwitcher() {
+export function LocaleSwitcher({ className }: { className?: string }) {
   const { locale } = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -33,7 +34,7 @@ export function LocaleSwitcher() {
   return (
     <button
       type="button"
-      className={styles.switcher}
+      className={cn(styles.switcher, className)}
       onClick={switchLocale}
       aria-label={`Switch to ${localeLabels[otherLocale]}`}
     >

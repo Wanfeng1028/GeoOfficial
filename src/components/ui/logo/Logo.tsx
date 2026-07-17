@@ -30,7 +30,7 @@ export function Logo({ className, wordmark = false, label = 'GeoWork' }: LogoPro
           opacity="0.45"
         />
       </svg>
-      {wordmark ? <span className={styles.wordmark}>GeoWork</span> : null}
+      {wordmark ? <span className={styles.wordmark}>GEOWORK</span> : null}
     </span>
   );
 }

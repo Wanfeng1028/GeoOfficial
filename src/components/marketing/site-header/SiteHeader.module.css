@@ -74,6 +74,54 @@
   gap: 0.5rem;
 }
 
+/* 统一导航栏右侧三个操作按钮的尺寸（以中英文切换按钮为基准） */
+.actions > .actionBtn {
+  min-height: 1.95rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-control);
+  font-size: var(--text-caption);
+  font-weight: 550;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    color var(--duration-fast) var(--ease-standard),
+    background var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.actions > .actionBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* 白色按钮 */
+.actions > .lightBtn {
+  background: #ffffff;
+  color: #17181b;
+  border-color: var(--border);
+}
+
+.actions > .lightBtn:hover:not(:disabled) {
+  border-color: var(--border-strong);
+  background: #f8f9fa;
+}
+
+/* 黑色按钮 */
+.actions > .darkBtn {
+  background: #1b1c20;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.actions > .darkBtn:hover:not(:disabled) {
+  background: #2c2d31;
+}
+
 .githubBtn {
   display: none;
 }

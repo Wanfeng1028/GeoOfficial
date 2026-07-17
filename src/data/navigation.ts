@@ -30,6 +30,8 @@ export interface NavItem {
 
 export interface NavGroup {
   label: string;
+  /** 英文分组标题；省略时回退到 label */
+  enLabel?: string;
   items: NavItem[];
 }
 
@@ -49,10 +51,11 @@ export const platformMegaMenu: NavMegaMenu = {
   label: 'Platform',
   groups: [
     {
-      label: 'GEOWORK PLATFORM',
+      label: 'GEOWORK 平台',
+      enLabel: 'GEOWORK PLATFORM',
       items: [
         {
-          label: 'Assistant',
+          label: '助手',
           enLabel: 'Assistant',
           href: '/platform/assistant',
           description: '查询项目、理解数据并发起任务。',
@@ -68,7 +71,7 @@ export const platformMegaMenu: NavMegaMenu = {
           iconKey: 'ai',
         },
         {
-          label: 'Data model',
+          label: '数据模型',
           enLabel: 'Data model',
           href: '/platform/data',
           description: '组织项目、数据、图层、任务和成果。',
@@ -76,7 +79,7 @@ export const platformMegaMenu: NavMegaMenu = {
           iconKey: 'dataModel',
         },
         {
-          label: 'Project Context',
+          label: '项目上下文',
           enLabel: 'Project Context',
           href: '/platform/context',
           description: '连接数据、地图、代码、工具与执行历史。',
@@ -86,10 +89,11 @@ export const platformMegaMenu: NavMegaMenu = {
       ],
     },
     {
-      label: 'AGENTS AND WORKFLOWS',
+      label: '智能体与工作流',
+      enLabel: 'AGENTS AND WORKFLOWS',
       items: [
         {
-          label: 'Workflows',
+          label: '工作流',
           enLabel: 'Workflows',
           href: '/platform/workflows',
           description: '从问题定义到成果交付组织完整流程。',
@@ -97,7 +101,7 @@ export const platformMegaMenu: NavMegaMenu = {
           iconKey: 'workflows',
         },
         {
-          label: 'Task sequences',
+          label: '任务序列',
           enLabel: 'Task sequences',
           href: '/platform/task-sequences',
           description: '批量、定时和多阶段执行地理处理任务。',
@@ -107,10 +111,11 @@ export const platformMegaMenu: NavMegaMenu = {
       ],
     },
     {
-      label: 'ANALYSIS AND OUTPUTS',
+      label: '分析与产出',
+      enLabel: 'ANALYSIS AND OUTPUTS',
       items: [
         {
-          label: 'Research intelligence',
+          label: '研究智能',
           enLabel: 'Research intelligence',
           href: '/platform/research-intelligence',
           description: '整理文献、日志、会议和研究记录。',
@@ -118,7 +123,7 @@ export const platformMegaMenu: NavMegaMenu = {
           iconKey: 'researchIntelligence',
         },
         {
-          label: 'Reporting',
+          label: '报告',
           enLabel: 'Reporting',
           href: '/platform/reporting',
           description: '生成地图、图表、指标和研究报告。',
@@ -128,10 +133,11 @@ export const platformMegaMenu: NavMegaMenu = {
       ],
     },
     {
-      label: 'ECOSYSTEM',
+      label: '生态',
+      enLabel: 'ECOSYSTEM',
       items: [
         {
-          label: 'Developer Platform',
+          label: '开发者平台',
           enLabel: 'Developer Platform',
           href: '/platform/developers',
           description: '通过 API、SDK、MCP、Skills 和插件扩展。',
@@ -139,7 +145,7 @@ export const platformMegaMenu: NavMegaMenu = {
           iconKey: 'developerPlatform',
         },
         {
-          label: 'Tools & integrations',
+          label: '工具与集成',
           enLabel: 'Tools & integrations',
           href: '/ecosystem',
           description: '连接 QGIS、GDAL、Python、PostGIS 和 GEE。',
@@ -149,7 +155,8 @@ export const platformMegaMenu: NavMegaMenu = {
       ],
     },
     {
-      label: 'GET STARTED',
+      label: '开始使用',
+      enLabel: 'GET STARTED',
       items: [
         { label: 'GeoWork 101', href: '/getting-started' },
         { label: '专家与贡献者', enLabel: 'Experts & contributors', href: '/community/experts' },
@@ -164,10 +171,11 @@ export const resourcesMegaMenu: NavMegaMenu = {
   label: 'Resources',
   groups: [
     {
-      label: 'SUPPORT',
+      label: '支持',
+      enLabel: 'SUPPORT',
       items: [
         {
-          label: 'Help Center',
+          label: '帮助中心',
           enLabel: 'Help Center',
           href: '/help',
           description: 'GeoWork 入门、使用和故障排查。',
@@ -175,7 +183,7 @@ export const resourcesMegaMenu: NavMegaMenu = {
           iconKey: 'help',
         },
         {
-          label: 'Learn GeoWork',
+          label: '学习 GeoWork',
           enLabel: 'Learn GeoWork',
           href: '/learn',
           description: '以真实任务学习地理空间工作流。',
@@ -185,10 +193,11 @@ export const resourcesMegaMenu: NavMegaMenu = {
       ],
     },
     {
-      label: 'DEVELOPERS',
+      label: '开发者',
+      enLabel: 'DEVELOPERS',
       items: [
         {
-          label: 'Documentation',
+          label: '文档',
           enLabel: 'Documentation',
           href: '/docs',
           description: 'API、SDK、MCP、Skills 和插件文档。',
@@ -196,7 +205,7 @@ export const resourcesMegaMenu: NavMegaMenu = {
           iconKey: 'docs',
         },
         {
-          label: 'Developer Platform',
+          label: '开发者平台',
           enLabel: 'Developer Platform',
           href: '/platform/developers',
           description: '构建 GeoWork 扩展和外部连接。',
@@ -206,10 +215,11 @@ export const resourcesMegaMenu: NavMegaMenu = {
       ],
     },
     {
-      label: 'COMMUNITY',
+      label: '社区',
+      enLabel: 'COMMUNITY',
       items: [
         {
-          label: 'Partners',
+          label: '合作伙伴',
           enLabel: 'Partners',
           href: '/partners',
           description: '高校、科研、开源和工具合作。',
@@ -217,7 +227,7 @@ export const resourcesMegaMenu: NavMegaMenu = {
           iconKey: 'partners',
         },
         {
-          label: 'Education & Research',
+          label: '教育与科研',
           enLabel: 'Education & Research',
           href: '/programs/education-research',
           description: '教育、科研和早期体验计划。',
@@ -227,10 +237,11 @@ export const resourcesMegaMenu: NavMegaMenu = {
       ],
     },
     {
-      label: 'PROJECT',
+      label: '项目',
+      enLabel: 'PROJECT',
       items: [
         {
-          label: 'Changelog',
+          label: '更新日志',
           enLabel: 'Changelog',
           href: '/changelog',
           description: '真实记录功能、设计和技术进展。',
@@ -238,7 +249,7 @@ export const resourcesMegaMenu: NavMegaMenu = {
           iconKey: 'changelog',
         },
         {
-          label: 'Blog',
+          label: '博客',
           enLabel: 'Blog',
           href: '/blog',
           description: '产品、案例和项目动态。',
@@ -246,7 +257,7 @@ export const resourcesMegaMenu: NavMegaMenu = {
           iconKey: 'blog',
         },
         {
-          label: 'Engineering',
+          label: '工程',
           enLabel: 'Engineering',
           href: '/engineering',
           description: '架构、GIS、遥感和 AI 工程实践。',
@@ -254,7 +265,7 @@ export const resourcesMegaMenu: NavMegaMenu = {
           iconKey: 'engineering',
         },
         {
-          label: 'Careers / Contribute',
+          label: '职业与贡献',
           enLabel: 'Careers / Contribute',
           href: '/careers',
           description: '加入项目、社区贡献和未来机会。',
