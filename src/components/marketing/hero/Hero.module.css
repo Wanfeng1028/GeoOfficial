@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  padding: clamp(2.5rem, 4vw, 4rem) 0 0;
+  padding: clamp(2.5rem, 4vw, 4rem) 0 clamp(3rem, 5vw, 5rem);
   overflow: clip;
   background: #ffffff;
 }
@@ -44,7 +44,7 @@
   border-radius: 50%;
 }
 
-/* Copy region — 更小更紧凑 */
+/* Copy region */
 .copy {
   position: relative;
   z-index: 1;
@@ -115,33 +115,11 @@
   background: var(--brand);
 }
 
-/* Hero Sequence — 长滚动区 */
-.heroSequence {
-  position: relative;
-  z-index: 1;
-  min-height: 260vh;
-  margin-top: 4rem;
-}
-
-/* Stage wrapper — sticky */
-.stageWrapper {
-  position: sticky;
-  top: var(--header-height, 4.5rem);
-  min-height: calc(100vh - var(--header-height, 4.5rem));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2rem;
-}
-
-/* Stage container — Attio 式大舞台 */
+/* Stage container — Attio 式产品窗口，紧跟文案 */
 .stageContainer {
   position: relative;
   width: min(80vw, 1080px);
-  height: clamp(580px, 68vh, 800px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 3rem auto 0;
 }
 
 /* Main product window */
@@ -149,7 +127,6 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  height: 100%;
   border: 1px solid rgba(23, 24, 27, 0.12);
   border-radius: var(--radius-media);
   overflow: hidden;
@@ -233,33 +210,6 @@
   50% { opacity: 0; }
 }
 
-/* Stage progress dots */
-.stageProgress {
-  position: absolute;
-  right: -2.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  z-index: 5;
-}
-
-.progressDot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 50%;
-  background: var(--border-strong);
-  transition:
-    background var(--duration-normal) var(--ease-standard),
-    box-shadow var(--duration-normal) var(--ease-standard);
-}
-
-.progressDotActive {
-  background: var(--brand);
-  box-shadow: 0 0 0 3px var(--brand-soft);
-}
-
 /* Window header */
 .windowHeader {
   display: flex;
@@ -291,7 +241,7 @@
 .workspace {
   display: grid;
   grid-template-columns: 12rem 1fr 10rem;
-  height: calc(100% - 2.5rem);
+  height: clamp(400px, 50vh, 560px);
 }
 
 .sidebar {
@@ -555,7 +505,6 @@
 @media (max-width: 1024px) {
   .stageContainer {
     width: 92vw;
-    height: clamp(440px, 55vh, 600px);
   }
 
   .leftPanel,
@@ -567,27 +516,17 @@
     width: 90%;
     bottom: -6%;
   }
-
-  .stageProgress {
-    right: 0.25rem;
-  }
 }
 
 @media (max-width: 900px) {
   .stageContainer {
     width: 100%;
-    height: auto;
-    min-height: 400px;
   }
 
   .leftPanel,
   .rightPanel,
   .bottomPanel {
     display: none;
-  }
-
-  .stageProgress {
-    right: 0.5rem;
   }
 
   .workspace {
@@ -602,7 +541,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: 2.5rem 0 0;
+    padding: 2.5rem 0 2rem;
   }
 
   .title {
@@ -614,22 +553,11 @@
     max-width: 28rem;
   }
 
-  .heroSequence {
-    min-height: 160vh;
-    margin-top: 2.5rem;
-  }
-
   .stageContainer {
-    height: clamp(300px, 50vh, 420px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroSequence {
-    min-height: auto;
+    margin-top: 2rem;
   }
 
-  .stageWrapper {
-    position: relative;
+  .workspace {
+    height: clamp(280px, 45vh, 380px);
   }
 }
