@@ -1,0 +1,313 @@
+/* ===========================
+   Hero
+   =========================== */
+.heroMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+}
+
+.heroBack {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.heroBack:hover {
+  color: var(--brand-text);
+}
+
+.heroBackIcon {
+  transform: rotate(180deg);
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.heroCategory {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+}
+
+.heroStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.heroStatus[data-status='connected'] {
+  background: var(--brand-soft);
+  color: var(--brand-text);
+}
+
+.heroStatus[data-status='planned'] {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+}
+
+.heroStatus[data-status='partial'] {
+  background: rgba(63, 124, 255, 0.12);
+  color: var(--status-blue);
+}
+
+.heroStatusDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.heroEyebrow {
+  margin: 0 0 1rem;
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-text);
+}
+
+.heroTitle {
+  margin: 0 0 1.5rem;
+  font-size: var(--text-page-title);
+  line-height: var(--heading-line-height, 1.2);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+.heroDesc {
+  margin: 0 0 2rem;
+  font-size: var(--text-body-large);
+  line-height: var(--body-line-height, 1.6);
+  color: var(--text-secondary);
+  max-width: 36rem;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* ===========================
+   Features Grid
+   =========================== */
+.featuresLabel {
+  margin: 0 0 1.5rem;
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.featureCard:hover {
+  border-color: var(--brand);
+  transform: translateY(-1px);
+}
+
+.featureIndex {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-weight: 700;
+  color: var(--brand-text);
+  letter-spacing: 0.1em;
+}
+
+.featureTitle {
+  margin: 0;
+  font-size: var(--text-card-title);
+  line-height: var(--heading-line-height, 1.25);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.featureDesc {
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: var(--body-line-height, 1.6);
+  color: var(--text-secondary);
+}
+
+.planNote {
+  margin: 1.5rem 0 0;
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-control);
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  font-size: var(--text-small);
+  line-height: 1.55;
+  color: #92400e;
+}
+
+/* ===========================
+   Quote
+   =========================== */
+.quote {
+  margin: 0;
+  padding: 0;
+}
+
+.quoteText {
+  margin: 0 0 1rem;
+  font-size: var(--quote-text-size, clamp(1.5rem, 2.5vw, 2rem));
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+.quoteAuthor {
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+}
+
+/* ===========================
+   Related Tools
+   =========================== */
+.relatedLabel {
+  margin: 0 0 1.5rem;
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.relatedCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-panel);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.relatedCard:hover {
+  border-color: var(--brand);
+  transform: translateY(-1px);
+}
+
+.relatedEyebrow {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brand-text);
+}
+
+.relatedTitle {
+  font-size: var(--text-card-title);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  padding-right: 1.5rem;
+}
+
+.relatedStatus {
+  align-self: flex-start;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.03em;
+}
+
+.relatedStatus[data-status='connected'] {
+  background: var(--brand-soft);
+  color: var(--brand-text);
+}
+
+.relatedStatus[data-status='planned'] {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+}
+
+.relatedStatus[data-status='partial'] {
+  background: rgba(63, 124, 255, 0.12);
+  color: var(--status-blue);
+}
+
+.relatedArrow {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  width: 1rem;
+  height: 1rem;
+  color: var(--text-tertiary);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.relatedCard:hover .relatedArrow {
+  color: var(--brand);
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (min-width: 768px) {
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .relatedGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .featuresGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .relatedGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
