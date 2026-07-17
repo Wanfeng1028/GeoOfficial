@@ -44,3 +44,9 @@ next-env.d.ts
 
 # documentation
 /doc
+/test-results
+/playwright-report
+/tests
+/artifacts
+/.uploads
+/
