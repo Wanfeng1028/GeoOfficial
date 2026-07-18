@@ -3,6 +3,60 @@
 > 适用范围：**仅适用于 GeoWork 官网项目**。  
 > 本文件不包含 GeoWork 桌面软件、GeoFrontend2.0 桌面前端重构项目或 Electron 工作台设计规范。
 
+# GeoOfficial 最终设计基准（优先参考）
+仅访问仓库首页不视为完成参考分析。必须实际阅读与当前任务相关的组件源码、样式文件、设计 Token、动画实现和响应式代码，并在实施计划中列出已经查看的准确文件路径。
+## 1. 核心参考资料
+
+### 1.1 整站设计与响应式参考
+
+GeoOfficial 的整体视觉、页面结构、排版、组件样式和响应式设计，主要参考：
+
+- Attio 复刻源码：
+  https://github.com/Wanfeng1028/Attio
+
+- Attio 复刻站点：
+  https://attio-three.vercel.app/
+
+- Attio 官方网站：
+  https://attio.com/
+
+- Attio 桌面端设计稿：
+  `/doc/reference/attio/Attio Homepage.svg`
+
+- Attio 移动端设计稿：
+  `/doc/reference/attio/Attio Homepage (Mobile Responsive).svg`
+
+如果设计稿实际存放路径不同，必须填写仓库内真实路径，不得只写“参考设计稿”。
+
+### 1.2 产品 Mac 小窗和动画交互参考
+
+首页产品 Mac 小窗、产品内部界面、拖拽、切换、展开、悬浮和滚动动画，主要参考：
+
+- Twenty 源码：
+  https://github.com/Wanfeng1028/twenty
+
+- Twenty 官方网站：
+  https://twenty.com/
+
+Twenty 只用于参考产品小窗、产品内部 UI 和动画交互，不作为整站营销页面的视觉基准。
+
+## 2. 统一设计关系
+
+- 整站页面结构与视觉：
+  https://github.com/Wanfeng1028/Attio
+
+- 桌面端和移动端响应式：
+  Attio 配套设计稿
+
+- 产品 Mac 小窗内部 UI：
+  https://github.com/Wanfeng1028/twenty
+
+- 产品窗口动画与交互：
+  https://github.com/Wanfeng1028/twenty
+
+- 品牌、业务功能与页面文案：
+  GeoWork 自身内容
+
 ## 1. 设计目标
 
 GeoWork 官网应做到：

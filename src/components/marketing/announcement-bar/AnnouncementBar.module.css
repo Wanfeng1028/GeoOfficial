@@ -1,9 +1,10 @@
 .bar {
-  height: 36px;
-  background: #0b0c0e;
-  color: #f4f4f2;
-  font-size: 0.8125rem;
+  height: 40px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 13px;
   font-weight: 500;
+  line-height: 20px;
 }
 
 .inner {

@@ -20,11 +20,11 @@ export function Hero() {
     offset: ['start start', 'end end'],
   });
 
-  // Copy fade out on scroll
+  // Hero copy fades out and drifts up as user scrolls
   const copyY = useTransform(scrollYProgress, [0, 0.3], [0, -60]);
   const copyOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
 
-  // Product window entrance animation
+  // Product window entrance and subtle exit
   const windowScale = useTransform(scrollYProgress, [0, 0.2, 0.75, 1], [0.92, 1, 1, 0.98]);
   const windowY = useTransform(scrollYProgress, [0, 0.25], [80, 0]);
   const windowOpacity = useTransform(scrollYProgress, [0, 0.15], [0.6, 1]);
@@ -34,7 +34,7 @@ export function Hero() {
 
   return (
     <section ref={sectionRef} id="hero" className={styles.hero} aria-labelledby="home-title">
-      {/* Sticky background layers */}
+      {/* StickyBackground */}
       <div className={styles.background} aria-hidden="true">
         <div className={styles.backgroundBase} />
         <div className={styles.backgroundStripes} />
@@ -42,7 +42,7 @@ export function Hero() {
       </div>
 
       <div className={styles.foreground}>
-        {/* Hero Copy */}
+        {/* HeroCopy */}
         <motion.div
           className={styles.copy}
           style={{
@@ -57,9 +57,8 @@ export function Hero() {
               className={styles.title}
               data-locale={locale}
             >
-              {t.hero.title.split('\n').map((line, i) => (
-                <span key={i}>
-                  {i > 0 && <br />}
+              {t.hero.title.split('\n').map((line) => (
+                <span key={line} className={styles.titleLine}>
                   {line}
                 </span>
               ))}
@@ -87,7 +86,7 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Product Stage */}
+        {/* ProductStage */}
         <div className={styles.stage}>
           <div className={styles.windowShell}>
             <motion.div
@@ -100,9 +99,9 @@ export function Hero() {
             >
               <div className={styles.macTitlebar}>
                 <div className={styles.macControls}>
-                  <span className={`${styles.macControl} ${styles.red}`} />
-                  <span className={`${styles.macControl} ${styles.yellow}`} />
-                  <span className={`${styles.macControl} ${styles.green}`} />
+                  <span className={`${styles.macControl} ${styles.red}`} aria-hidden="true" />
+                  <span className={`${styles.macControl} ${styles.yellow}`} aria-hidden="true" />
+                  <span className={`${styles.macControl} ${styles.green}`} aria-hidden="true" />
                 </div>
               </div>
               <div className={styles.productViewport}>

@@ -14,7 +14,7 @@ const dict = {
       github: 'GitHub',
       exploreGeoWork: '了解 GeoWork',
       announcement: 'GeoWork 正在积极开发中',
-      viewProgress: '查看进展',
+      viewProgress: '查看最新进展',
       switchTo: 'English',
       about: '关于',
       download: '下载',
@@ -24,10 +24,10 @@ const dict = {
       close: '关闭',
     },
     hero: {
-      eyebrow: 'A workspace for geospatial work',
-      title: '把地图、数据、代码与研究，\n放进同一个连续工作空间。',
+      eyebrow: '让地理空间工作，真正智能起来。',
+      title: '重新定义地理空间工作流。\n让地图、数据与代码，驱动科研与工程。',
       description:
-        'GeoWork 统一组织项目、数据集、图层、任务与成果，让分析、验证和交付在同一个项目上下文中连续完成。',
+        'GeoWork 将地图、数据、代码与智能体整合在同一工作空间，让研究与工程从构想到成果持续推进。',
       primaryCta: '了解 GeoWork',
       secondaryCta: 'GitHub 仓库',
       status: 'Developer Preview',

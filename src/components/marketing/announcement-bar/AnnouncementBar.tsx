@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRightIcon, XIcon } from '@phosphor-icons/react';
+import { XIcon } from '@phosphor-icons/react';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
 import { Container } from '@/components/ui/container/Container';
@@ -22,10 +22,10 @@ export function AnnouncementBar() {
           <span className={styles.text}>
             {t.nav.announcement}
           </span>
-          <span className={styles.separator}>·</span>
+          <span className={styles.separator}>{'\u3000'}</span>
           <span className={styles.action}>
             {t.nav.viewProgress}
-            <ArrowRightIcon aria-hidden className={styles.arrow} />
+            <span aria-hidden> →</span>
           </span>
         </Link>
         <button

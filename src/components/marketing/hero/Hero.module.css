@@ -6,7 +6,7 @@
   background: var(--page, #ffffff);
 }
 
-/* Sticky background — 三层叠加 */
+/* ─── StickyBackground ─────────────────────────────────── */
 .background {
   position: sticky;
   top: var(--site-header-height, 0);
@@ -58,7 +58,7 @@
     );
 }
 
-/* Foreground content */
+/* ─── Foreground ───────────────────────────────────────── */
 .foreground {
   position: relative;
   z-index: 10;
@@ -71,28 +71,17 @@
   pointer-events: auto;
 }
 
-/* Hero copy */
+/* ─── HeroCopy ─────────────────────────────────────────── */
 .copy {
-  position: relative;
+  position: sticky;
+  top: var(--site-header-height, 0);
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 1.25rem;
+  justify-content: flex-start;
   padding: max(72px, 8svh) 1rem 1.5rem;
   text-align: center;
-}
-
-@media (min-width: 768px) {
-  .copy {
-    padding: max(72px, 8svh) 3.5rem 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .copy {
-    padding: max(72px, 8svh) 58px 1.5rem;
-  }
 }
 
 .copyInner {
@@ -104,7 +93,7 @@
 
 .eyebrow {
   margin: 0;
-  color: var(--text-secondary);
+  color: var(--text-secondary, #686d78);
   font-size: 0.8125rem;
   font-weight: 650;
   letter-spacing: 0.08em;
@@ -113,7 +102,7 @@
 
 .title {
   margin: 0 auto;
-  max-width: 18ch;
+  max-width: 32ch;
   word-break: keep-all;
   overflow-wrap: normal;
   font-size: clamp(64px, calc(16px + 5.333svh), 80px);
@@ -127,26 +116,22 @@
 }
 
 .title[data-locale='zh'] {
-  max-width: 12ch;
+  max-width: 18ch;
   line-height: 1.02;
-  text-wrap: nowrap;
-  word-break: normal;
-  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.titleLine {
+  display: block;
 }
 
 .description {
   max-width: 27em;
   margin: 0 auto;
-  color: var(--text-secondary);
+  color: var(--text-secondary, #686d78);
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.55;
-}
-
-@media (min-width: 1024px) {
-  .description {
-    font-size: 1.125rem;
-  }
 }
 
 .actions {
@@ -165,10 +150,11 @@
   font-weight: 500;
 }
 
-/* Product stage */
+/* ─── ProductStage ─────────────────────────────────────── */
 .stage {
   position: sticky;
   top: 0;
+  z-index: 5;
   display: flex;
   height: 100svh;
   align-items: center;
@@ -184,18 +170,6 @@
   width: 66.666667%;
   max-width: 1440px;
   pointer-events: auto;
-}
-
-@media (min-width: 1024px) {
-  .windowShell {
-    width: 75%;
-  }
-}
-
-@media (max-width: 767px) {
-  .windowShell {
-    width: calc(100vw - 32px);
-  }
 }
 
 .macWindow {
@@ -215,24 +189,11 @@
     rgba(11, 13, 24, 0.04) 0 16px 28px;
 }
 
-@media (min-width: 1024px) {
-  .macWindow {
-    padding: 0 12px 12px;
-    border-radius: 24px;
-  }
-}
-
 .macTitlebar {
   display: flex;
   align-items: center;
   height: 32px;
   padding-left: 8px;
-}
-
-@media (max-width: 767px) {
-  .macTitlebar {
-    height: 28px;
-  }
 }
 
 .macControls {
@@ -244,13 +205,6 @@
   width: 12px;
   height: 12px;
   border-radius: 9999px;
-}
-
-@media (max-width: 767px) {
-  .macControl {
-    width: 10px;
-    height: 10px;
-  }
 }
 
 .red {
@@ -271,29 +225,32 @@
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 12px;
-  background: var(--page, #ffffff);
+  background: #ffffff;
 }
 
 @media (min-width: 768px) {
   .productViewport {
-    height: 360px;
+    height: 380px;
   }
 }
 
 @media (min-width: 1024px) {
+  .windowShell {
+    width: 75%;
+  }
+
+  .macWindow {
+    padding: 0 12px 12px;
+    border-radius: 24px;
+  }
+
   .productViewport {
-    height: min(36vw, 600px);
+    height: min(40.35vw, 775px);
     border-radius: 16px;
   }
 }
 
-@media (min-width: 1440px) {
-  .productViewport {
-    height: min(38vw, 680px);
-  }
-}
-
-/* Mobile: cancel sticky long-scroll animation */
+/* ─── Mobile: cancel sticky long-scroll animation ──────── */
 @media (max-width: 767px) {
   .hero {
     min-height: auto;
@@ -320,13 +277,17 @@
     padding: 0 0 3rem;
   }
 
+  .windowShell {
+    width: calc(100vw - 32px);
+  }
+
   .title {
     font-size: 2.5rem;
     max-width: 14ch;
     letter-spacing: -0.02em;
   }
 
-  html[lang='en'] .title {
+  .title[data-locale='en'] {
     font-size: 2.5rem;
     line-height: 1.02;
   }

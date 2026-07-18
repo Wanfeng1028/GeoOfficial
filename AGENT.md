@@ -3,6 +3,50 @@
 > 适用范围：**仅适用于 GeoWork 官网项目**。  
 > 不适用于 GeoWork 桌面软件、GeoFrontend2.0 桌面前端重构项目或其他仓库。
 
+# GeoOfficial 设计执行规则
+仅访问仓库首页不视为完成参考分析。必须实际阅读与当前任务相关的组件源码、样式文件、设计 Token、动画实现和响应式代码，并在实施计划中列出已经查看的准确文件路径。
+## 必读资料
+
+在修改任何页面、组件、样式、动画或响应式布局前，必须完整阅读：
+
+1. 项目设计规范：
+   `/design.md`
+
+2. Attio 参考源码：
+   https://github.com/Wanfeng1028/Attio
+
+3. Attio 在线复刻页面：
+   https://attio-three.vercel.app/
+
+4. Attio 官方网站：
+   https://attio.com/
+
+5. Twenty 参考源码：
+   https://github.com/Wanfeng1028/twenty
+
+6. Twenty 官方网站：
+   https://twenty.com/
+
+7. Attio 桌面端设计稿：
+   `/doc/reference/attio/Attio Homepage.svg`
+
+8. Attio 移动端设计稿：
+   `/doc/reference/attio/Attio Homepage (Mobile Responsive).svg`
+
+如果上述设计稿不在这些路径，必须先定位真实文件路径，再开始修改。
+
+## 强制参考关系
+
+- 整站布局、视觉、排版、组件和响应式，必须参考：
+  https://github.com/Wanfeng1028/Attio
+
+- 首页产品 Mac 小窗、内部产品 UI 和动画交互，必须参考：
+  https://github.com/Wanfeng1028/twenty
+
+- 不得只查看仓库首页或 README。
+- 必须进入相关源码目录，查看对应组件、样式、动画和响应式实现。
+- 不得仅凭记忆或截图自行设计。
+
 ## 1. 项目目标
 
 GeoWork 官网的核心目标是：
