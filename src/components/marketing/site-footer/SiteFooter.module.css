@@ -32,11 +32,6 @@
   color: #f1f2f4;
 }
 
-/* Logo wordmark/mark 在 footer 深底上需用浅色，覆盖亮色主题 token */
-.brand :global([class*='Logo-module__']) {
-  color: #f1f2f4;
-}
-
 .tagline {
   margin: 0;
   color: #9a9da3;

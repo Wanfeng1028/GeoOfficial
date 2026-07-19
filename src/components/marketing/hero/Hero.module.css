@@ -122,6 +122,19 @@
   margin-top: 0;
 }
 
+.title[data-locale='zh'] {
+  font-family:
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    STSong,
+    SimSun,
+    serif;
+
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .title[data-locale='en'] {
   max-width: calc(100% - 200px);
 

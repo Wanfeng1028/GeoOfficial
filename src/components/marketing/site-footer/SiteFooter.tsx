@@ -49,7 +49,7 @@ export function SiteFooter() {
     <footer className={styles.footer}>
       <Container className={styles.inner}>
         <div className={styles.brand}>
-          <Logo wordmark />
+          <Logo wordmark variant="on-dark" />
           <p className={styles.tagline}>
             {t.footer.tagline}
           </p>

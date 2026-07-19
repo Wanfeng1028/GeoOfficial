@@ -913,3 +913,34 @@ GeoWork 官网不能只是“像 FlowUs”或“像 Attio”。
 - 所有设计都在真实浏览器中验证。
 - 每完成一小部分都截图检查。
 - 每次改动完成后 CI 和 E2E 必须通过。
+
+---
+
+## 28. Twenty 产品窗口与 Attio 舞台复刻
+
+### 参考边界
+
+- 产品 Mac 窗口的内部 UI、工作台信息层级、任务/图层卡片、tab 切换、输入框和微交互：以 Wanfeng1028/twenty 与 twenty.com 为参考。
+- 首页中该窗口的舞台构图、浅蓝纵向网格、中央主窗口与两侧浮层的比例、留白、入场和悬浮节奏：以用户提供的 Attio 官网截图为唯一参考。
+- 不复用 Twenty 的 CRM 人物、公司、交易或品牌内容；只使用 GeoWork 项目、图层、任务和空间分析信息。
+
+### Visual Theme & Layout
+
+- Interaction tier: L2。
+- 舞台全宽，背景为 #edf3ff，叠加 8px 间距的低对比纵向网格；desktop 内边距 92px 24px 112px。
+- 中央 GeoWork 主窗口 desktop 尺寸为 1156px × 655px，最大宽度 64vw；圆角 18px，白底，阴影为 0 24px 56px rgba(49, 78, 128, .14)。
+- Desktop 两侧各保留一个 214px 宽的悬浮工具卡，距主窗口 40px；tablet 仅保留右侧结果卡；mobile 隐藏两侧卡片。
+- 主窗口含 48px 顶栏、紧凑侧栏、地图/数据/工作流 tab、中央分析画布和底部输入框。tab 只切换本地工作区状态。
+
+### Motion & Interaction
+
+- 首次进入视口：主窗口 440ms 从 translateY(28px) scale(.975) 进入；左/右浮层从各自外侧 32px 进入，延迟 120ms / 190ms。
+- 悬浮卡以 5–7 秒周期上下漂浮 2–4px；hover 上移 4px、加深阴影；仅使用 transform 与 opacity。
+- 输入框可聚焦；Enter 或发送后展示分析中，进度从 45% 补间到 75%，并按序点亮图层、边界和结果卡，不发送真实请求。
+- prefers-reduced-motion: reduce 下关闭全部入场、漂浮和进度动画并显示静态完成态。
+
+### Responsive & Guardrails
+
+- Mobile 保留主窗口与 44px 触摸输入框，不强塞两翼浮层或细密表格。
+- 不使用 CRM 人像、视频或 Twenty/Attio 原文案；不使用霓虹、玻璃拟态、大面积 blur 或旋转 3D。
+- 所有互动元素必须具备 hover、focus-visible 和 reduced-motion 降级。

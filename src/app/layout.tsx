@@ -23,6 +23,19 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
   },
+  icons: {
+    icon: [
+      {
+        url: '/GeoWork_Logo_Kit_v1.0/02_Web/Favicon/favicon.svg',
+        type: 'image/svg+xml',
+      },
+      {
+        url: '/GeoWork_Logo_Kit_v1.0/02_Web/Favicon/favicon.ico',
+        sizes: 'any',
+      },
+    ],
+    apple: '/GeoWork_Logo_Kit_v1.0/02_Web/Favicon/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

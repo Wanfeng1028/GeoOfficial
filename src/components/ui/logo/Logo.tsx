@@ -1,36 +1,41 @@
+import Image from 'next/image';
+
 import { cn } from '@/lib/cn';
 import styles from './Logo.module.css';
 
+type LogoVariant = 'on-light' | 'on-dark' | 'gradient';
+
 interface LogoProps {
   className?: string;
-  /** show wordmark beside the mark */
+  /** Show the full horizontal lockup instead of the symbol alone. */
   wordmark?: boolean;
-  /** alternative text label for the mark */
+  /** Use the official light, dark, or gradient asset. */
+  variant?: LogoVariant;
+  /** Alternative text label for the logo. */
   label?: string;
 }
 
-export function Logo({ className, wordmark = false, label = 'GeoWork' }: LogoProps) {
+export function Logo({
+  className,
+  wordmark = false,
+  variant = 'on-light',
+  label = 'GeoWork',
+}: LogoProps) {
+  const asset = wordmark
+    ? '/GeoWork_Logo_Kit_v1.0/02_Web/Navbar/geowork-logo-horizontal-' + variant + '.svg'
+    : '/GeoWork_Logo_Kit_v1.0/02_Web/Navbar/geowork-symbol-' + variant + '.svg';
+
   return (
-    <span className={cn(styles.logo, className)} aria-label={label}>
-      <svg
-        className={styles.mark}
-        viewBox="0 0 24 24"
-        fill="none"
-        aria-hidden
-        role="presentation"
-      >
-        <path
-          d="M5 3.5 L19 20 L5 20 Z"
-          fill="currentColor"
-          opacity="0.85"
-        />
-        <path
-          d="M5 3.5 L19 3.5 L13 11.5 Z"
-          fill="currentColor"
-          opacity="0.45"
-        />
-      </svg>
-      {wordmark ? <span className={styles.wordmark}>GeoWork</span> : null}
-    </span>
+    <Image
+      src={asset}
+      alt={label}
+      width={wordmark ? 980 : 260}
+      height={260}
+      className={cn(
+        styles.logo,
+        wordmark ? styles.horizontal : styles.symbol,
+        className,
+      )}
+    />
   );
 }

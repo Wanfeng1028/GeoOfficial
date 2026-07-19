@@ -1,20 +1,13 @@
 .logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--text-primary);
+  display: block;
+  height: auto;
+  object-fit: contain;
 }
 
-.mark {
-  width: 1.4rem;
-  height: 1.4rem;
-  color: var(--brand);
+.horizontal {
+  width: 128px;
 }
 
-.wordmark {
-  font-weight: 600;
-  font-size: 1.05rem;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
+.symbol {
+  width: 28px;
 }
-
