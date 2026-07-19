@@ -3,9 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { XIcon } from '@phosphor-icons/react';
+
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
-import { Container } from '@/components/ui/container/Container';
+
 import styles from './AnnouncementBar.module.css';
 
 export function AnnouncementBar() {
@@ -13,30 +14,50 @@ export function AnnouncementBar() {
   const t = getDict(locale);
   const [closed, setClosed] = useState(false);
 
-  if (closed) return null;
+  if (closed) {
+    return null;
+  }
 
   return (
-    <div className={styles.bar} role="banner" aria-label={locale === 'zh' ? '公告' : 'Announcement'}>
-      <Container className={styles.inner}>
-        <Link href="/changelog" className={styles.link}>
-          <span className={styles.text}>
+    <div
+      className={styles.bar}
+      role="banner"
+      aria-label={locale === 'zh' ? '网站公告' : 'Site announcement'}
+    >
+      <div className={styles.inner}>
+        <Link
+          href={`/${locale}/changelog`}
+          className={styles.link}
+        >
+          <span className={styles.message}>
             {t.nav.announcement}
           </span>
-          <span className={styles.separator}>{'\u3000'}</span>
+
           <span className={styles.action}>
             {t.nav.viewProgress}
-            <span aria-hidden> →</span>
+            <span className={styles.arrow} aria-hidden>
+              →
+            </span>
           </span>
         </Link>
+
         <button
+          type="button"
           className={styles.close}
           onClick={() => setClosed(true)}
-          aria-label={locale === 'zh' ? '关闭公告' : 'Close announcement'}
-          type="button"
+          aria-label={
+            locale === 'zh'
+              ? '关闭网站公告'
+              : 'Close site announcement'
+          }
         >
-          <XIcon aria-hidden />
+          <XIcon
+            size={15}
+            weight="bold"
+            aria-hidden
+          />
         </button>
-      </Container>
+      </div>
     </div>
   );
 }

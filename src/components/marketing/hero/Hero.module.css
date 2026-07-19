@@ -1,86 +1,26 @@
 .hero {
-  --site-header-height: 4.25rem;
   position: relative;
-  min-height: 190svh;
-  overflow: clip;
-  background: var(--page, #ffffff);
-}
-
-/* ─── StickyBackground ─────────────────────────────────── */
-.background {
-  position: sticky;
-  top: var(--site-header-height, 0);
-  z-index: 0;
-  height: calc(100svh - var(--site-header-height, 0));
-  margin-top: calc(-1 * (100svh - var(--site-header-height, 0)));
-  pointer-events: none;
   overflow: hidden;
-}
 
-.backgroundBase {
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(
-      90% 80% at 50% 100%,
-      rgb(230, 236, 255) 0%,
-      rgb(188, 203, 255) 45%,
-      rgb(134, 160, 238) 100%
-    );
-  opacity: 0.4;
-}
+  /* The announcement and header already establish the top rhythm. */
+  margin-top: 0;
 
-.backgroundStripes {
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.78) 0 1px,
-      transparent 1px 8px
-    );
-  opacity: 0.4;
-}
-
-.backgroundMask {
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 400%;
-  height: 150%;
-  transform-origin: top;
-  will-change: transform;
-  background-image:
-    radial-gradient(
-      70% 106.6667% at 50% 0%,
-      var(--page-background, var(--page, #ffffff)) 32%,
-      transparent 64%
-    );
-}
-
-/* ─── Foreground ───────────────────────────────────────── */
-.foreground {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  pointer-events: none;
-}
-
-.foreground > * {
-  pointer-events: auto;
+  color: #1c1d20;
+  background: #ffffff;
 }
 
 /* ─── HeroCopy ─────────────────────────────────────────── */
 .copy {
-  position: sticky;
-  top: var(--site-header-height, 0);
-  z-index: 10;
+  position: relative;
+
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding: max(72px, 8svh) 1rem 1.5rem;
+  justify-content: center;
+
+  padding:
+    81px
+    24px
+    0;
+
   text-align: center;
 }
 
@@ -88,99 +28,177 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+
+  width: 100%;
 }
 
+/* ─── Eyebrow (胶囊) ──────────────────────────────────── */
 .eyebrow {
-  margin: 0;
-  color: var(--text-secondary, #686d78);
-  font-size: 0.8125rem;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  min-height: 39px;
+  padding: 4px 10px 4px 4px;
+
+  color: #31373d;
+  background: #f4f5f6;
+  border: 0;
+  border-radius: 100px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-decoration: none;
+
+  transition:
+    color 150ms ease,
+    border-color 150ms ease,
+    background-color 150ms ease;
 }
 
-.title {
-  margin: 0 auto;
-  max-width: 32ch;
-  word-break: keep-all;
-  overflow-wrap: normal;
-  font-size: clamp(64px, calc(16px + 5.333svh), 80px);
-  line-height: 0.95;
+.eyebrow:hover {
+  color: #31373d;
+  background: #edeef0;
+}
+
+.eyebrowNew {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 31px;
+  padding: 8px;
+
+  color: #ffffff;
+  background: #1d1f20;
+  border-radius: 100px;
+
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: clamp(-2.4px, calc(2.08px - 0.3733svh), -1.28px);
+  line-height: 15px;
 }
 
-.title[data-locale='en'] {
-  text-wrap: balance;
+.eyebrowArrow {
+  transition: transform 150ms ease;
 }
 
-.title[data-locale='zh'] {
-  max-width: 18ch;
-  line-height: 1.02;
-  text-wrap: balance;
+.eyebrow:hover .eyebrowArrow {
+  transform: translateX(2px);
+}
+
+/* ─── Title ────────────────────────────────────────────── */
+.title {
+  width: 100%;
+  max-width: calc(100% - 200px);
+
+  margin: 32px auto 0;
+
+  color: #1c1d20;
+
+  font-family:
+    var(--font-sans),
+    "PingFang SC",
+    "Microsoft YaHei",
+    system-ui,
+    sans-serif;
+
+  font-size: 92px;
+  font-weight: 700;
+  line-height: 88px;
+  letter-spacing: normal;
+
+  text-align: center;
+  word-break: keep-all;
 }
 
 .titleLine {
   display: block;
 }
 
-.description {
-  max-width: 27em;
-  margin: 0 auto;
-  color: var(--text-secondary, #686d78);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.55;
+.titleLine + .titleLine {
+  margin-top: 0;
 }
 
+.title[data-locale='en'] {
+  max-width: calc(100% - 200px);
+
+  font-family:
+    "Attio Gilroy",
+    Gilroy,
+    "Inter Display",
+    Inter,
+    system-ui,
+    sans-serif;
+
+  font-size: 92px;
+  font-weight: 700;
+  line-height: 88px;
+  letter-spacing: normal;
+}
+
+/* ─── Description ──────────────────────────────────────── */
+.description {
+  max-width: calc(100% - 200px);
+
+  margin: 32px auto 0;
+
+  color: #6b7080;
+
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 33px;
+  letter-spacing: normal;
+}
+
+/* ─── Actions ──────────────────────────────────────────── */
 .actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 32px;
 }
 
-.actions button,
-.actions a {
-  min-height: 36px;
-  padding: 0 1rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
+.actions a,
+.actions button {
+  min-height: 42px;
+  border-radius: 12px;
+
+  font-size: 14px;
+  font-weight: 550;
 }
 
 /* ─── ProductStage ─────────────────────────────────────── */
 .stage {
-  position: sticky;
-  top: 0;
-  z-index: 5;
+  position: relative;
+
   display: flex;
-  height: 100svh;
-  align-items: center;
   justify-content: center;
-  overflow: visible;
-  padding-top: var(--site-header-height, 0);
-  padding-bottom: 5rem;
-  pointer-events: none;
+
+  padding: 0 0 96px;
 }
 
 .windowShell {
-  position: relative;
-  width: 66.666667%;
-  max-width: 1440px;
-  pointer-events: auto;
+  width: min(1252px, calc(100vw - 48px));
 }
 
 .macWindow {
   position: relative;
+
   overflow: hidden;
+
   padding: 0 6px 6px;
-  border-radius: 16px;
+
   background: rgba(242, 243, 245, 0.8);
+  border-radius: 16px;
+
   backdrop-filter: blur(12px);
-  transform-origin: center;
-  will-change: transform;
+  -webkit-backdrop-filter: blur(12px);
+
   box-shadow:
     rgba(11, 13, 24, 0.06) 0 0 0 1px,
     rgba(11, 13, 24, 0.024) 0 1px 2px,
@@ -192,6 +210,7 @@
 .macTitlebar {
   display: flex;
   align-items: center;
+
   height: 32px;
   padding-left: 8px;
 }
@@ -204,6 +223,7 @@
 .macControl {
   width: 12px;
   height: 12px;
+
   border-radius: 9999px;
 }
 
@@ -221,85 +241,95 @@
 
 .productViewport {
   width: 100%;
-  height: 300px;
+  height: min(40.35vw, 775px);
+
   overflow: hidden;
+
+  background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 12px;
-  background: #ffffff;
 }
 
-@media (min-width: 768px) {
-  .productViewport {
-    height: 380px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .windowShell {
-    width: 75%;
-  }
-
-  .macWindow {
-    padding: 0 12px 12px;
-    border-radius: 24px;
-  }
-
-  .productViewport {
-    height: min(40.35vw, 775px);
-    border-radius: 16px;
-  }
-}
-
-/* ─── Mobile: cancel sticky long-scroll animation ──────── */
+/* ─── Mobile ───────────────────────────────────────────── */
 @media (max-width: 767px) {
-  .hero {
-    min-height: auto;
+  .copy {
+    padding:
+      64px
+      20px
+      0;
   }
 
-  .background {
-    position: absolute;
-    top: 0;
-    height: 100%;
+  .eyebrow {
+    max-width: calc(100vw - 40px);
+  }
+
+  .title,
+  .title[data-locale='en'] {
+    margin-top: 28px;
+
+    max-width: calc(100% - 40px);
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: normal;
+  }
+
+  .titleLine + .titleLine {
     margin-top: 0;
   }
 
-  .copy {
-    position: relative;
-    top: auto;
-    min-height: auto;
-    padding: 6rem 1rem 2rem;
+  .description {
+    max-width: calc(100% - 40px);
+
+    margin-top: 32px;
+
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .actions {
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 300px;
+
+    margin-top: 32px;
+  }
+
+  .actions a,
+  .actions button {
+    width: 100%;
   }
 
   .stage {
-    position: relative;
-    top: auto;
-    height: auto;
-    padding: 0 0 3rem;
+    margin-top: 48px;
+    padding-bottom: 56px;
   }
 
   .windowShell {
     width: calc(100vw - 32px);
   }
 
-  .title {
-    font-size: 2.5rem;
-    max-width: 14ch;
-    letter-spacing: -0.02em;
+  .macWindow {
+    padding: 0 3px 3px;
+    border-radius: 10px;
   }
 
-  .title[data-locale='en'] {
-    font-size: 2.5rem;
-    line-height: 1.02;
+  .macTitlebar {
+    height: 20px;
+    padding-left: 5px;
   }
 
-  .actions {
-    flex-direction: column;
-    width: 100%;
-    max-width: 280px;
+  .macControls {
+    gap: 3px;
   }
 
-  .actions button,
-  .actions a {
-    width: 100%;
+  .macControl {
+    width: 7px;
+    height: 7px;
+  }
+
+  .productViewport {
+    height: 300px;
+    border-radius: 8px;
   }
 }

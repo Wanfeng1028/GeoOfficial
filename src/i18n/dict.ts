@@ -12,7 +12,7 @@ const dict = {
       changelog: '更新日志',
       plans: '版本与获取',
       github: 'GitHub',
-      exploreGeoWork: '了解 GeoWork',
+      exploreGeoWork: 'Explore',
       announcement: 'GeoWork 正在积极开发中',
       viewProgress: '查看最新进展',
       switchTo: 'English',
@@ -25,9 +25,9 @@ const dict = {
     },
     hero: {
       eyebrow: '让地理空间工作，真正智能起来。',
-      title: '重新定义地理空间工作流。\n让地图、数据与代码，驱动科研与工程。',
+      title: '重新定义\n地理空间工作流',
       description:
-        'GeoWork 将地图、数据、代码与智能体整合在同一工作空间，让研究与工程从构想到成果持续推进。',
+        '地图、数据与代码，驱动科研与工程',
       primaryCta: '了解 GeoWork',
       secondaryCta: 'GitHub 仓库',
       status: 'Developer Preview',
@@ -374,7 +374,7 @@ const dict = {
       changelog: 'Changelog',
       plans: 'Plans',
       github: 'GitHub',
-      exploreGeoWork: 'Explore GeoWork',
+      exploreGeoWork: 'Explore',
       announcement: 'GeoWork is in active development',
       viewProgress: 'View progress',
       switchTo: '中文',
@@ -386,10 +386,11 @@ const dict = {
       close: 'Close',
     },
     hero: {
-      eyebrow: 'A workspace for geospatial work',
-      title: 'Maps, data, code, and research.\nOne continuous workspace.',
+      eyebrow: 'Make geospatial work truly intelligent.',
+      title:
+        'Redefining\nGeospatial Workflows',
       description:
-        'GeoWork unifies projects, datasets, layers, tasks, and outputs — so analysis, verification, and delivery happen in one project context.',
+        'Maps, Data, and Code for Research and Engineering',
       primaryCta: 'Explore GeoWork',
       secondaryCta: 'View on GitHub',
       status: 'Developer Preview',

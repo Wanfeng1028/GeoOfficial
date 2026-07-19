@@ -1,25 +1,61 @@
 .switcher {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.65rem;
+  justify-content: center;
+
+  min-height: 32px;
+  padding: 6px 10px;
+
+  color: #5f6268;
+  background: transparent;
   border: 1px solid var(--border);
   border-radius: var(--radius-control);
-  background: transparent;
-  /* 硬编码亮色深字：SiteHeader 场景亮底，根级 dark 主题 override 会盖
-     var(--text-secondary) 让文字变浅色导致对比度崩。亮底深字 4.8:1 达标。
-     Footer 场景靠 SiteFooter.module.css 的 .localeWrap override 拿深色浅字。 */
-  color: #5f6268;
+
+  font: inherit;
   font-size: var(--text-caption);
   font-weight: 550;
+  line-height: 1;
+
   cursor: pointer;
+
   transition:
     color var(--duration-fast) var(--ease-standard),
     border-color var(--duration-fast) var(--ease-standard),
-    background var(--duration-fast) var(--ease-standard);
+    background-color var(--duration-fast) var(--ease-standard);
 }
 
 .switcher:hover {
   color: #17181b;
-  border-color: var(--border-strong);
   background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+
+.switcher:focus-visible {
+  outline: 2px solid rgba(23, 24, 27, 0.75);
+  outline-offset: 3px;
+}
+
+/*
+ * Header 桌面导航专用模式。
+ * 它看起来应当是普通导航文字，而不是第三个操作按钮。
+ */
+.switcher[data-variant='nav'] {
+  min-height: auto;
+  padding: 8px 0;
+
+  color: #17181b;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+}
+
+.switcher[data-variant='nav']:hover {
+  color: rgba(23, 24, 27, 0.62);
+  background: transparent;
+  border-color: transparent;
 }

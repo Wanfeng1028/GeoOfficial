@@ -2,20 +2,28 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { GithubLogoIcon } from '@phosphor-icons/react/ssr';
-import { mainNavigation, platformMegaMenu, resourcesMegaMenu } from '@/data/navigation';
+
+import {
+  mainNavigation,
+  platformMegaMenu,
+  resourcesMegaMenu,
+} from '@/data/navigation';
+
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
 import { LocaleSwitcher } from '@/i18n/LocaleSwitcher';
-import { Button } from '@/components/ui/button/Button';
-import { Container } from '@/components/ui/container/Container';
+
 import { Logo } from '@/components/ui/logo/Logo';
 import { MegaMenu } from '@/components/marketing/mega-menu/MegaMenu';
+
 import { MobileMenu } from './MobileMenu';
-import { usePageTheme } from '@/components/theme/use-page-theme';
+
 import styles from './SiteHeader.module.css';
 
-const navLabelKeys: Record<string, keyof ReturnType<typeof getDict>['nav']> = {
+const navLabelKeys: Record<
+  string,
+  keyof ReturnType<typeof getDict>['nav']
+> = {
   Platform: 'platform',
   Resources: 'resources',
   'Use Cases': 'useCases',
@@ -30,80 +38,133 @@ const megaMenuMap = {
 export function SiteHeader() {
   const { locale } = useLocale();
   const t = getDict(locale);
+
   const [isScrolled, setIsScrolled] = useState(false);
-  const theme = usePageTheme();
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 16);
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 12);
+    };
+
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+
+    window.addEventListener('scroll', onScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return (
     <header
-      className={`${styles.header}${isScrolled ? ` ${styles.scrolled}` : ''}`}
-      data-theme={theme}
+      className={`${styles.header}${
+        isScrolled ? ` ${styles.scrolled}` : ''
+      }`}
     >
-      <Container className={styles.inner}>
-        <Link href="/" aria-label="GeoWork 首页" className={styles.brand}>
+      <div className={styles.inner}>
+        <Link
+          href={`/${locale}`}
+          aria-label={
+            locale === 'zh'
+              ? 'GeoWork 首页'
+              : 'Return to GeoWork homepage'
+          }
+          className={styles.brand}
+        >
           <Logo wordmark />
         </Link>
 
-        <nav className={styles.desktopNav} aria-label="主导航">
+        <nav
+          className={styles.desktopNav}
+          aria-label={
+            locale === 'zh'
+              ? '主导航'
+              : 'Main navigation'
+          }
+        >
           {mainNavigation.map((item) => {
-            const label = navLabelKeys[item.label as keyof typeof navLabelKeys]
-              ? t.nav[navLabelKeys[item.label as keyof typeof navLabelKeys]]
+            const dictionaryKey =
+              navLabelKeys[item.label];
+
+            const label = dictionaryKey
+              ? t.nav[dictionaryKey]
               : item.label;
-            if ('hasMega' in item && item.hasMega && item.label in megaMenuMap) {
-              const megaData = megaMenuMap[item.label as keyof typeof megaMenuMap];
-              // 保留原始数据（含 en/enDescription），由 MegaMenu 内部按 locale 渲染
-              const itemWithLabel = { ...megaData, label };
-              return <MegaMenu key={item.label} item={itemWithLabel} />;
+
+            if (
+              'hasMega' in item &&
+              item.hasMega &&
+              item.label in megaMenuMap
+            ) {
+              const megaData =
+                megaMenuMap[
+                  item.label as keyof typeof megaMenuMap
+                ];
+
+              const itemWithLabel = {
+                ...megaData,
+                label,
+              };
+
+              return (
+                <MegaMenu
+                  key={item.label}
+                  item={itemWithLabel}
+                />
+              );
             }
+
             return (
               <Link
                 key={item.label}
                 href={item.href}
-                target={'external' in item ? '_blank' : undefined}
-                rel={'external' in item ? 'noreferrer' : undefined}
+                target={
+                  'external' in item
+                    ? '_blank'
+                    : undefined
+                }
+                rel={
+                  'external' in item
+                    ? 'noreferrer'
+                    : undefined
+                }
                 className={styles.navLink}
               >
                 {label}
               </Link>
             );
           })}
+
+          <LocaleSwitcher
+            variant="nav"
+            className={styles.desktopLocale}
+          />
         </nav>
 
         <div className={styles.actions}>
-          <LocaleSwitcher className={`${styles.actionBtn} ${styles.lightBtn}`} />
-          <Button
-            asChild
-            variant="quiet"
-            size="sm"
-            className={`${styles.actionBtn} ${styles.darkBtn} ${styles.githubBtn}`}
+          <a
+            href="https://github.com/Wanfeng1028/GeoWork"
+            target="_blank"
+            rel="noreferrer"
+            className={`${styles.actionButton} ${styles.secondaryAction} ${styles.desktopAction}`}
           >
-            <a
-              href="https://github.com/Wanfeng1028/GeoWork"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GithubLogoIcon aria-hidden /> {t.nav.github}
-            </a>
-          </Button>
-          <Button
-            asChild
-            variant="primary"
-            size="sm"
-            className={`${styles.actionBtn} ${styles.lightBtn}`}
+            {t.nav.github}
+          </a>
+
+          <Link
+            href={`/${locale}/platform`}
+            className={`${styles.actionButton} ${styles.primaryAction} ${styles.desktopAction}`}
           >
-            <Link href="/platform">{t.nav.exploreGeoWork}</Link>
-          </Button>
-          <div className={styles.mobileOnly}>
+            {t.nav.exploreGeoWork}
+          </Link>
+
+          <div className={styles.mobileControls}>
+            <LocaleSwitcher />
             <MobileMenu />
           </div>
         </div>
-      </Container>
+      </div>
     </header>
   );
 }

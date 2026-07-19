@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "Attio Inter";
+  src: url("/fonts/attio-inter.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Attio Gilroy";
+  src: url("/fonts/attio-gilroy-bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
 
@@ -85,6 +101,7 @@
     system-ui,
     sans-serif;
   --font-en:
+    "Attio Inter",
     Inter,
     system-ui,
     sans-serif;

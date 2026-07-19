@@ -1,9 +1,12 @@
 'use client';
 
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+
+import { cn } from '@/lib/cn';
+
 import { useLocale } from './LocaleProvider';
 import type { Locale } from './locale';
-import { cn } from '@/lib/cn';
+
 import styles from './LocaleSwitcher.module.css';
 
 const localeLabels: Record<Locale, string> = {
@@ -11,32 +14,50 @@ const localeLabels: Record<Locale, string> = {
   en: 'English',
 };
 
-export function LocaleSwitcher({ className }: { className?: string }) {
+type LocaleSwitcherVariant = 'control' | 'nav';
+
+interface LocaleSwitcherProps {
+  className?: string;
+  variant?: LocaleSwitcherVariant;
+}
+
+export function LocaleSwitcher({
+  className,
+  variant = 'control',
+}: LocaleSwitcherProps) {
   const { locale } = useLocale();
   const router = useRouter();
   const pathname = usePathname();
 
-  const otherLocale: Locale = locale === 'zh' ? 'en' : 'zh';
+  const otherLocale: Locale =
+    locale === 'zh' ? 'en' : 'zh';
 
   function switchLocale() {
-    // 当前路径形如 /zh/about 或 /en/about；替换第一段为另一个 locale
     const segments = pathname.split('/');
-    // segments[0] === ''（前导斜杠），segments[1] 是 locale
-    if (segments.length > 1 && (segments[1] === 'zh' || segments[1] === 'en')) {
+
+    if (
+      segments.length > 1 &&
+      (segments[1] === 'zh' || segments[1] === 'en')
+    ) {
       segments[1] = otherLocale;
       router.push(segments.join('/') || '/');
-    } else {
-      // 无 locale 前缀时，回退到默认 locale 路由
-      router.push(`/${otherLocale}`);
+      return;
     }
+
+    router.push(`/${otherLocale}`);
   }
 
   return (
     <button
       type="button"
       className={cn(styles.switcher, className)}
+      data-variant={variant}
       onClick={switchLocale}
-      aria-label={`Switch to ${localeLabels[otherLocale]}`}
+      aria-label={
+        locale === 'zh'
+          ? 'Switch to English'
+          : '切换到中文'
+      }
     >
       {localeLabels[otherLocale]}
     </button>
