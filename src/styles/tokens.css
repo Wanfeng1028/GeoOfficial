@@ -95,11 +95,12 @@
      Fonts
      =========================== */
   --font-zh:
-    "PingFang SC",
-    "Microsoft YaHei",
-    "Noto Sans SC",
-    system-ui,
-    sans-serif;
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    STSong,
+    SimSun,
+    serif;
   --font-en:
     "Attio Inter",
     Inter,

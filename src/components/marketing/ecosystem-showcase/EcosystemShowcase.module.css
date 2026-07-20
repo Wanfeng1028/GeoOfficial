@@ -1,4 +1,6 @@
 .section {
+  width: 100%;
+  max-width: 100vw;
   padding: 5rem 0 7rem;
   background: var(--page);
   overflow: hidden;
@@ -39,7 +41,9 @@
 
 /* Icon track — auto-scrolling horizontal */
 .track {
-  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow: clip;
   margin-bottom: 3rem;
   mask-image: linear-gradient(
     to right,

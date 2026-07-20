@@ -40,10 +40,16 @@ export function SiteHeader() {
   const t = getDict(locale);
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 12);
+      const footerTop = document.querySelector("footer")?.getBoundingClientRect().top;
+      setIsDarkTheme(
+        document.documentElement.dataset.pageTheme === "dark" ||
+          (footerTop !== undefined && footerTop <= 82),
+      );
     };
 
     onScroll();
@@ -57,11 +63,31 @@ export function SiteHeader() {
     };
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    const updateTheme = () => {
+      const footerTop = document.querySelector("footer")?.getBoundingClientRect().top;
+      setIsDarkTheme(
+        root.dataset.pageTheme === "dark" ||
+          (footerTop !== undefined && footerTop <= 82),
+      );
+    };
+
+    updateTheme();
+    const observer = new MutationObserver(updateTheme);
+    observer.observe(root, {
+      attributes: true,
+      attributeFilter: ["data-page-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header
       className={`${styles.header}${
         isScrolled ? ` ${styles.scrolled}` : ''
-      }`}
+      }${isDarkTheme ? ` ${styles.dark}` : ``}`}
     >
       <div className={styles.inner}>
         <Link
@@ -73,7 +99,7 @@ export function SiteHeader() {
           }
           className={styles.brand}
         >
-          <Logo wordmark />
+          <Logo wordmark variant={isDarkTheme ? "on-dark" : "on-light"} />
         </Link>
 
         <nav

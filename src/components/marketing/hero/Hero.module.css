@@ -188,11 +188,9 @@
 /* ─── ProductStage ─────────────────────────────────────── */
 .stage {
   position: relative;
-
-  display: flex;
-  justify-content: center;
-
-  padding: 0 0 96px;
+  display: block;
+  width: 100%;
+  padding: 0;
 }
 
 .windowShell {
@@ -314,8 +312,7 @@
   }
 
   .stage {
-    margin-top: 48px;
-    padding-bottom: 56px;
+    display: block;
   }
 
   .windowShell {

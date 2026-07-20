@@ -59,3 +59,25 @@
   background: transparent;
   border-color: transparent;
 }
+
+/*
+ * 暗色导航栏下，切换按钮文字应为白色。
+ * 触发场景：
+ *   1. 站点级暗色主题（:root[data-page-theme="dark"]）
+ *   2. SiteHeader 滚到页脚区被加上 .dark 类（父级 header.dark）
+ */
+:global(:root[data-page-theme='dark']) .switcher[data-variant='nav'] {
+  color: #f1f2f4;
+}
+
+:global(:root[data-page-theme='dark']) .switcher[data-variant='nav']:hover {
+  color: rgba(241, 242, 244, 0.68);
+}
+
+:global(.dark) .switcher[data-variant='nav'] {
+  color: #f1f2f4;
+}
+
+:global(.dark) .switcher[data-variant='nav']:hover {
+  color: rgba(241, 242, 244, 0.68);
+}

@@ -1,4 +1,5 @@
 .section {
+  overflow: clip;
   padding: clamp(5rem, 8vw, 9rem) 0;
   background: var(--page-soft);
   color: var(--text-primary);

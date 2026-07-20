@@ -21,7 +21,7 @@ export function Hero() {
     .filter(Boolean);
 
   return (
-    <section className={styles.hero}>
+    <section id="hero" className={styles.hero}>
       <div className={styles.copy}>
         <div className={styles.copyInner}>
           <Link
@@ -81,30 +81,7 @@ export function Hero() {
       </div>
 
       <div className={styles.stage}>
-        <div className={styles.windowShell}>
-          <div className={styles.macWindow}>
-            <div className={styles.macTitlebar}>
-              <div
-                className={styles.macControls}
-                aria-hidden="true"
-              >
-                <span
-                  className={`${styles.macControl} ${styles.red}`}
-                />
-                <span
-                  className={`${styles.macControl} ${styles.yellow}`}
-                />
-                <span
-                  className={`${styles.macControl} ${styles.green}`}
-                />
-              </div>
-            </div>
-
-            <div className={styles.productViewport}>
-              <GeoWorkPreview />
-            </div>
-          </div>
-        </div>
+        <GeoWorkPreview />
       </div>
     </section>
   );

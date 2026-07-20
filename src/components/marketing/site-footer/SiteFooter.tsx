@@ -10,32 +10,37 @@ import { footerNavigation } from '@/data/navigation';
 import { siteConfig } from '@/lib/site';
 import styles from './SiteFooter.module.css';
 
-// Footer 分组标题的翻译 key 映射（基于中文 label，作为 titleKey 缺失时的回退）
-const footerGroupKeys: Record<string, string> = {
-  '产品': 'product',
-  '平台': 'platform',
-  '资源': 'resources',
-  '开发': 'developers',
-  '项目': 'project',
-  '法律': 'legal',
+const footerGroupLabels: Record<string, string> = {
+  "平台": "Platform",
+  "资源": "Resources",
+  "项目": "Project",
+  "法律": "Legal",
 };
 
-// Footer 链接标签的翻译 key 映射（基于中文 label）
-const footerLinkKeys: Record<string, string> = {
-  '产品概览': 'productOverview',
-  '工作方式': 'howItWorks',
-  '使用案例': 'useCases',
-  '下载': 'download',
-  '更新日志': 'changelog',
-  'GeoWork 仓库': 'geoWorkRepo',
-  'GeoFrontend2.0': 'geoFrontend',
-  'GitHub Issues': 'githubIssues',
-  'Releases': 'releases',
-  '关于': 'about',
-  '隐私': 'privacy',
-  '条款': 'terms',
-  '版本与获取': 'plans',
-  '安全': 'security',
+const zhFooterLinkLabels: Record<string, string> = {
+  Assistant: "助手",
+  "Data model": "数据模型",
+  Workflows: "工作流",
+  Ecosystem: "生态",
+  "Help Center": "帮助中心",
+  Learn: "学习",
+  Docs: "文档",
+  Changelog: "更新日志",
+  Blog: "博客",
+  Engineering: "工程",
+  Manifesto: "宣言",
+  Careers: "职业与贡献",
+  Status: "状态",
+};
+
+const enFooterLinkLabels: Record<string, string> = {
+  "使用案例": "Use Cases",
+  "版本与获取": "Plans",
+  "关于": "About",
+  "隐私": "Privacy",
+  "条款": "Terms",
+  "安全": "Security",
+  "下载": "Download",
 };
 
 export function SiteFooter() {
@@ -61,17 +66,17 @@ export function SiteFooter() {
 
         <nav className={styles.groups} aria-label="页脚导航">
           {footerNavigation.map((group) => {
-            const groupTitle = footerGroupKeys[group.title as string]
-              ? (t.footer.nav as unknown as Record<string, string>)[footerGroupKeys[group.title as string]] ?? group.title
+            const groupTitle = locale === "en"
+              ? footerGroupLabels[group.title] ?? group.title
               : group.title;
             return (
             <div key={group.title} className={styles.group}>
               <p className={styles.groupTitle}>{groupTitle}</p>
               <ul className={styles.links}>
                 {group.links.map((link) => {
-                  const linkLabel = footerLinkKeys[link.label as string]
-                    ? (t.footer.nav.links as Record<string, string>)[footerLinkKeys[link.label as string]] ?? link.label
-                    : link.label;
+                  const linkLabel = locale === "zh"
+                    ? zhFooterLinkLabels[link.label] ?? link.label
+                    : enFooterLinkLabels[link.label] ?? link.label;
                   return 'external' in link && link.external ? (
                     <li key={link.label}>
                       <a

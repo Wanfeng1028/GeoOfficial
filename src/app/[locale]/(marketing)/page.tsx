@@ -11,7 +11,6 @@ import { ContextShowcase } from '@/components/marketing/context-showcase/Context
 import { EcosystemShowcase } from '@/components/marketing/ecosystem-showcase/EcosystemShowcase';
 import { OpenDevelopment } from '@/components/marketing/open-development/OpenDevelopment';
 import { ChangelogPreview } from '@/components/marketing/changelog-preview/ChangelogPreview';
-import { CurtainReveal } from '@/components/scroll/CurtainReveal';
 import { ThemeSection } from '@/components/theme/ThemeSection';
 import { FinalCta } from '@/components/marketing/final-cta/FinalCta';
 import styles from './page.module.css';
@@ -30,33 +29,21 @@ export default function HomePage() {
       <ContextShowcase />
       <EcosystemShowcase />
       <OpenDevelopment />
-
-      {/* Curtain reveal + Quote */}
-      <CurtainReveal
-        height="200vh"
-        curtainContent={
-          <div className={styles.curtainEnd}>
-            <p className={styles.curtainLabel}>Universal Context</p>
-            <p className={styles.curtainHint}>Scroll to reveal</p>
-          </div>
-        }
-      >
-        <ThemeSection theme="light">
-          <div className={styles.quoteSection}>
-            <blockquote className={styles.quote}>
-              <p className={styles.quoteText}>
-                {t.quote.text.split('\n').map((line, i) => (
-                  <span key={i}>
-                    {i > 0 && <br />}
-                    {line}
-                  </span>
-                ))}
-              </p>
-              <footer className={styles.quoteAuthor}>{t.quote.author}</footer>
-            </blockquote>
-          </div>
-        </ThemeSection>
-      </CurtainReveal>
+      <ThemeSection theme="light">
+        <section className={styles.quoteSection}>
+          <blockquote className={styles.quote}>
+            <p className={styles.quoteText}>
+              {t.quote.text.split('\n').map((line, i) => (
+                <span key={i}>
+                  {i > 0 && <br />}
+                  {line}
+                </span>
+              ))}
+            </p>
+            <footer className={styles.quoteAuthor}>{t.quote.author}</footer>
+          </blockquote>
+        </section>
+      </ThemeSection>
 
       <ThemeSection theme="light">
         <ChangelogPreview />
