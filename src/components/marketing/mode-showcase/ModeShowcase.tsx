@@ -2,6 +2,7 @@
 
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
+import { useReveal } from '@/hooks/useReveal';
 import { mediaAssets } from '@/data/media';
 import { ModeShowcaseClient } from './ModeShowcaseClient';
 import styles from './ModeShowcase.module.css';
@@ -15,6 +16,7 @@ const modeImages = {
 export function ModeShowcase() {
   const { locale } = useLocale();
   const t = getDict(locale);
+  const revealRef = useReveal();
 
   const modes = [
     {
@@ -41,16 +43,27 @@ export function ModeShowcase() {
   ];
 
   return (
-    <section id="modes" className={styles.section} aria-labelledby="modes-title">
+    <section
+      id="modes"
+      ref={revealRef as React.RefObject<HTMLDivElement | null>}
+      className={styles.section}
+      aria-labelledby="modes-title"
+    >
       <div className={styles.intro}>
-        <p className={styles.eyebrow}>{t.modes.eyebrow}</p>
-        <h2 id="modes-title" className={styles.title}>
+        <p className={`${styles.eyebrow} reveal`} data-reveal-delay="0ms">
+          {t.modes.eyebrow}
+        </p>
+        <h2 id="modes-title" className={`${styles.title} reveal`} data-reveal-delay="100ms">
           {t.modes.title}
         </h2>
-        <p className={styles.description}>{t.modes.description}</p>
+        <p className={`${styles.description} reveal`} data-reveal-delay="200ms">
+          {t.modes.description}
+        </p>
       </div>
 
-      <ModeShowcaseClient modes={modes} />
+      <div className={`reveal`} data-reveal-delay="300ms">
+        <ModeShowcaseClient modes={modes} />
+      </div>
     </section>
   );
 }

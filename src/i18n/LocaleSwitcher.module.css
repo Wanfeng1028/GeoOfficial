@@ -43,7 +43,7 @@
   min-height: auto;
   padding: 8px 0;
 
-  color: #17181b;
+  color: var(--nav-text-color);
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -80,4 +80,25 @@
 
 :global(.dark) .switcher[data-variant='nav']:hover {
   color: rgba(241, 242, 244, 0.68);
+}
+
+/* ── Locale switch dialog ── */
+.dialogContent {
+  max-width: 400px;
+}
+
+.dialogTitle {
+  text-align: center;
+}
+
+.dialogDesc {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.dialogActions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
 }

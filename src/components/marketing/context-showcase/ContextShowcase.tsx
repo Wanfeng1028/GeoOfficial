@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import { useScroll, useTransform, motion, type UseScrollOptions } from 'motion/react';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
+import { motionTokens } from '@/styles/motion-tokens';
 import { ThemeSection } from '@/components/theme/ThemeSection';
 import { Container } from '@/components/ui/container/Container';
 import styles from './ContextShowcase.module.css';
@@ -132,7 +133,11 @@ export function ContextShowcase() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                transition={{
+                  duration: motionTokens.durationNormal,
+                  ease: motionTokens.easeStandard,
+                  delay: i * 0.08,
+                }}
               >
                 <div className={styles.itemIndex}>
                   {String(i + 1).padStart(2, '0')}

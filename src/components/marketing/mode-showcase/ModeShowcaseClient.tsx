@@ -1,7 +1,9 @@
 'use client';
 
+import { useState, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/primitives/tabs/Tabs';
+import { ArrowLeftIcon, ArrowRightIcon } from '@phosphor-icons/react/ssr';
+import { cn } from '@/lib/cn';
 import styles from './ModeShowcase.module.css';
 
 interface ModeItem {
@@ -10,6 +12,10 @@ interface ModeItem {
   description: string;
   image: string;
   alt: string;
+}
+
+interface ModeShowcaseClientProps {
+  modes: readonly ModeItem[];
 }
 
 const modeDetails: Record<string, { title: string; features: string[] }> = {
@@ -42,51 +48,113 @@ const modeDetails: Record<string, { title: string; features: string[] }> = {
   },
 };
 
-export function ModeShowcaseClient({ modes }: { modes: readonly ModeItem[] }) {
+export function ModeShowcaseClient({ modes }: ModeShowcaseClientProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const goTo = useCallback(
+    (index: number) => {
+      if (isTransitioning) return;
+      const clamped = ((index % modes.length) + modes.length) % modes.length;
+      setIsTransitioning(true);
+      setActiveIndex(clamped);
+      setTimeout(() => setIsTransitioning(false), 300);
+    },
+    [modes.length, isTransitioning],
+  );
+
+  const goPrev = useCallback(() => {
+    goTo(activeIndex - 1);
+  }, [activeIndex, goTo]);
+
+  const goNext = useCallback(() => {
+    goTo(activeIndex + 1);
+  }, [activeIndex, goTo]);
+
   return (
-    <Tabs defaultValue={modes[0]?.id} orientation="horizontal" className={styles.tabs}>
-      <TabsList aria-label="GeoWork 工作模式" className={styles.list}>
-        {modes.map((mode) => (
-          <TabsTrigger key={mode.id} value={mode.id} className={styles.trigger}>
+    <div className={styles.carouselWrap}>
+      {/* Pill Tab Bar */}
+      <div className={styles.pillBar}>
+        {modes.map((mode, i) => (
+          <button
+            key={mode.id}
+            className={cn(
+              styles.pill,
+              i === activeIndex && styles.pillActive,
+            )}
+            onClick={() => goTo(i)}
+            aria-selected={i === activeIndex}
+          >
             {mode.label}
-          </TabsTrigger>
+          </button>
         ))}
-      </TabsList>
+      </div>
 
-      <div className={styles.panels}>
-        {modes.map((mode) => {
-          const details = modeDetails[mode.id];
-          return (
-            <TabsContent key={mode.id} value={mode.id} className={styles.panel}>
-              <div className={styles.panelLayout}>
-                {/* 左 30%：说明 */}
-                <div className={styles.panelCopy}>
-                  <h3 className={styles.panelTitle}>{details?.title ?? mode.description}</h3>
-                  {details?.features && (
-                    <ul className={styles.featureList}>
-                      {details.features.map((f) => (
-                        <li key={f} className={styles.featureItem}>
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-
-                {/* 右 70%：媒体 */}
-                <div className={styles.mediaWrap}>
-                  <Image
-                    src={mode.image}
-                    alt={mode.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 65vw"
-                  />
+      {/* Card Carousel */}
+      <div className={styles.carousel}>
+        <div className={styles.track} ref={trackRef} style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+          {modes.map((mode) => {
+            const details = modeDetails[mode.id];
+            return (
+              <div key={mode.id} className={styles.slide}>
+                <div className={styles.card}>
+                  <div className={styles.cardMedia}>
+                    <Image
+                      src={mode.image}
+                      alt={mode.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 36rem"
+                    />
+                  </div>
+                  <div className={styles.cardCopy}>
+                    <p className={styles.cardLabel}>{mode.label}</p>
+                    <h3 className={styles.cardTitle}>{details?.title ?? mode.description}</h3>
+                    <p className={styles.cardDesc}>{mode.description}</p>
+                    {details?.features && (
+                      <ul className={styles.cardFeatures}>
+                        {details.features.map((f) => (
+                          <li key={f} className={styles.cardFeature}>
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
               </div>
-            </TabsContent>
-          );
-        })}
+            );
+          })}
+        </div>
+
+        {/* Arrows */}
+        <button
+          className={`${styles.arrow} ${styles.arrowPrev}`}
+          onClick={goPrev}
+          aria-label="Previous mode"
+        >
+          <ArrowLeftIcon size={20} weight="bold" />
+        </button>
+        <button
+          className={`${styles.arrow} ${styles.arrowNext}`}
+          onClick={goNext}
+          aria-label="Next mode"
+        >
+          <ArrowRightIcon size={20} weight="bold" />
+        </button>
       </div>
-    </Tabs>
+
+      {/* Dot Indicators */}
+      <div className={styles.dots}>
+        {modes.map((_, i) => (
+          <button
+            key={i}
+            className={cn(styles.dot, i === activeIndex && styles.dotActive)}
+            onClick={() => goTo(i)}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

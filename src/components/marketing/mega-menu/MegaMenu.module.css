@@ -9,7 +9,7 @@
   padding: 0.5rem 0.75rem;
   border: 0;
   border-radius: var(--radius-control);
-  color: var(--text-primary);
+  color: var(--nav-text-color);
   background: transparent;
   font-size: 0.9375rem;
   cursor: pointer;
@@ -19,6 +19,7 @@
 .trigger:hover,
 .triggerOpen {
   background: var(--surface-hover);
+  color: #17181b;
 }
 
 .caret {
@@ -36,7 +37,7 @@
   top: calc(100% + 0.35rem);
   left: 50%;
   transform: translateX(-50%);
-  min-width: 40rem;
+  min-width: 48rem;
   max-width: calc(100vw - 2rem);
   padding: var(--space-5);
   background: var(--surface);
@@ -54,8 +55,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-  gap: var(--space-4);
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
 }
 
 .group {

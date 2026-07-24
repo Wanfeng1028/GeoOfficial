@@ -34,31 +34,31 @@ const dict = {
     },
     productObjects: {
       eyebrow: 'FIG 1.1 · Product Objects',
-      title: '项目中的每个对象，始终保持上下文。',
+      title: '项目中的每个对象 始终保持上下文',
       description:
         'Project / Dataset / Layer / Task / Artifact — 五个核心对象在同一个工作区中连续工作。',
     },
     workflow: {
       eyebrow: 'Workflow',
-      title: '从项目开始，以可继续工作的成果结束。',
+      title: '从项目开始 以可继续工作的成果结束',
       description:
         '一个 GeoWork 项目贯穿 Define → Organize → Analyze → Verify → Deliver 五个阶段，每个阶段的工作成果自然成为下一阶段的输入。',
     },
     modes: {
       eyebrow: '三种工作模式',
-      title: 'Work / Code / Map，共享同一项目。',
+      title: 'Work / Code / Map 共享同一项目',
       description:
         '在三种模式之间切换不会丢失上下文，工具、数据和成果保持连续。',
     },
     useCases: {
       eyebrow: '真实地理空间工作',
-      title: '从问题到成果的完整工作过程。',
+      title: '从问题到成果的完整工作过程',
       description:
         '每个案例包含输入、过程、工具、输出和当前可用状态，不用抽象形容词替代成果。',
     },
     universalContext: {
       eyebrow: 'Universal Context',
-      title: '同一个项目上下文，\n贯穿数据、地图、代码和成果。',
+      title: '同一个项目上下文\n贯穿数据 地图 代码和成果',
       description:
         'GeoWork 项目中的每个对象、每个操作和每份成果，都关联同一个项目上下文，不再需要反复切换工具和重建环境。',
       items: [
@@ -72,7 +72,7 @@ const dict = {
     },
     ecosystem: {
       eyebrow: 'Ecosystem',
-      title: '连接你的地理工具栈。',
+      title: '连接你的地理工具栈',
       description:
         'GeoWork 通过 Skills、MCP 和插件连接专业工具，不替代现有工具，而是提供统一的工作区和上下文。',
       blocks: [
@@ -84,15 +84,15 @@ const dict = {
       note: 'Developer Preview — 连接状态反映当前开发阶段。',
     },
     openDev: {
-      title: 'GeoWork 正在开放开发中。',
+      title: 'GeoWork 正在开放开发中',
       description:
         '仓库公开在 GitHub，当前处于 Developer Preview。参与贡献、查看路线图与发布记录均通过仓库入口。',
     },
     finalCta: {
-      title: '让完整的地理空间工作，\n在 GeoWork 中连续发生。',
+      title: '下一张地图\n由你开始',
       description:
         '仓库公开在 GitHub，当前处于 Developer Preview。参与贡献、查看路线图与发布记录均通过仓库入口。',
-      primaryBtn: '了解 GeoWork',
+      primaryBtn: '下载',
       secondaryBtn: 'GitHub 仓库',
     },
     megaMenu: {
@@ -163,19 +163,25 @@ const dict = {
     },
     changelog: {
       eyebrow: 'Changelog',
-      title: '持续改进，每周更新。',
+      title: '持续改进 每周更新',
       description: '查看最新的 GeoWork 产品更新和改进。',
       viewAll: '查看全部',
     },
     quote: {
-      text: 'GeoWork 想解决的不是某一个工具问题，\n而是地理空间工作在工具之间不断断裂的问题。',
+      text: '探索空间\n理解变化\n创造新的可能',
       author: 'GeoWork 开发愿景',
     },
     localeSwitch: 'English',
+    localeSwitchDialog: {
+      title: '建议用英文浏览',
+      description: '本站内容目前以英文为主，中文版本仍在翻译中。切换到英文可以获得更完整的体验。',
+      stay: '继续用英文',
+      switchAnyway: '仍要切换到中文',
+    },
     pages: {
       product: {
         meta: { title: '产品 · GeoWork', description: 'GeoWork 产品工作台、对象、模式与可扩展能力。' },
-        hero: { eyebrow: '产品', title: '一个工作台，贯穿项目到成果。', description: 'GeoWork 把地图、遥感、代码、研究与自动化组织在同一个项目上下文中，不为单一算法或工具绑定。' },
+        hero: { eyebrow: '产品', title: '一个工作台 贯穿项目到成果', description: 'GeoWork 把地图、遥感、代码、研究与自动化组织在同一个项目上下文中，不为单一算法或工具绑定。' },
         cta: { explore: 'Explore GeoWork', viewCases: '查看真实案例' },
         objects: { eyebrow: 'Objects', title: '五个核心对象。', description: 'Project / Dataset / Layer / Task / Artifact — 每个对象不是孤立功能，而是与项目上下文连续。' },
         modes: { eyebrow: 'Modes', title: 'Work / Code / Map 三种模式。', description: '在三种模式之间切换不会丢失上下文，工具、数据和成果保持连续。', work: { title: 'Work', desc: '项目管理、任务调度、工具集成、成果汇总。' }, code: { title: 'Code', desc: '编辑器、Python 终端、运行结果和代码版本管理。' }, map: { title: 'Map', desc: '图层叠加、影像分析、属性查询和制图输出。' } },
@@ -183,7 +189,7 @@ const dict = {
       },
       useCases: {
         meta: { title: '使用案例', description: 'GeoWork 真实地理空间工作案例：城市扩张、NDVI 时序与科研报告。' },
-        hero: { eyebrow: '使用案例', title: '从问题到成果的完整工作过程。', description: '每个案例包含输入、过程、工具、输出和当前可用状态，不用抽象形容词替代成果。' },
+        hero: { eyebrow: '使用案例', title: '从问题到成果的完整工作过程', description: '每个案例包含输入、过程、工具、输出和当前可用状态，不用抽象形容词替代成果。' },
         filters: ['全部', '科研', '教学', '行业分析', '开发'],
         status: { available: '当前可运行', preview: 'Developer Preview', planned: '计划中' },
         viewDetail: '查看详情',
@@ -397,31 +403,31 @@ const dict = {
     },
     productObjects: {
       eyebrow: 'FIG 1.1 · Product Objects',
-      title: 'Every object in your project stays in context.',
+      title: 'Every object in your project stays in context',
       description:
         'Project / Dataset / Layer / Task / Artifact — five core objects working together in one workspace.',
     },
     workflow: {
       eyebrow: 'Workflow',
-      title: 'Start with a project. End with work you can continue.',
+      title: 'Start with a project End with work you can continue',
       description:
         'A GeoWork project runs through Define → Organize → Analyze → Verify → Deliver. Each stage\'s output becomes the next stage\'s input.',
     },
     modes: {
       eyebrow: 'Three modes',
-      title: 'Work / Code / Map, sharing one project.',
+      title: 'Work / Code / Map sharing one project',
       description:
         'Switch between modes without losing context. Tools, data, and results stay continuous.',
     },
     useCases: {
       eyebrow: 'Real geospatial work',
-      title: 'Complete workflows from question to output.',
+      title: 'Complete workflows from question to output',
       description:
         'Each case includes inputs, process, tools, outputs, and current status — no abstract adjectives.',
     },
     universalContext: {
       eyebrow: 'Universal Context',
-      title: 'One project context.\nAcross data, maps, code, and outputs.',
+      title: 'One project context\nAcross data maps code and outputs',
       description:
         'Every object, operation, and result in GeoWork ties to the same project context. No more switching tools and rebuilding environments.',
       items: [
@@ -435,7 +441,7 @@ const dict = {
     },
     ecosystem: {
       eyebrow: 'Ecosystem',
-      title: 'Connect your geospatial tool stack.',
+      title: 'Connect your geospatial tool stack',
       description:
         'GeoWork connects professional tools through Skills, MCP, and plugins. It doesn\'t replace your tools — it provides a unified workspace and context.',
       blocks: [
@@ -447,15 +453,15 @@ const dict = {
       note: 'Developer Preview — Connection status reflects current development stage.',
     },
     openDev: {
-      title: 'GeoWork is being built in the open.',
+      title: 'GeoWork is being built in the open',
       description:
         'The repository is public on GitHub, currently in Developer Preview. Contribute, view the roadmap, and follow release notes through the repository.',
     },
     finalCta: {
-      title: 'Keep geospatial work in motion.\nWith GeoWork.',
+      title: 'The next map\nstarts with you',
       description:
         'The repository is public on GitHub, currently in Developer Preview. Contribute, view the roadmap, and follow release notes through the repository.',
-      primaryBtn: 'Explore GeoWork',
+      primaryBtn: 'Download',
       secondaryBtn: 'View on GitHub',
     },
     megaMenu: {
@@ -526,15 +532,21 @@ const dict = {
     },
     changelog: {
       eyebrow: 'Changelog',
-      title: 'Better as you grow. New updates every week.',
+      title: 'Better as you grow\nNew updates every week',
       description: 'See the latest GeoWork product updates and improvements.',
       viewAll: 'View all',
     },
     quote: {
-      text: 'GeoWork is not built around one tool.\nIt is built around the continuity of geospatial work.',
+      text: 'Explore space\nUnderstand change\nCreate new possibilities',
       author: 'GeoWork Development Vision',
     },
     localeSwitch: '中文',
+    localeSwitchDialog: {
+      title: 'Switch to English?',
+      description: 'The Chinese version is still being translated. Switching to English will give you the best experience.',
+      stay: 'Stay on English',
+      switchAnyway: 'Switch to Chinese anyway',
+    },
     pages: {
       product: {
         meta: { title: 'Product · GeoWork', description: 'GeoWork product workspace, objects, modes, and extensibility.' },
@@ -546,7 +558,7 @@ const dict = {
       },
       useCases: {
         meta: { title: 'Use Cases', description: 'Real geospatial work use cases: urban expansion, NDVI time series, and research reports.' },
-        hero: { eyebrow: 'Use Cases', title: 'Complete workflows from question to output.', description: 'Each case includes inputs, process, tools, outputs, and current status — no abstract adjectives.' },
+        hero: { eyebrow: 'Use Cases', title: 'Complete workflows from question to output', description: 'Each case includes inputs, process, tools, outputs, and current status — no abstract adjectives.' },
         filters: ['All', 'Research', 'Education', 'Industry', 'Development'],
         status: { available: 'Available', preview: 'Developer Preview', planned: 'Planned' },
         viewDetail: 'View details',

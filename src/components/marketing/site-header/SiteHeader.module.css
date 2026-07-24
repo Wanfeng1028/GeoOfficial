@@ -3,7 +3,10 @@
   top: 0;
   z-index: var(--z-header);
 
-  min-height: 82px;
+  /* 导航文字颜色 — 子组件（MegaMenu、LocaleSwitcher）通过 var() 继承 */
+  --nav-text-color: #17181b;
+
+  min-height: 80px;
 
   color: #17181b;
   background: #ffffff;
@@ -22,6 +25,8 @@
 }
 
 :global(:root[data-page-theme="dark"]) .header {
+  --nav-text-color: #f1f2f4;
+
   color: #f1f2f4;
   background: rgba(16, 17, 19, 0.96);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -40,9 +45,9 @@
   align-items: center;
 
   width: 100%;
-  min-height: 82px;
+  min-height: 80px;
 
-  padding: 16px 32px;
+  padding: 4px 32px 16px;
 
   box-sizing: border-box;
 }
@@ -59,7 +64,7 @@
   transition: opacity 150ms ease;
 }
 
-:global(:root[data-page-theme="dark"]) .brand { color: #f1f2f4; }
+:global(:root[data-page-theme="dark"]) .brand { color: var(--nav-text-color); }
 
 .brand:hover {
   opacity: 0.72;
@@ -89,7 +94,7 @@
   white-space: nowrap;
 }
 
-:global(:root[data-page-theme="dark"]) .desktopNav { color: #f1f2f4; }
+:global(:root[data-page-theme="dark"]) .desktopNav { color: var(--nav-text-color); }
 
 .navLink {
   position: relative;
@@ -163,6 +168,28 @@
   border-color: #2a2b2f;
 
   transform: translateY(-1px);
+}
+
+:global(:root[data-page-theme="dark"]) .secondaryAction {
+  color: #17181b;
+  background: #f1f2f4;
+  border-color: #f1f2f4;
+}
+
+:global(:root[data-page-theme="dark"]) .secondaryAction:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
+.dark .secondaryAction {
+  color: #17181b;
+  background: #f1f2f4;
+  border-color: #f1f2f4;
+}
+
+.dark .secondaryAction:hover {
+  background: #ffffff;
+  border-color: #ffffff;
 }
 
 .primaryAction {
@@ -249,13 +276,15 @@
 }
 
 .dark {
+  --nav-text-color: #f1f2f4;
+
   color: #f1f2f4;
   background: rgba(16, 17, 19, 0.96);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .dark .brand,
-.dark .desktopNav { color: #f1f2f4; }
+.dark .desktopNav { color: var(--nav-text-color); }
 .dark .navLink:hover { color: rgba(241, 242, 244, 0.68); }
 .dark .primaryAction {
   color: #f1f2f4;

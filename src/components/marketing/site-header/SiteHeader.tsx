@@ -45,10 +45,10 @@ export function SiteHeader() {
   useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 12);
-      const footerTop = document.querySelector("footer")?.getBoundingClientRect().top;
+      const heroBottom = document.getElementById('hero')?.getBoundingClientRect()?.bottom;
       setIsDarkTheme(
         document.documentElement.dataset.pageTheme === "dark" ||
-          (footerTop !== undefined && footerTop <= 82),
+          (heroBottom !== undefined && heroBottom <= 82),
       );
     };
 
@@ -66,10 +66,10 @@ export function SiteHeader() {
   useEffect(() => {
     const root = document.documentElement;
     const updateTheme = () => {
-      const footerTop = document.querySelector("footer")?.getBoundingClientRect().top;
+      const heroBottom = document.getElementById('hero')?.getBoundingClientRect()?.bottom;
       setIsDarkTheme(
         root.dataset.pageTheme === "dark" ||
-          (footerTop !== undefined && footerTop <= 82),
+          (heroBottom !== undefined && heroBottom <= 82),
       );
     };
 

@@ -27,10 +27,18 @@ export function SectionHeading({
   ...props
 }: SectionHeadingProps) {
   const Comp = as ?? `h${level}`;
+  const titleLines = title.split('\n').filter(Boolean);
+
   return (
     <div className={cn(styles.heading, styles[align], styles[width], className)} {...props}>
       {eyebrow ? <p className={styles.eyebrow}>{eyebrow}</p> : null}
-      <Comp className={styles.title}>{title}</Comp>
+      <Comp className={styles.title}>
+        {titleLines.map((line, i) => (
+          <span key={i} className={styles.titleLine}>
+            {line}
+          </span>
+        ))}
+      </Comp>
       {description ? <p className={styles.description}>{description}</p> : null}
     </div>
   );

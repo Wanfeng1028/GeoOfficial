@@ -1,9 +1,9 @@
 .section {
   position: relative;
-  padding: 8rem 0;
-  min-height: 480px;
+  padding: 1rem 0 6rem;
+  min-height: 420px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background: #101113;
   overflow: hidden;
@@ -42,13 +42,58 @@
 
 .title {
   margin: 0;
-  font-size: var(--final-cta-title-size, clamp(2rem, 3.5vw, 3rem));
-  font-weight: 600;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+
   color: #f1f2f4;
   text-wrap: balance;
   word-break: keep-all;
+
+  font-family:
+    var(--font-sans),
+    "PingFang SC",
+    "Microsoft YaHei",
+    system-ui,
+    sans-serif;
+
+  font-size: 92px;
+  font-weight: 700;
+  line-height: 88px;
+  letter-spacing: normal;
+}
+
+.title[data-locale='zh'] {
+  font-family:
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    STSong,
+    SimSun,
+    serif;
+
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.title[data-locale='en'] {
+  font-family:
+    "Attio Gilroy",
+    Gilroy,
+    "Inter Display",
+    Inter,
+    system-ui,
+    sans-serif;
+
+  font-size: 92px;
+  font-weight: 700;
+  line-height: 88px;
+  letter-spacing: normal;
+}
+
+.titleLine {
+  display: block;
+}
+
+.titleLine + .titleLine {
+  margin-top: 0;
 }
 
 .description {
@@ -64,7 +109,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 2rem;
+  margin-top: 4rem;
 }
 
 /* Dark theme button overrides */
@@ -92,7 +137,10 @@
     padding: 4rem 0;
   }
 
-  .title {
-    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  .title,
+  .title[data-locale='en'] {
+    font-size: 46px;
+    line-height: 50px;
+    letter-spacing: normal;
   }
 }

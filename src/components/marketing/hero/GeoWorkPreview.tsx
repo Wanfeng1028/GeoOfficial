@@ -14,6 +14,7 @@ import {
 } from 'motion/react';
 import { useEffect, useRef, useState, type FormEvent, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react';
 
+import { motionTokens } from '@/styles/motion-tokens';
 import styles from './GeoWorkPreview.module.css';
 
 type ProductView = 'overview' | 'map' | 'data' | 'workflow';
@@ -112,6 +113,7 @@ export function GeoWorkPreview() {
   const [stageReady, setStageReady] = useState(false);
   const [prompt, setPrompt] = useState('比较杭州 2020—2026 年建设用地变化');
   const [isAnalysing, setIsAnalysing] = useState(false);
+  const [floating, setFloating] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -119,37 +121,55 @@ export function GeoWorkPreview() {
   });
   const progress = useSpring(scrollYProgress, { stiffness: 115, damping: 28, mass: 0.24 });
 
-  const mainY = useTransform(progress, [0, 0.28, 0.72, 1], [180, 0, -18, -42]);
-  const mainScale = useTransform(progress, [0, 0.28, 0.72, 1], [0.92, 1, 0.985, 0.97]);
-  const mainOpacity = useTransform(progress, [0, 0.16, 0.28], [0.3, 0.8, 1]);
-  const mainBlur = useTransform(progress, [0, 0.28], ['blur(2px)', 'blur(0px)']);
-  const glowOpacity = useTransform(progress, [0, 0.32, 0.74, 1], [0.08, 0.45, 0.76, 0.92]);
-  const glowScale = useTransform(progress, [0, 0.5, 1], [0.86, 1.04, 1.16]);
+  const mainY = useTransform(progress, [0, 0.15, 1], [60, 0, -30]);
+  const mainScale = useTransform(progress, [0, 0.15, 1], [0.92, 1, 0.985]);
+  const mainOpacity = useTransform(progress, [0, 0.06, 0.15, 1], [0.7, 0.88, 1, 0.92]);
+  const mainRotateX = useTransform(progress, [0, 0.15], [6, 0]);
+  const glowOpacity = useTransform(progress, [0, 0.3, 0.74, 1], [0.12, 0.3, 0.6, 0.76]);
+  const glowScale = useTransform(progress, [0, 0.5, 1], [0.95, 1.02, 1.08]);
 
-  const leftTopX = useTransform(progress, [0.25, 0.55, 1], [-150, 0, -22]);
-  const leftTopY = useTransform(progress, [0.25, 0.55, 1], [90, 0, -18]);
-  const leftTopOpacity = useTransform(progress, [0.25, 0.45, 0.55], [0, 0.75, 1]);
-  const rightX = useTransform(progress, [0.34, 0.64, 1], [160, 0, 24]);
-  const rightY = useTransform(progress, [0.34, 0.64, 1], [62, 0, -14]);
-  const rightOpacity = useTransform(progress, [0.34, 0.52, 0.64], [0, 0.74, 1]);
-  const terminalX = useTransform(progress, [0.48, 0.76, 1], [-110, 0, -14]);
-  const terminalY = useTransform(progress, [0.48, 0.76, 1], [132, 0, 18]);
-  const terminalOpacity = useTransform(progress, [0.48, 0.64, 0.76], [0, 0.76, 1]);
+  const [leftTopVisible, setLeftTopVisible] = useState(false);
+  const [rightVisible, setRightVisible] = useState(false);
+  const [terminalVisible, setTerminalVisible] = useState(false);
 
   useMotionValueEvent(progress, 'change', (latest) => {
     setStageReady((current) => {
-      const next = latest > 0.3;
-      return current === next ? current : next;
+      const next = latest > 0.15;
+      return current === next ? current : current;
     });
     const nextScene = sceneForProgress(latest);
     setView((current) => (current === nextScene ? current : nextScene));
   });
 
   useEffect(() => {
+    if (stageReady && !reducedMotion) {
+      const t1 = window.setTimeout(() => setLeftTopVisible(true), 300);
+      const t2 = window.setTimeout(() => setRightVisible(true), 480);
+      const t3 = window.setTimeout(() => setTerminalVisible(true), 660);
+      return () => {
+        window.clearTimeout(t1);
+        window.clearTimeout(t2);
+        window.clearTimeout(t3);
+      };
+    }
+    setLeftTopVisible(false);
+    setRightVisible(false);
+    setTerminalVisible(false);
+  }, [stageReady, reducedMotion]);
+
+  useEffect(() => {
     if (!isAnalysing) return;
     const timer = window.setTimeout(() => setIsAnalysing(false), 1100);
     return () => window.clearTimeout(timer);
   }, [isAnalysing]);
+
+  useEffect(() => {
+    if (stageReady && !reducedMotion) {
+      const timer = window.setTimeout(() => setFloating(true), 600);
+      return () => window.clearTimeout(timer);
+    }
+    setFloating(false);
+  }, [stageReady, reducedMotion]);
 
   const runAnalysis = (event: FormEvent) => {
     event.preventDefault();
@@ -158,8 +178,8 @@ export function GeoWorkPreview() {
 
   const dragEnabled = stageReady && finePointer && !reducedMotion;
   const mainStyle: MotionStyle = reducedMotion
-    ? { opacity: 1, scale: 1, y: 0, filter: 'none' }
-    : { y: mainY, scale: mainScale, opacity: mainOpacity, filter: mainBlur };
+    ? { opacity: 1, scale: 1, y: 0, rotateX: 0 }
+    : { y: mainY, scale: mainScale, opacity: mainOpacity, rotateX: mainRotateX };
 
   return (
     <section ref={sectionRef} className={styles.scrollSection} role='group' aria-label='GeoWork 桌面工作台产品界面'>
@@ -168,11 +188,11 @@ export function GeoWorkPreview() {
         <div className={styles.verticalGrid} aria-hidden='true' />
 
         <DraggableFrame
-          className={styles.leftTopFrame}
+          className={`${styles.leftTopFrame}${floating ? ` ${styles.floating}` : ''}`}
           handleLabel='拖动任务通知窗口'
           dragEnabled={dragEnabled}
           constraintsRef={stageRef}
-          scrollStyle={reducedMotion ? { opacity: 1, x: 0, y: 0 } : { opacity: leftTopOpacity, x: leftTopX, y: leftTopY }}
+          scrollStyle={{ opacity: (leftTopVisible || reducedMotion) ? 1 : 0 }}
         >
           <div className={styles.noticeWindow}>
             <p className={styles.floatTitle}>任务通知</p>
@@ -231,7 +251,10 @@ export function GeoWorkPreview() {
                     initial={reducedMotion ? false : { opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={reducedMotion ? undefined : { opacity: 0, y: -8 }}
-                    transition={{ duration: 0.22, ease: 'easeOut' }}
+                    transition={{
+                      duration: motionTokens.durationNormal,
+                      ease: motionTokens.easeStandard,
+                    }}
                   >
                     {view === 'overview' && <OverviewScene />}
                     {view === 'map' && <MapScene />}
@@ -250,11 +273,11 @@ export function GeoWorkPreview() {
         </DraggableFrame>
 
         <DraggableFrame
-          className={styles.rightFrame}
+          className={`${styles.rightFrame}${floating ? ` ${styles.floating}` : ''}`}
           handleLabel='拖动空间分析结果窗口'
           dragEnabled={dragEnabled}
           constraintsRef={stageRef}
-          scrollStyle={reducedMotion ? { opacity: 1, x: 0, y: 0 } : { opacity: rightOpacity, x: rightX, y: rightY }}
+          scrollStyle={{ opacity: (rightVisible || reducedMotion) ? 1 : 0 }}
         >
           <div className={styles.resultWindow}>
             <p className={styles.resultEyebrow}>空间分析结果</p>
@@ -266,11 +289,11 @@ export function GeoWorkPreview() {
         </DraggableFrame>
 
         <DraggableFrame
-          className={styles.terminalFrame}
+          className={`${styles.terminalFrame}${floating ? ` ${styles.floating}` : ''}`}
           handleLabel='拖动运行日志窗口'
           dragEnabled={dragEnabled}
           constraintsRef={stageRef}
-          scrollStyle={reducedMotion ? { opacity: 1, x: 0, y: 0 } : { opacity: terminalOpacity, x: terminalX, y: terminalY }}
+          scrollStyle={{ opacity: (terminalVisible || reducedMotion) ? 1 : 0 }}
         >
           <div className={styles.terminalWindow}>
             <p>urban-growth · run 08</p>

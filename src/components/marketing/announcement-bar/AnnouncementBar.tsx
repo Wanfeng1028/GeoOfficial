@@ -13,18 +13,25 @@ export function AnnouncementBar() {
   const { locale } = useLocale();
   const t = getDict(locale);
   const [closed, setClosed] = useState(false);
+  const [exiting, setExiting] = useState(false);
 
   if (closed) {
     return null;
   }
 
+  const handleClose = () => {
+    setExiting(true);
+    // 等 crossfade 动画结束后再移除 DOM
+    setTimeout(() => setClosed(true), 260);
+  };
+
   return (
     <div
-      className={styles.bar}
+      className={`${styles.bar}${exiting ? ` crossfade-exit-active` : ''}`}
       role="banner"
       aria-label={locale === 'zh' ? '网站公告' : 'Site announcement'}
     >
-      <div className={styles.inner}>
+      <div className={`${styles.inner}${exiting ? ` crossfade-exit-active` : ''}`}>
         <Link
           href={`/${locale}/changelog`}
           className={styles.link}
@@ -44,7 +51,7 @@ export function AnnouncementBar() {
         <button
           type="button"
           className={styles.close}
-          onClick={() => setClosed(true)}
+          onClick={handleClose}
           aria-label={
             locale === 'zh'
               ? '关闭网站公告'

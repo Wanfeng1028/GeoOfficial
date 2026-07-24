@@ -37,8 +37,8 @@ export function EcosystemIndexClient() {
 
   const heroEyebrow = isEn ? 'Ecosystem' : '生态';
   const heroTitle = isEn
-    ? 'Connect your geospatial tool stack.'
-    : '连接你的地理工具栈。';
+    ? 'Connect your geospatial tool stack'
+    : '连接你的地理工具栈';
   const heroDesc = isEn
     ? 'GeoWork connects QGIS, GDAL, Python, GEE, PostGIS, MCP, Skills and Plugins through a unified workspace. Every integration status is real — planned features are not marked as connected.'
     : 'GeoWork 通过统一工作区连接 QGIS、GDAL、Python、GEE、PostGIS、MCP、Skills 和 Plugins。每个集成状态都是真实的——计划中的能力不会被标记为已连接。';

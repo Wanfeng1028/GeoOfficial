@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { GithubLogoIcon, BookOpenIcon } from '@phosphor-icons/react/ssr';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
+import { useReveal } from '@/hooks/useReveal';
 import { Section } from '@/components/ui/section/Section';
 import { Container } from '@/components/ui/container/Container';
 import { SectionHeading } from '@/components/ui/section-heading/SectionHeading';
@@ -14,6 +15,7 @@ export function OpenDevelopment() {
   const { locale } = useLocale();
   const t = getDict(locale);
   const isEn = locale === 'en';
+  const revealRef = useReveal();
 
   const eyebrow = isEn ? 'Open Development' : '开放开发';
   const cards = [
@@ -44,46 +46,27 @@ export function OpenDevelopment() {
   return (
     <Section tone="surface" spacing="default" id="open-development">
       <Container>
-        <SectionHeading
-          eyebrow={eyebrow}
-          title={t.openDev.title}
-          description={t.openDev.description}
-        />
-        <div className={styles.grid}>
-          <article className={styles.card}>
-            <h3 className={styles.cardTitle}>{cards[0].title}</h3>
-            <p className={styles.cardBody}>{cards[0].body}</p>
-            <p className={styles.cardNote}>{cards[0].note}</p>
-          </article>
-          <article className={styles.card}>
-            <h3 className={styles.cardTitle}>{cards[1].title}</h3>
-            <p className={styles.cardBody}>{cards[1].body}</p>
-            <a
-              className={styles.cardLink}
-              href="https://github.com/Wanfeng1028/GeoWork/issues"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GithubLogoIcon aria-hidden /> {issuesLabel}
-            </a>
-          </article>
-          <article className={styles.card}>
-            <h3 className={styles.cardTitle}>{cards[2].title}</h3>
-            <p className={styles.cardBody}>{cards[2].body}</p>
-            <div className={styles.cardLinks}>
-              <a
-                className={styles.cardLink}
-                href={siteConfig.github}
-                target="_blank"
-                rel="noreferrer"
+        <div ref={revealRef as React.RefObject<HTMLDivElement | null>}>
+          <SectionHeading
+            eyebrow={eyebrow}
+            title={t.openDev.title}
+            description={t.openDev.description}
+            className="reveal"
+            style={{ '--reveal-delay': '0ms' } as React.CSSProperties}
+          />
+          <div className={styles.grid}>
+            {cards.map((card, i) => (
+              <article
+                key={card.title}
+                className={`${styles.card} reveal`}
+                data-reveal-delay={`${200 + i * 100}ms`}
               >
-                <GithubLogoIcon aria-hidden /> {repoLabel}
-              </a>
-              <Link className={styles.cardLink} href="/changelog">
-                <BookOpenIcon aria-hidden /> {changelogLabel}
-              </Link>
-            </div>
-          </article>
+                <h3 className={styles.cardTitle}>{card.title}</h3>
+                <p className={styles.cardBody}>{card.body}</p>
+                <p className={styles.cardNote}>{card.note}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </Container>
     </Section>

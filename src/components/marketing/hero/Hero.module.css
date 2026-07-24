@@ -146,9 +146,9 @@
     system-ui,
     sans-serif;
 
-  font-size: 92px;
+  font-size: 112px;
   font-weight: 700;
-  line-height: 88px;
+  line-height: 108px;
   letter-spacing: normal;
 }
 
@@ -190,7 +190,7 @@
   position: relative;
   display: block;
   width: 100%;
-  padding: 0;
+  padding: 40px 0 0;
 }
 
 .windowShell {
@@ -279,8 +279,8 @@
     margin-top: 28px;
 
     max-width: calc(100% - 40px);
-    font-size: 36px;
-    line-height: 40px;
+    font-size: 46px;
+    line-height: 50px;
     letter-spacing: normal;
   }
 

@@ -27,13 +27,14 @@
     animation: enter-rise var(--duration-normal) var(--ease-standard) both;
   }
 
-  /* Section Reveal */
+  /* Section Reveal — 基于 IntersectionObserver 的滚动入场 */
   .reveal {
     opacity: 0;
     transform: translateY(0.75rem);
     transition:
       opacity var(--duration-slow) var(--ease-standard),
       transform var(--duration-slow) var(--ease-standard);
+    transition-delay: var(--reveal-delay, 0s);
   }
 
   .reveal.visible {

@@ -5,6 +5,7 @@ import { useScroll, motion, AnimatePresence, type UseScrollOptions } from 'motio
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
 import { useScrollStep } from '@/components/scroll/use-scroll-step';
+import { motionTokens } from '@/styles/motion-tokens';
 import { Container } from '@/components/ui/container/Container';
 import { productObjects } from '@/data/product-objects';
 import styles from './ProductObjects.module.css';
@@ -77,11 +78,11 @@ export function ProductObjects() {
       <div className={styles.stickyWrap}>
         <Container>
           <div className={styles.intro}>
-            <p className={styles.eyebrow}>{t.productObjects.eyebrow}</p>
-            <h2 id="objects-title" className={styles.title}>
+            <p className={`${styles.eyebrow} reveal`} data-reveal-delay="0ms">{t.productObjects.eyebrow}</p>
+            <h2 id="objects-title" className={`${styles.title} reveal`} data-reveal-delay="100ms">
               {t.productObjects.title}
             </h2>
-            <p className={styles.description}>{t.productObjects.description}</p>
+            <p className={`${styles.description} reveal`} data-reveal-delay="200ms">{t.productObjects.description}</p>
           </div>
 
           <div className={styles.layout}>
@@ -90,7 +91,8 @@ export function ProductObjects() {
               {productObjects.map((obj, i) => (
                 <div
                   key={obj.id}
-                  className={`${styles.objectBtn}${activeStep === i ? ` ${styles.active}` : ''}`}
+                  className={`${styles.objectBtn} reveal${activeStep === i ? ` ${styles.active}` : ''}`}
+                  data-reveal-delay={`${300 + i * 60}ms`}
                 >
                   <span className={styles.objectIndex}>
                     {String(i + 1).padStart(2, '0')}
@@ -118,10 +120,13 @@ export function ProductObjects() {
                     <motion.div
                       key={active.id}
                       className={styles.objectVisual}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.25 }}
+                      initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -12, scale: 0.98 }}
+                      transition={{
+                        duration: motionTokens.durationNormal,
+                        ease: motionTokens.easeStandard,
+                      }}
                     >
                       <div className={styles.visualIcon}>
                         <span>{visual.icon}</span>
@@ -146,9 +151,13 @@ export function ProductObjects() {
               <motion.div
                 key={active.id}
                 className={styles.detail}
-                initial={{ opacity: 0, y: 4 }}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25 }}
+                transition={{
+                  duration: motionTokens.durationNormal,
+                  ease: motionTokens.easeStandard,
+                  delay: 0.06,
+                }}
               >
                 <h3 className={styles.objectTitle}>
                   {locale === 'en' ? active.enTitle : active.title}

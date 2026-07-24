@@ -37,6 +37,18 @@ export function LocaleProvider({
     applyLocaleToDocument(initialLocale);
   }, [initialLocale]);
 
+  // 中英文切换后恢复滚动位置
+  useEffect(() => {
+    const saved = sessionStorage.getItem('locale-switch-scroll');
+    if (saved) {
+      sessionStorage.removeItem('locale-switch-scroll');
+      // 等页面渲染完成后再恢复滚动位置
+      requestAnimationFrame(() => {
+        window.scrollTo(0, Number(saved));
+      });
+    }
+  }, [locale]);
+
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next);
     applyLocaleToDocument(next);

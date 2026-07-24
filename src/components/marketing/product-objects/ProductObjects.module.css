@@ -1,26 +1,21 @@
 .section {
-  min-height: 350vh;
   position: relative;
-  /* 硬编码亮色背景：PageThemeProvider hydration 后可能切深色主题，
-     但 axe 在亮底场景测，根级 :root[data-page-theme=dark] override 会盖
-     本容器 token override，所以文字色也必须硬编码（见下各 class）。 */
-  background: #ffffff;
-  padding: 0;
+  background: var(--page);
+  padding: 0 0 4rem;
 }
 
 .stickyWrap {
   position: sticky;
   top: var(--header-height, 4.5rem);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 2rem 0;
+  justify-content: flex-start;
+  padding: 2rem 0 1rem;
 }
 
 .intro {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .eyebrow {
@@ -239,7 +234,7 @@
 
 @media (max-width: 768px) {
   .section {
-    min-height: 300vh;
+    min-height: 100vh;
   }
 
   .layout {

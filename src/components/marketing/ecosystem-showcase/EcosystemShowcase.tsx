@@ -2,6 +2,7 @@
 
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
+import { useReveal } from '@/hooks/useReveal';
 import { Container } from '@/components/ui/container/Container';
 import { ThemeSection } from '@/components/theme/ThemeSection';
 import styles from './EcosystemShowcase.module.css';
@@ -63,19 +64,30 @@ export function EcosystemShowcase() {
   const isEn = locale === 'en';
   const connectedLabel = isEn ? 'Connected' : '已连接';
   const plannedLabel = isEn ? 'Planned' : '计划中';
+  const revealRef = useReveal();
 
   return (
     <ThemeSection theme="dark">
-      <section id="ecosystem" className={styles.section}>
+      <section
+        id="ecosystem"
+        ref={revealRef as React.RefObject<HTMLDivElement | null>}
+        className={styles.section}
+      >
         <Container>
           <div className={styles.intro}>
-            <p className={styles.eyebrow}>{t.ecosystem.eyebrow}</p>
-            <h2 className={styles.title}>{t.ecosystem.title}</h2>
-            <p className={styles.description}>{t.ecosystem.description}</p>
+            <p className={`${styles.eyebrow} reveal`} data-reveal-delay="0ms">
+              {t.ecosystem.eyebrow}
+            </p>
+            <h2 className={`${styles.title} reveal`} data-reveal-delay="100ms">
+              {t.ecosystem.title}
+            </h2>
+            <p className={`${styles.description} reveal`} data-reveal-delay="200ms">
+              {t.ecosystem.description}
+            </p>
           </div>
 
           {/* Icon track */}
-          <div className={styles.track}>
+          <div className={`${styles.track} reveal`} data-reveal-delay="300ms">
             <div className={styles.trackInner}>
               {[...integrations, ...integrations].map((item, i) => (
                 <div key={`${item.label}-${i}`} className={styles.trackItem}>
@@ -90,15 +102,19 @@ export function EcosystemShowcase() {
 
           {/* SDK / Skills / MCP blocks */}
           <div className={styles.blocks}>
-            {t.ecosystem.blocks.map((block) => (
-              <div key={block.title} className={styles.block}>
+            {t.ecosystem.blocks.map((block, i) => (
+              <div
+                key={block.title}
+                className={`${styles.block} reveal`}
+                data-reveal-delay={`${400 + i * 80}ms`}
+              >
                 <h3 className={styles.blockTitle}>{block.title}</h3>
                 <p className={styles.blockDesc}>{block.desc}</p>
               </div>
             ))}
           </div>
 
-          <p className={styles.note}>
+          <p className={`${styles.note} reveal`} data-reveal-delay="720ms">
             {t.ecosystem.note}
           </p>
         </Container>

@@ -1,7 +1,6 @@
 .quoteSection {
-  padding: clamp(5rem, 9vw, 8rem) 1.5rem;
+  padding: clamp(3rem, 6vw, 5rem) 1.5rem;
   text-align: center;
-  max-width: 48rem;
   margin: 0 auto;
 }
 
@@ -13,13 +12,55 @@
 
 .quoteText {
   margin: 0;
-  font-size: var(--quote-text-size, clamp(1.75rem, 3vw, 2.75rem));
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.03em;
+
   color: var(--text-primary, #17181b);
   text-wrap: balance;
   word-break: keep-all;
+
+  font-family:
+    var(--font-sans),
+    "PingFang SC",
+    "Microsoft YaHei",
+    system-ui,
+    sans-serif;
+
+  font-size: 92px;
+  font-weight: 600;
+  line-height: 130px;
+  letter-spacing: normal;
+}
+
+.quoteText br {
+  display: block;
+  margin-bottom: 0.15em;
+}
+
+.quoteText[data-locale='zh'] {
+  font-family:
+    "Noto Serif SC",
+    "Source Han Serif SC",
+    "Songti SC",
+    STSong,
+    SimSun,
+    serif;
+
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.quoteText[data-locale='en'] {
+  font-family:
+    "Attio Gilroy",
+    Gilroy,
+    "Inter Display",
+    Inter,
+    system-ui,
+    sans-serif;
+
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 135px;
+  letter-spacing: normal;
 }
 
 .quoteAuthor {
@@ -27,4 +68,26 @@
   font-size: 0.9375rem;
   color: var(--text-secondary);
   font-weight: 550;
+}
+
+@media (max-width: 767px) {
+  .quoteText,
+  .quoteText[data-locale='en'] {
+    font-size: 38px;
+    line-height: 50px;
+    letter-spacing: normal;
+  }
+
+  .quoteText br {
+    margin-bottom: 0.1em;
+  }
+}
+
+@media (max-width: 767px) {
+  .quoteText,
+  .quoteText[data-locale='en'] {
+    font-size: 38px;
+    line-height: 42px;
+    letter-spacing: normal;
+  }
 }
