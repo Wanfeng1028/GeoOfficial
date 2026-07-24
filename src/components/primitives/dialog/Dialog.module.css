@@ -2,6 +2,7 @@
   position: fixed;
   inset: 0;
   background: rgba(18, 20, 24, 0.35);
+  z-index: var(--z-dialog);
   animation: overlay-in var(--duration-fast) var(--ease-standard);
 }
 
@@ -17,6 +18,7 @@
   background: var(--surface);
   border-radius: var(--radius-panel);
   box-shadow: var(--shadow-menu);
+  z-index: calc(var(--z-dialog) + 1);
   animation: content-in var(--duration-normal) var(--ease-standard);
 }
 

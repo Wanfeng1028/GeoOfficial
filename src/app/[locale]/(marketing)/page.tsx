@@ -4,6 +4,7 @@ import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
 import { useReveal } from '@/hooks/useReveal';
 import { Hero } from '@/components/marketing/hero/Hero';
+import { GeoWorkPreview } from '@/components/marketing/hero/GeoWorkPreview';
 import { ModeShowcase } from '@/components/marketing/mode-showcase/ModeShowcase';
 import { UseCaseStory } from '@/components/marketing/use-case-story/UseCaseStory';
 import { EcosystemShowcase } from '@/components/marketing/ecosystem-showcase/EcosystemShowcase';
@@ -20,6 +21,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <GeoWorkPreview />
       <ModeShowcase />
       <UseCaseStory />
       <EcosystemShowcase />

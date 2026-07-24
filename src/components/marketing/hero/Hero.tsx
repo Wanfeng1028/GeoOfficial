@@ -1,16 +1,21 @@
 'use client';
 
-import Link from 'next/link';
-import { GithubLogoIcon } from '@phosphor-icons/react/ssr';
-
 import { useLocale } from '@/i18n/LocaleProvider';
 import { getDict } from '@/i18n/dict';
-
+import Link from 'next/link';
+import { GithubLogoIcon } from '@phosphor-icons/react/ssr';
 import { Button } from '@/components/ui/button/Button';
-
-import { GeoWorkPreview } from './GeoWorkPreview';
-
 import styles from './Hero.module.css';
+
+const IMAGE_TILES = [
+  '/media/placeholders/hero-product.svg',
+  '/media/placeholders/map.svg',
+  '/media/placeholders/work.svg',
+  '/media/placeholders/code.svg',
+  '/media/placeholders/ndvi-series.svg',
+  '/media/placeholders/research-report.svg',
+  '/media/placeholders/urban-expansion.svg',
+];
 
 export function Hero() {
   const { locale } = useLocale();
@@ -22,66 +27,53 @@ export function Hero() {
 
   return (
     <section id="hero" className={styles.hero}>
-      <div className={styles.copy}>
-        <div className={styles.copyInner}>
-          <Link
-            href={`/${locale}/platform`}
-            className={styles.eyebrow}
+      {/* Masonry image tile background */}
+      <div className={styles.tileGrid} aria-hidden="true">
+        {IMAGE_TILES.map((src, i) => (
+          <div
+            key={src}
+            className={`${styles.tile} ${styles[`tileSpan${(i % 3) + 1}`]}`}
           >
-            <span className={styles.eyebrowNew}>New</span>
-            <span>{t.hero.eyebrow}</span>
-            <span
-              className={styles.eyebrowArrow}
-              aria-hidden="true"
-            >
-              →
-            </span>
-          </Link>
-
-          <h1
-            className={styles.title}
-            data-locale={locale}
-          >
-            {titleLines.map((line) => (
-              <span
-                key={line}
-                className={styles.titleLine}
-              >
-                {line}
-              </span>
-            ))}
-          </h1>
-
-          <p className={styles.description}>
-            {t.hero.description}
-          </p>
-
-          <div className={styles.actions}>
-            <Button asChild>
-              <Link href={`/${locale}/platform`}>
-                {t.hero.primaryCta}
-              </Link>
-            </Button>
-
-            <Button asChild variant="primary">
-              <a
-                href="https://github.com/Wanfeng1028/GeoWork"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <GithubLogoIcon
-                  size={16}
-                  aria-hidden="true"
-                />
-                {t.hero.secondaryCta}
-              </a>
-            </Button>
+            <img src={src} alt="" loading={i < 4 ? 'eager' : 'lazy'} />
           </div>
-        </div>
+        ))}
       </div>
 
-      <div className={styles.stage}>
-        <GeoWorkPreview />
+      {/* Dark overlay */}
+      <div className={styles.overlay} />
+
+      {/* Massive centered title + actions */}
+      <div className={styles.content}>
+        <h1 className={styles.title} data-locale={locale}>
+          {titleLines.map((line) => (
+            <span key={line} className={styles.titleLine}>
+              {line}
+            </span>
+          ))}
+        </h1>
+
+        <p className={styles.description}>
+          {t.hero.description}
+        </p>
+
+        <div className={styles.actions}>
+          <Button asChild>
+            <Link href={`/${locale}/platform`}>
+              {t.hero.primaryCta}
+            </Link>
+          </Button>
+
+          <Button asChild variant="primary">
+            <a
+              href="https://github.com/Wanfeng1028/GeoWork"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <GithubLogoIcon size={16} aria-hidden="true" />
+              {t.hero.secondaryCta}
+            </a>
+          </Button>
+        </div>
       </div>
     </section>
   );

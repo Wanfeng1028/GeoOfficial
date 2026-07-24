@@ -40,16 +40,21 @@ export function SiteHeader() {
   const t = getDict(locale);
 
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 12);
-      const heroBottom = document.getElementById('hero')?.getBoundingClientRect()?.bottom;
-      setIsDarkTheme(
-        document.documentElement.dataset.pageTheme === "dark" ||
-          (heroBottom !== undefined && heroBottom <= 82),
-      );
+      const heroEl = document.getElementById('hero');
+      if (heroEl) {
+        const heroTop = heroEl.getBoundingClientRect().top;
+        setIsDarkTheme(
+          document.documentElement.dataset.pageTheme === "dark" ||
+            heroTop < window.innerHeight,
+        );
+      } else {
+        setIsDarkTheme(document.documentElement.dataset.pageTheme === "dark");
+      }
     };
 
     onScroll();
@@ -66,11 +71,16 @@ export function SiteHeader() {
   useEffect(() => {
     const root = document.documentElement;
     const updateTheme = () => {
-      const heroBottom = document.getElementById('hero')?.getBoundingClientRect()?.bottom;
-      setIsDarkTheme(
-        root.dataset.pageTheme === "dark" ||
-          (heroBottom !== undefined && heroBottom <= 82),
-      );
+      const heroEl = document.getElementById('hero');
+      if (heroEl) {
+        const heroTop = heroEl.getBoundingClientRect().top;
+        setIsDarkTheme(
+          root.dataset.pageTheme === "dark" ||
+            heroTop < window.innerHeight,
+        );
+      } else {
+        setIsDarkTheme(root.dataset.pageTheme === "dark");
+      }
     };
 
     updateTheme();
