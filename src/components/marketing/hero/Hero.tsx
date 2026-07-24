@@ -44,6 +44,17 @@ export function Hero() {
 
       {/* Massive centered title + actions */}
       <div className={styles.content}>
+        <Link
+          href={`/${locale}/platform`}
+          className={styles.eyebrow}
+        >
+          <span className={styles.eyebrowNew}>New</span>
+          <span>{t.hero.eyebrow}</span>
+          <span className={styles.eyebrowArrow} aria-hidden="true">
+            →
+          </span>
+        </Link>
+
         <h1 className={styles.title} data-locale={locale}>
           {titleLines.map((line) => (
             <span key={line} className={styles.titleLine}>
