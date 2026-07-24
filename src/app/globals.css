@@ -70,10 +70,7 @@ p {
 
 
 /* Prevent Radix Dialog scroll-lock from shifting layout */
-
-/* Prevent scrolling when Radix Dialog is open */
-
-/* Prevent scrolling when Radix Dialog is open */
 body[data-scroll-locked] {
   overflow: hidden !important;
+  overflow-y: scroll !important;
 }
