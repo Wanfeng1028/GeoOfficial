@@ -5,6 +5,7 @@ import { getDict } from '@/i18n/dict';
 import Link from 'next/link';
 import { GithubLogoIcon } from '@phosphor-icons/react/ssr';
 import { Button } from '@/components/ui/button/Button';
+import { Galaxy } from './Galaxy';
 import styles from './Hero.module.css';
 
 const IMAGE_TILES = [
@@ -27,6 +28,9 @@ export function Hero() {
 
   return (
     <section id="hero" className={styles.hero}>
+      {/* Galaxy WebGL starfield background */}
+      <Galaxy className={styles.galaxyLayer} mouseRepulsion />
+
       {/* Masonry image tile background */}
       <div className={styles.tileGrid} aria-hidden="true">
         {IMAGE_TILES.map((src, i) => (
