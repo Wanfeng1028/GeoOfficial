@@ -1,7 +1,7 @@
 'use client';
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import type * as React from 'react';
 import { cn } from '@/lib/cn';
 import styles from './Dialog.module.css';
@@ -26,18 +26,35 @@ DialogOverlay.displayName = 'DialogOverlay';
 export const DialogContent = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DialogPrimitive.Portal>
-    <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn(styles.content, className)}
-      {...props}
-    >
-      {children}
-    </DialogPrimitive.Content>
-  </DialogPrimitive.Portal>
-));
+>(({ className, children, ...props }, ref) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const savedPaddingRef = useRef('');
+
+  // 弹窗打开时去掉 Radix 自动加的 padding-right（与 scrollbar-gutter 双重补偿导致右侧空白）
+  useEffect(() => {
+    if (!isOpen) return;
+    savedPaddingRef.current = document.body.style.paddingRight;
+    document.body.style.paddingRight = '0';
+    return () => {
+      document.body.style.paddingRight = savedPaddingRef.current;
+    };
+  }, [isOpen]);
+
+  return (
+    <DialogPrimitive.Portal>
+      <DialogOverlay />
+      <DialogPrimitive.Content
+        ref={ref}
+        className={cn(styles.content, className)}
+        onOpenAutoFocus={() => setIsOpen(true)}
+        onCloseAutoFocus={() => setIsOpen(false)}
+        {...props}
+      >
+        {children}
+      </DialogPrimitive.Content>
+    </DialogPrimitive.Portal>
+  );
+});
 DialogContent.displayName = 'DialogContent';
 
 export const DialogTitle = forwardRef<
