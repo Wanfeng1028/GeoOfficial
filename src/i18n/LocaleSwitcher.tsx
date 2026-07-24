@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { cn } from '@/lib/cn';
@@ -69,6 +69,16 @@ export function LocaleSwitcher({
       doSwitch();
     }
   }
+
+  // 去掉 Radix Dialog 自动加的 padding-right（与 scrollbar-gutter 双重补偿导致空白）
+  useEffect(() => {
+    if (!dialogOpen) return;
+    const prev = document.body.style.paddingRight;
+    document.body.style.paddingRight = '0';
+    return () => {
+      document.body.style.paddingRight = prev;
+    };
+  }, [dialogOpen]);
 
   return (
     <>
