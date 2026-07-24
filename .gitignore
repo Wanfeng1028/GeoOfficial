@@ -59,7 +59,8 @@ next-env.d.ts
 # docs (local-only)
 /docs/
 
-# stray root outputs
+# ZCode CLI
+.zcode/
 /eslint-check*.json
 /test-capture-output.txt
 /vitest-output.txt
