@@ -10,10 +10,8 @@
 }
 
 html {
-  overflow-x: clip;
   background: var(--page);
   scroll-padding-top: 5rem;
-  scrollbar-gutter: stable;
   transition: background-color 500ms var(--ease-standard);
 }
 
@@ -72,4 +70,5 @@ p {
 /* Prevent Radix Dialog scroll-lock from shifting layout */
 body[data-scroll-locked] {
   overflow: hidden !important;
+  padding-right: 0 !important;
 }
